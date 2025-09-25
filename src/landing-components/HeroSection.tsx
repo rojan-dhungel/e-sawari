@@ -10,7 +10,7 @@ const MobileAppShowcase = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 px-4 py-2 rounded-full border border-green-200">
             <Car className="h-4 w-4" />
-            <span className="text-sm font-medium">Nepal's #1 Multi-Service App</span>
+            <span className="text-sm font-medium">Nepal&apos;s #1 Multi-Service App</span>
           </div>
 
           {/* Main Heading */}

@@ -14,7 +14,7 @@ export function HeroSection() {
 
           {/* Heading */}
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            We're Here to <span className="text-green-600">Help</span>
+            We&apos;re Here to <span className="text-green-600">Help</span>
           </h1>
 
           {/* Description */}

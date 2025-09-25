@@ -43,7 +43,7 @@ export function ContactSection() {
         <div className="text-center mb-20">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">Get in Touch</h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Choose the most convenient way to reach us. We're committed to providing quick and helpful responses.
+            Choose the most convenient way to reach us. We&apos;re committed to providing quick and helpful responses.
           </p>
         </div>
 

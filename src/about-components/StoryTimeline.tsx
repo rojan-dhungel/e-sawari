@@ -46,7 +46,7 @@ const StoryTimeline = () => {
             Our <span className="text-primary-green">Journey</span>
           </h2>
           <p className="text-lg max-w-2xl mx-auto text-paragraph">
-            From a simple idea to Nepal's leading multi-service platform, here's how we've grown together with our
+            From a simple idea to Nepal&apos;s leading multi-service platform, here&apos;s how we&apos;ve grown together with our
             community.
           </p>
         </motion.div>

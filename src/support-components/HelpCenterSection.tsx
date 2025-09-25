@@ -55,7 +55,7 @@ export function HelpCenterSection() {
             Help Center
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Find answers to common questions and learn how to make the most of esawari's services.
+            Find answers to common questions and learn how to make the most of esawari&apos;s services.
           </p>
         </div>
 
@@ -101,7 +101,7 @@ export function HelpCenterSection() {
 
         {/* Contact Support */}
         <div className="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl p-8 md:p-12 text-center text-white">
-          <h3 className="text-2xl md:text-3xl font-bold mb-4">Can't find what you're looking for?</h3>
+          <h3 className="text-2xl md:text-3xl font-bold mb-4">Can&apos;t find what you&apos;re looking for?</h3>
           <p className="text-green-100 mb-6 text-lg">
             Our support team is here to help you 24/7. Get personalized assistance for your queries.
           </p>

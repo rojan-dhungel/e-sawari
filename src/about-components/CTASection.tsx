@@ -24,7 +24,7 @@ const CTASection = () => {
           viewport={{ once: true }}
           className="text-lg mb-12 max-w-2xl mx-auto text-paragraph"
         >
-          Whether you're a user looking for reliable services or a driver wanting to earn with flexible hours, we
+          Whether you&apos;re a user looking for reliable services or a driver wanting to earn with flexible hours, we
           welcome you to be part of our growing community.
         </motion.p>
 

@@ -42,7 +42,7 @@ const TestimonialsSection = () => {
                   ))}
                 </div>
                 <p className="text-sm leading-relaxed mb-4" style={{ color: '#6A7181' }}>
-                  "Excellent service! The drivers are professional and the wait time is minimal. The app interface is user-friendly."
+                  &quot;Excellent service! The drivers are professional and the wait time is minimal. The app interface is user-friendly.&quot;
                 </p>
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 rounded-full" style={{ backgroundColor: '#26D466' }}></div>
