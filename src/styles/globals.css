@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CSS Variables */
+:root {
+  /* Your existing variables */
+  --primary-green: #26D466;
+  --dark-heading: #20242C;
+  --light-background: #F9FEFB;
+  --text-color: #6A7181;
+
+  /* Font variables */
+  --font-family-sans: 'Inter', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+
+  /* Color variables */
+  --color-rose-50: #fdf2f8;
+  --color-rose-100: #fce7f3;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+
+  --color-emerald-50: #ecfdf5;
+  --color-emerald-100: #d1fae5;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+
+  --color-zinc-50: #fafafa;
+  --color-zinc-100: #f4f4f5;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-500: #71717a;
+  --color-zinc-600: #52525b;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-900: #18181b;
+
+  /* Layout variables */
+  --background: #ffffff;
+  --foreground: #09090b;
+  --border: #e4e4e7;
+  --ring: #18181b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --popover: #ffffff;
+  --popover-foreground: #09090b;
+  --primary: #18181b;
+  --primary-foreground: #fafafa;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #18181b;
+  --muted: #f4f4f5;
+  --muted-foreground: #71717a;
+  --accent: #f4f4f5;
+  --accent-foreground: #18181b;
+  --destructive: #ef4444;
+  --destructive-foreground: #fafafa;
+  --input: #e4e4e7;
+
+  /* Size variables */
+  --max-width-7xl: 80rem;
+  --border-radius-xl: 0.75rem;
+  --border-radius-2xl: 1rem;
+  --radius: 0.5rem;
+
+  /* Shadow variables */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+/* Global reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+  font-family: var(--font-inter);
+  background-color: var(--light-background);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--dark-heading);
+  font-weight: 700;
+}
+
+/* Utility classes */
+.primary-green {
+  color: var(--primary-green);
+}
+
+.bg-primary-green {
+  background-color: var(--primary-green);
+}
+
+.text-primary-green {
+  color: var(--primary-green);
+}
+
+.text-dark-heading {
+  color: var(--dark-heading);
+}
+
+.text-paragraph {
+  color: var(--text-color);
+}
+
+.bg-light {
+  background-color: var(--light-background);
+}
+
+/* Button hover effects */
+button {
+  transition: all 0.2s ease-in-out;
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

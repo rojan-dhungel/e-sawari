@@ -1,0 +1,73 @@
+- .DS_Store
+- .gitignore
+- README.md
+- eslint.config.mjs
+- next-env.d.ts
+- next.config.mjs
+- next.config.ts
+- package-lock.json
+- package.json
+- postcss.config.js
+- postcss.config.mjs
+- project_structure.text
+- public
+  - .DS_Store
+  - Images
+    - .DS_Store
+    - SawariLogo.jpeg
+    - delivery-person-handling-packages.jpg
+    - food-delivery-person-with-thermal-bag.jpg
+    - person-receiving-car-keys-for-rental.jpg
+    - person-using-ride-hailing-app-on-phone.jpg
+  - favicon.ico
+- src
+  - .DS_Store
+  - about-components
+    - CTASection.tsx
+    - HeroSection.tsx
+    - MissionVision.tsx
+    - NewsletterSection.tsx
+    - ServicesGrid.tsx
+    - StoryTimeline.tsx
+    - TeamSection.tsx
+    - ValuesSection.tsx
+  - howitworks-component
+    - FAQSection.tsx
+    - HowItWorksHeroSection.tsx
+    - Howitworks.tsx
+    - ServicesSection.tsx
+    - StepsSection.tsx
+  - landing-components
+    - CTASection.tsx
+    - DealsSection.tsx
+    - DriverSection.tsx
+    - HeroSection.tsx
+    - Home.tsx
+    - NewsletterSection.tsx
+    - SecvicesStation.tsx
+    - TestimonialsSection.tsx
+  - pages
+    - Footer.tsx
+    - Header.tsx
+    - _app.tsx
+    - _document.tsx
+    - about.tsx
+    - howit.tsx
+    - index.tsx
+    - safety.tsx
+    - support.tsx
+  - safety-components
+    - EmergencySection.tsx
+    - GuidelinesSection.tsx
+    - HeroSection.tsx
+    - SafetyFeaturesSection.tsx
+  - styles
+    - globals.css
+    - layout.tsx
+  - support-components
+    - ContactSection.tsx
+    - HelpCenterSection.tsx
+    - HeroSection.tsx
+    - Support.tsx
+- tailwind.config.ts
+- tsconfig.json
