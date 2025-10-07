@@ -23,7 +23,7 @@ const TestimonialsSection = () => {
         {/* Heading */}
         <div className="text-center space-y-5 mb-16">
           <h2
-            className="text-4xl md:text-5xl font-extrabold"
+            className="text-4xl md:text-5xl font-bold"
             style={{ color: 'var(--dark-heading)' }}
           >
             Read Reviews,{' '}

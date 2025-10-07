@@ -55,7 +55,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Utility classes */
-.primary-green {
+.text-primary-green {
+  color: var(--primary-green);
+}
+.hover\:text-primary-green:hover {
   color: var(--primary-green);
 }
 

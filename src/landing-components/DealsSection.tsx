@@ -1,33 +1,45 @@
-import React from 'react';
-import { Gift, UtensilsCrossed, Package, DollarSign, Copy } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Gift, UtensilsCrossed, Package, DollarSign, Copy, Check } from 'lucide-react';
 
-const DealsSection = () => {
-  const deals = [
-    {
-      icon: Gift,
-      iconBg: '#FFE5E5',
-      iconColor: '#FF4444',
-      title: 'Welcome Bonus',
-      desc: 'Get ₹100 off on your first 5 rides',
-      code: 'WELCOME100',
-    },
-    {
-      icon: UtensilsCrossed,
-      iconBg: '#FFF3E0',
-      iconColor: '#F57C00',
-      title: 'Food Friday',
-      desc: '50% Off on food orders every Friday',
-      code: 'FRIDAY50',
-    },
-    {
-      icon: Package,
-      iconBg: '#F3E5F5',
-      iconColor: '#7B1FA2',
-      title: 'Weekend Special',
-      desc: 'Free delivery on parcels above ₹500',
-      code: 'WEEKEND',
-    },
-  ];
+// Define the type for a deal
+interface Deal {
+  id: string;
+  name: string;
+  sub_title: string;
+  code: string;
+  is_active: boolean;
+  color: string;
+  discount_type: string;
+  discount_value: number;
+  max_discount: number | null;
+  min_order_amount: number | null;
+  button_name: string;
+}
+
+const DealsSection: React.FC = () => {
+  const [deals, setDeals] = useState<Deal[]>([]);
+  const [copiedDealId, setCopiedDealId] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch('http://158.220.89.34:3015/coupons')
+      .then((res) => res.json())
+      .then((data: Deal[]) => {
+        const activeDeals = data.filter((deal) => deal.is_active);
+        setDeals(activeDeals);
+      })
+      .catch((err) => console.error('Failed to fetch deals:', err));
+  }, []);
+
+  const icons = [Gift, UtensilsCrossed, Package];
+
+  const handleCopy = (code: string, id: string) => {
+    navigator.clipboard.writeText(code);
+    setCopiedDealId(id);
+
+    setTimeout(() => {
+      setCopiedDealId(null);
+    }, 3000); // reset after 3 seconds
+  };
 
   return (
     <section className="px-4 py-20 md:px-8 bg-light font-inter">
@@ -42,7 +54,7 @@ const DealsSection = () => {
 
         {/* Section Header */}
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-4xl md:text-4xl font-bold text-dark-heading font-inter">
+          <h2 className="text-4xl md:text-5xl font-bold text-dark-heading font-inter">
             Exclusive <span className="text-primary-green">Deals & Offers</span>
           </h2>
           <p className="text-base max-w-2xl mx-auto text-paragraph font-inter">
@@ -53,31 +65,45 @@ const DealsSection = () => {
         {/* Deal Cards */}
         <div className="grid md:grid-cols-3 gap-10">
           {deals.map((deal, index) => {
-            const Icon = deal.icon;
+            const Icon = icons[index % icons.length]; // Cycle through icons
+            const isCopied = copiedDealId === deal.id;
+
             return (
               <div
-                key={index}
+                key={deal.id}
                 className="bg-white p-8 rounded-2xl shadow-md border hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Icon */}
                 <div
                   className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-                  style={{ backgroundColor: deal.iconBg }}
+                  style={{ backgroundColor: deal.color }}
                 >
-                  <Icon className="w-7 h-7" style={{ color: deal.iconColor }} />
+                  <Icon className="w-7 h-7 text-white" />
                 </div>
 
                 {/* Title & Description */}
-                <h3 className="text-2xl font-bold mb-3 text-dark-heading font-inter">{deal.title}</h3>
-                <p className="text-base mb-6 text-paragraph font-inter">{deal.desc}</p>
+                <h3 className="text-2xl font-bold mb-3 text-dark-heading font-inter">{deal.name}</h3>
+                <p className="text-base mb-6 text-paragraph font-inter">{deal.sub_title}</p>
 
                 {/* Promo Code & Copy */}
                 <div className="flex items-center justify-between">
-                  <span className="font-menlo text-dark-heading text-sm  bg-gray-100 p-3 rounded-lg">{deal.code}</span>
-                  <button className="flex items-center space-x-1 text-sm font-medium text-primary-green hover:text-dark-heading font-inter">
-                    <Copy className="w-4 h-4" />
-                    <span>Copy Code</span>
-                  </button>
+                  <span className="font-menlo text-dark-heading text-sm bg-gray-100 p-3 rounded-lg">{deal.code}</span>
+                  <button
+  className="flex items-center space-x-1 text-sm font-medium text-primary-green hover:text-dark-heading font-inter focus:outline-none"
+  onClick={() => handleCopy(deal.code, deal.id)}
+>
+  {isCopied ? (
+    <>
+      <Check className="w-4 h-4" />
+      <span>Copied</span>
+    </>
+  ) : (
+    <>
+      <Copy className="w-4 h-4" />
+      <span>Copy Code</span>
+    </>
+  )}
+</button>
                 </div>
               </div>
             );
