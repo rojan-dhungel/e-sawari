@@ -16,20 +16,28 @@ const MobileAppShowcase = () => {
 
 
           {/* Main Heading */}
-          <div className="space-y-4">
+          <div className="space-y-6">
+            {/* Title */}
             <h1 className="text-5xl lg:text-6xl font-bold text-[var(--dark-heading)] leading-tight">
-              Move, Eat, Send & Rent
+              Move.{" "}
+              <span className="text-[var(--primary-green)]">Eat.</span>{" "}
+              Send.{" "}
+              <span className="text-[var(--primary-green)]">Rent.</span>
             </h1>
-            <div className="w-16 h-1 bg-[var(--dark-heading)]"></div>
-            <h2 className="text-4xl lg:text-5xl font-bold text-[var(--primary-green)] leading-tight">
-              All in One App
-            </h2>
+
+            {/* Subtitle */}
+            <h4 className="text-2xl lg:text-3xl font-semibold text-[var(--dark-heading)]">
+              All your services, in one app
+            </h4>
+
+            {/* Description */}
+            <p className="text-base text-[var(--text-color)] leading-relaxed max-w-xl text-justify">
+              Experience seamless transportation across the city. Get food delivered to your
+              doorstep and parcels sent with ease. Rent vehicles anytime, anywhere—
+              your everyday needs, simplified.
+            </p>
           </div>
 
-          {/* Description */}
-          <p className="text-lg text-[var(--text-color)] leading-relaxed max-w-lg">
-            Experience seamless transportation, food delivery, parcel services, and vehicle rentals across Nepal. Your everyday needs, simplified.
-          </p>
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-4">
@@ -38,8 +46,14 @@ const MobileAppShowcase = () => {
               Download App
             </button>
 
-            <button className="text-[var(--primary-green)] border border-[var(--primary-green)] hover:text-[color-mix(in srgb,var(--primary-green)_90%,black)] hover:border-[color-mix(in srgb,var(--primary-green)_90%,black)] font-semibold text-lg transition-all duration-300 hover:scale-105 px-8 py-4 rounded-xl">
-              Become a Partner
+            <button
+              className="px-8 py-4 rounded-xl font-semibold border-2 text-dark-heading shadow-sm hover:scale-105 transition-transform duration-300"
+              style={{
+                borderColor: "var(--primary-green)",
+                color: "var(--primary-green)",
+              }}
+            >
+              Partner & Drive
             </button>
           </div>
 

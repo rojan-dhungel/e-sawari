@@ -21,7 +21,7 @@ const Header = () => {
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center space-x-10">
-          {['Home', 'Services', 'About', 'Contact'].map((link) => (
+          {['Home', 'About' ,'Services',  'Contact'].map((link) => (
             <a
               key={link}
               href="#"

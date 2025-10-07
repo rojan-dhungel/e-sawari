@@ -159,7 +159,7 @@ const DriverSection = () => {
               ))}
             </div>
 
-            {/* CTA Buttons */}
+
             {/* CTA Buttons */}
 <div className="flex flex-wrap gap-4 mt-8 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
   {/* Become a Driver */}

@@ -48,7 +48,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm md:text-base">
               {[
                 { label: "About Us", href: "/about" },
-                { label: "How it Works", href: "/how-it-works" },
+                { label: "How it Works", href: "/howit" },
                 { label: "Safety", href: "/safety" },
                 { label: "Support", href: "/support" },
               ].map((link) => (
