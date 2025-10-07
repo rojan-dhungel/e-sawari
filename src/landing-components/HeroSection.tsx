@@ -1,5 +1,5 @@
 import React from 'react';
-import {  Star,  Download, Car } from 'lucide-react';
+import { Star, Download, Car } from 'lucide-react';
 import Image from "next/image";
 
 const MobileAppShowcase = () => {
@@ -9,10 +9,11 @@ const MobileAppShowcase = () => {
         {/* Left Content */}
         <div className="space-y-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-[color-mix(in srgb,var(--primary-green)_10%,white)] text-[var(--primary-green)] px-4 py-2 rounded-full border border-[color-mix(in srgb,var(--primary-green)_20%,white)]">
+          <div className="inline-flex items-center gap-2 bg-[#DCFCE7] text-[#237C3F] px-4 py-2 rounded-full border border-[#C6F6D5]">
             <Car className="h-4 w-4" />
-            <span className="text-sm font-medium">Nepal&apos;s #1 Multi-Service App</span>
+            <span className="text-sm font-medium">Your Go-To App for Daily Needs</span>
           </div>
+
 
           {/* Main Heading */}
           <div className="space-y-4">
@@ -113,17 +114,17 @@ const MobileAppShowcase = () => {
                 <div className="pt-32 pb-20 px-8 flex flex-col items-center justify-center text-center relative z-10">
                   {/* App Icon */}
                   <div className="mb-8">
-  <div className="w-28 h-28 flex items-center justify-center overflow-hidden">
-    <Image
-      src="/Images/sawari.png"
-      alt="eSawari Logo"
-      width={112} // 28 * 4 = 112px
-      height={112}
-      className="object-contain w-full h-full"
-      priority
-    />
-  </div>
-</div>
+                    <div className="w-28 h-28 flex items-center justify-center overflow-hidden">
+                      <Image
+                        src="/Images/sawari.png"
+                        alt="eSawari Logo"
+                        width={112} // 28 * 4 = 112px
+                        height={112}
+                        className="object-contain w-full h-full"
+                        priority
+                      />
+                    </div>
+                  </div>
 
 
                   {/* App Name */}
