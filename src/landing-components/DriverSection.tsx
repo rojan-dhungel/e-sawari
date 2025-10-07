@@ -11,25 +11,25 @@ const DriverSection = () => {
       icon: TrendingUp,
       title: "Earn More",
       description: "Competitive rates with surge pricing during peak hours",
-      gradient: "from-emerald-50 to-green-50",
+
     },
     {
       icon: Clock,
       title: "Flexible Hours",
       description: "Work when you want, as much as you want",
-      gradient: "from-blue-50 to-cyan-50",
+
     },
     {
       icon: Shield,
       title: "Insurance Coverage",
       description: "Comprehensive insurance for drivers and vehicles",
-      gradient: "from-purple-50 to-pink-50",
+
     },
     {
       icon: Users,
       title: "Growing Network",
       description: "Join 1000+ partner drivers across Nepal",
-      gradient: "from-orange-50 to-amber-50",
+
     },
   ]
 
@@ -66,15 +66,10 @@ const DriverSection = () => {
           {/* Left Column - Content */}
           <div className="space-y-8">
             {/* Badge */}
-            <div
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full backdrop-blur-sm border border-green-200/50 shadow-sm animate-fade-in-up"
-              style={{ backgroundColor: "rgba(35, 124, 63, 0.08)" }}
-            >
-              <Sparkles className="w-4 h-4 animate-pulse" style={{ color: "var(--primary-green)" }} />
-              <span className="text-sm font-semibold tracking-wide" style={{ color: "var(--primary-green)" }}>
-                Partner Opportunity
-              </span>
-            </div>
+             <div className="inline-flex items-center gap-2 bg-[#DCFCE7] text-[#237C3F] px-4 py-2 rounded-full border border-[#C6F6D5]">
+            <Sparkles className="h-4 w-4" />
+            <span className="text-sm font-medium">Your Next Partnership Awaits</span>
+          </div>
 
             {/* Heading */}
             <div className="space-y-4 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
@@ -199,7 +194,7 @@ const DriverSection = () => {
                   >
                     {/* Gradient background on hover */}
                     <div
-                      className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl`}
+                      className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl`}
                     />
 
                     <div className="relative z-10">
