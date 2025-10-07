@@ -89,21 +89,21 @@ const DealsSection: React.FC = () => {
                 <div className="flex items-center justify-between">
                   <span className="font-menlo text-dark-heading text-sm bg-gray-100 p-3 rounded-lg">{deal.code}</span>
                   <button
-  className="flex items-center space-x-1 text-sm font-medium text-primary-green hover:text-dark-heading font-inter focus:outline-none"
-  onClick={() => handleCopy(deal.code, deal.id)}
->
-  {isCopied ? (
-    <>
-      <Check className="w-4 h-4" />
-      <span>Copied</span>
-    </>
-  ) : (
-    <>
-      <Copy className="w-4 h-4" />
-      <span>Copy Code</span>
-    </>
-  )}
-</button>
+                    className="flex items-center space-x-1 text-sm font-medium text-primary-green hover:text-dark-heading font-inter focus:outline-none"
+                    onClick={() => handleCopy(deal.code, deal.id)}
+                  >
+                    {isCopied ? (
+                      <>
+                        <Check className="w-4 h-4" />
+                        <span>Copied</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-4 h-4" />
+                        <span>Copy Code</span>
+                      </>
+                    )}
+                  </button>
                 </div>
               </div>
             );
