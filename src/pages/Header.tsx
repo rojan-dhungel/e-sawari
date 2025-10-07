@@ -4,7 +4,7 @@ import Image from 'next/image';
 const Header = () => {
   return (
     <header
-       className="px-4 py-6 md:px-8 shadow-sm sticky top-0 z-50"
+      className="px-4 py-6 md:px-8 shadow-sm sticky top-0 z-50"
       style={{ backgroundColor: 'var(--light-background)' }}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -20,24 +20,24 @@ const Header = () => {
         </div>
 
         {/* Navigation */}
-     <nav className="hidden md:flex items-center space-x-10">
-  {['Home', 'Services', 'About', 'Contact'].map((link) => (
-    <a
-      key={link}
-      href="#"
-      className="text-base font-medium transition-colors duration-300"
-      style={{ color: 'var(--dark-heading)' }}
-      onMouseEnter={(e) =>
-        (e.currentTarget.style.color = 'var(--primary-green)')
-      }
-      onMouseLeave={(e) =>
-        (e.currentTarget.style.color = 'var(--dark-heading)')
-      }
-    >
-      {link}
-    </a>
-  ))}
-</nav>
+        <nav className="hidden md:flex items-center space-x-10">
+          {['Home', 'Services', 'About', 'Contact'].map((link) => (
+            <a
+              key={link}
+              href="#"
+              className="text-base font-medium transition-colors duration-300"
+              style={{ color: 'var(--dark-heading)' }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.color = 'var(--primary-green)')
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.color = 'var(--dark-heading)')
+              }
+            >
+              {link}
+            </a>
+          ))}
+        </nav>
 
 
 

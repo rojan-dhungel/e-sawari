@@ -1,61 +1,90 @@
 import React from 'react';
-import { Car, UtensilsCrossed, Package } from 'lucide-react';
+import { Gift, UtensilsCrossed, Package, DollarSign, Copy } from 'lucide-react';
 
 const DealsSection = () => {
+  const deals = [
+    {
+      icon: Gift,
+      iconBg: '#FFE5E5',
+      iconColor: '#FF4444',
+      title: 'Welcome Bonus',
+      desc: 'Get ₹100 off on your first 5 rides',
+      code: 'WELCOME100',
+    },
+    {
+      icon: UtensilsCrossed,
+      iconBg: '#FFF3E0',
+      iconColor: '#F57C00',
+      title: 'Food Friday',
+      desc: '50% Off on food orders every Friday',
+      code: 'FRIDAY50',
+    },
+    {
+      icon: Package,
+      iconBg: '#F3E5F5',
+      iconColor: '#7B1FA2',
+      title: 'Weekend Special',
+      desc: 'Free delivery on parcels above ₹500',
+      code: 'WEEKEND',
+    },
+  ];
+
   return (
-          <section className="px-4 py-16 md:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center space-y-4 mb-12">
-            <div className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#26D466', color: 'white' }}>
-              💰 Limited Time Offers
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold" style={{ color: '#20242C' }}>
-              Exclusive <span style={{ color: '#26D466' }}>Deals & Offers</span>
-            </h2>
-            <p className="text-lg max-w-2xl mx-auto" style={{ color: '#6A7181' }}>
-              Save more on every ride, meal, and delivery with our special promotional codes. New offers added every week!
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-xl shadow-sm border">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: '#FFE5E5' }}>
-                <Car className="w-6 h-6" style={{ color: '#FF4444' }} />
-              </div>
-              <h3 className="text-xl font-bold mb-2" style={{ color: '#20242C' }}>Welcome Bonus</h3>
-              <p className="text-sm mb-4" style={{ color: '#6A7181' }}>Get ₹100 off on your first 5 rides</p>
-              <div className="text-xs font-medium mb-4" style={{ color: '#6A7181' }}>WELCOME100</div>
-              <button className="w-full py-2 rounded-lg text-white text-sm font-medium" style={{ backgroundColor: '#26D466' }}>
-                Use Code
-              </button>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-sm border">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: '#FFF3E0' }}>
-                <UtensilsCrossed className="w-6 h-6" style={{ color: '#F57C00' }} />
-              </div>
-              <h3 className="text-xl font-bold mb-2" style={{ color: '#20242C' }}>Food Friday</h3>
-              <p className="text-sm mb-4" style={{ color: '#6A7181' }}>50% Off on food orders every Friday</p>
-              <div className="text-xs font-medium mb-4" style={{ color: '#6A7181' }}>FRIDAY50</div>
-              <button className="w-full py-2 rounded-lg text-white text-sm font-medium" style={{ backgroundColor: '#26D466' }}>
-                Use Code
-              </button>
-            </div>
-            
-            <div className="bg-white p-6 rounded-xl shadow-sm border">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: '#F3E5F5' }}>
-                <Package className="w-6 h-6" style={{ color: '#7B1FA2' }} />
-              </div>
-              <h3 className="text-xl font-bold mb-2" style={{ color: '#20242C' }}>Weekend Special</h3>
-              <p className="text-sm mb-4" style={{ color: '#6A7181' }}>Free delivery on parcels above ₹500</p>
-              <div className="text-xs font-medium mb-4" style={{ color: '#6A7181' }}>WEEKEND</div>
-              <button className="w-full py-2 rounded-lg text-white text-sm font-medium" style={{ backgroundColor: '#26D466' }}>
-                Use Code
-              </button>
-            </div>
+    <section className="px-4 py-20 md:px-8 bg-light font-inter">
+      <div className="max-w-7xl mx-auto">
+        {/* Top Badge */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center space-x-2 px-4 py-1 rounded-full bg-primary-green text-white font-semibold text-xs">
+            <DollarSign className="w-4 h-4" />
+            <span>Limited Time Offers</span>
           </div>
         </div>
-      </section>
+
+        {/* Section Header */}
+        <div className="text-center space-y-4 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-dark-heading font-inter">
+            Exclusive <span className="text-primary-green">Deals & Offers</span>
+          </h2>
+          <p className="text-base max-w-2xl mx-auto text-paragraph font-inter">
+            Save more on every ride, meal, and delivery with our special promotional codes. New offers added every week!
+          </p>
+        </div>
+
+        {/* Deal Cards */}
+        <div className="grid md:grid-cols-3 gap-10">
+          {deals.map((deal, index) => {
+            const Icon = deal.icon;
+            return (
+              <div
+                key={index}
+                className="bg-white p-8 rounded-2xl shadow-md border hover:shadow-lg transform hover:-translate-y-1 transition-all duration-300"
+              >
+                {/* Icon */}
+                <div
+                  className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
+                  style={{ backgroundColor: deal.iconBg }}
+                >
+                  <Icon className="w-7 h-7" style={{ color: deal.iconColor }} />
+                </div>
+
+                {/* Title & Description */}
+                <h3 className="text-2xl font-bold mb-3 text-dark-heading font-inter">{deal.title}</h3>
+                <p className="text-base mb-6 text-paragraph font-inter">{deal.desc}</p>
+
+                {/* Promo Code & Copy */}
+                <div className="flex items-center justify-between">
+                  <span className="font-menlo text-dark-heading text-sm  bg-gray-100 p-3 rounded-lg">{deal.code}</span>
+                  <button className="flex items-center space-x-1 text-sm font-medium text-primary-green hover:text-dark-heading font-inter">
+                    <Copy className="w-4 h-4" />
+                    <span>Copy Code</span>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 };
 

@@ -1,164 +1,262 @@
-import React from 'react';
-import { MapPin, Shield, Users, CreditCard } from 'lucide-react';
+"use client"
+
+import { MapPin, Shield, Users, TrendingUp, Clock, CheckCircle2, Sparkles, Award, Zap } from "lucide-react"
+import { useState } from "react"
 
 const DriverSection = () => {
+  const [hoveredCard, setHoveredCard] = useState<number | null>(null)
+
   const benefits = [
     {
-      icon: <MapPin className="w-8 h-8 text-primary-green" />,
-      title: 'Easy Rides',
-      description: 'Get rides near your location with smart matching technology'
+      icon: TrendingUp,
+      title: "Earn More",
+      description: "Competitive rates with surge pricing during peak hours",
+      gradient: "from-emerald-50 to-green-50",
     },
     {
-      icon: <Shield className="w-8 h-8 text-primary-green" />,
-      title: 'Insurance Coverage',
-      description: 'Comprehensive insurance protection for peace of mind'
+      icon: Clock,
+      title: "Flexible Hours",
+      description: "Work when you want, as much as you want",
+      gradient: "from-blue-50 to-cyan-50",
     },
     {
-      icon: <Users className="w-8 h-8 text-primary-green" />,
-      title: 'Growing Network',
-      description: 'Join thousands of drivers earning daily across Nepal'
+      icon: Shield,
+      title: "Insurance Coverage",
+      description: "Comprehensive insurance for drivers and vehicles",
+      gradient: "from-purple-50 to-pink-50",
     },
     {
-      icon: <CreditCard className="w-8 h-8 text-primary-green" />,
-      title: 'Quick Payments',
-      description: 'Get paid instantly after every completed ride'
-    }
-  ];
+      icon: Users,
+      title: "Growing Network",
+      description: "Join 1000+ partner drivers across Nepal",
+      gradient: "from-orange-50 to-amber-50",
+    },
+  ]
 
-  const driverInfo = [
-    {
-      title: 'Requirements',
-      items: ['• Valid driving license', '• Vehicle registration papers', '• Insurance documents', '• Clean driving record']
-    },
-    {
-      title: 'Vehicle Types',
-      items: ['• Motorcycles', '• Cars (Sedan/Hatchback)', '• SUVs', '• Commercial vehicles']
-    },
-    {
-      title: 'Benefits',
-      items: ['• Flexible schedule', '• Weekly bonuses', '• Performance incentives', '• 24/7 support']
-    },
-    {
-      title: 'Support',
-      items: ['• Driver training', '• Technical support', '• Community forums', '• Regular workshops']
-    }
-  ];
+  const highlights = [
+    { icon: CheckCircle2, text: "₹25,000+ Average Monthly Earnings" },
+    { icon: Zap, text: "Instant Daily Payouts" },
+    { icon: Award, text: "Performance Bonuses & Rewards" },
+  ]
+
+  const requirements = [
+    "Valid Nepali driving license",
+    "Vehicle registration documents",
+    "Smartphone with internet connection",
+    "Minimum age 21 years",
+  ]
+
+  const stats = [
+    { value: "1000+", label: "Active Drivers" },
+    { value: "50K+", label: "Rides Completed" },
+    { value: "4.8★", label: "Average Rating" },
+  ]
 
   return (
-      <section className="px-4 py-16 md:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h2 className="text-3xl md:text-4xl font-bold" style={{ color: '#20242C' }}>
-                  Drive with <span style={{ color: '#26D466' }}>esawari</span>
-                </h2>
-                <h3 className="text-2xl font-bold" style={{ color: '#20242C' }}>
-                  & Earn On Your Terms
-                </h3>
-                <p className="text-lg leading-relaxed" style={{ color: '#6A7181' }}>
-                  Join our community of professional drivers. Set your own schedule, work on your terms, and earn money while serving your community.
-                </p>
+    <section
+      className="relative px-4 py-20 md:px-8 overflow-hidden"
+      style={{ backgroundColor: "var(--light-background)" }}
+    >
+      {/* Decorative background elements */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-green-100/30 to-transparent rounded-full blur-3xl -z-0" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-emerald-100/20 to-transparent rounded-full blur-3xl -z-0" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
+          {/* Left Column - Content */}
+          <div className="space-y-8">
+            {/* Badge with animation */}
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full backdrop-blur-sm border border-green-200/50 shadow-sm animate-fade-in-up"
+              style={{ backgroundColor: "rgba(35, 124, 63, 0.08)" }}
+            >
+              <Sparkles className="w-4 h-4 animate-pulse" style={{ color: "var(--primary-green)" }} />
+              <span className="text-sm font-semibold tracking-wide" style={{ color: "var(--primary-green)" }}>
+                Partner Opportunity
+              </span>
+            </div>
+
+            {/* Heading with better typography */}
+            <div className="space-y-4 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
+              <h2
+                className="text-5xl md:text-6xl font-bold leading-tight text-balance"
+                style={{ color: "var(--dark-heading)" }}
+              >
+                Drive with{" "}
+                <span className="relative inline-block" style={{ color: "var(--primary-green)" }}>
+                  esawari
+                  <svg className="absolute -bottom-2 left-0 w-full" height="8" viewBox="0 0 200 8" fill="none">
+                    <path
+                      d="M0 4C50 2 150 2 200 4"
+                      stroke="var(--primary-green)"
+                      strokeWidth="3"
+                      strokeLinecap="round"
+                      opacity="0.3"
+                    />
+                  </svg>
+                </span>
+              </h2>
+              <h3 className="text-3xl md:text-4xl font-bold text-balance" style={{ color: "var(--dark-heading)" }}>
+                & Earn On Your Terms
+              </h3>
+              <p className="text-lg leading-relaxed text-pretty max-w-xl" style={{ color: "var(--text-color)" }}>
+                Join Nepal&apos;s fastest-growing ride-hailing platform. Whether you own a bike, car, or truck, start earning
+                today with flexible schedules and competitive rates.
+              </p>
+            </div>
+
+            {/* Highlights with checkmarks */}
+            <div className="space-y-3 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
+              {highlights.map((highlight, index) => (
+                <div key={index} className="flex items-center gap-3 group">
+                  <div
+                    className="w-8 h-8 rounded-full flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform"
+                    style={{ backgroundColor: "var(--primary-green)" }}
+                  >
+                    <highlight.icon className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="font-medium" style={{ color: "var(--dark-heading)" }}>
+                    {highlight.text}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Enhanced Earnings Card */}
+            <div
+              className="relative bg-gradient-to-br from-white to-green-50/30 p-8 rounded-3xl shadow-lg border border-green-100 overflow-hidden group hover:shadow-xl transition-all duration-300 animate-fade-in-up"
+              style={{ animationDelay: "0.3s" }}
+            >
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-200/20 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
+              <div className="relative flex items-center gap-6">
+                <div
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-md group-hover:rotate-6 transition-transform"
+                  style={{ backgroundColor: "var(--primary-green)" }}
+                >
+                  <TrendingUp className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <div className="text-4xl font-bold mb-1" style={{ color: "var(--primary-green)" }}>
+                    ₹25,000+
+                  </div>
+                  <div className="text-sm font-medium" style={{ color: "var(--text-color)" }}>
+                    Average monthly earnings
+                  </div>
+                </div>
               </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#26D466' }}>
-                    <span className="text-white text-xs">✓</span>
+            </div>
+
+            {/* Stats Row */}
+            <div className="grid grid-cols-3 gap-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
+              {stats.map((stat, index) => (
+                <div key={index} className="text-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
+                  <div className="text-2xl font-bold mb-1" style={{ color: "var(--primary-green)" }}>
+                    {stat.value}
                   </div>
-                  <span style={{ color: '#20242C' }}>₹25,000+ Average Monthly Earnings</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#26D466' }}>
-                    <span className="text-white text-xs">✓</span>
+                  <div className="text-xs font-medium" style={{ color: "var(--text-color)" }}>
+                    {stat.label}
                   </div>
-                  <span style={{ color: '#20242C' }}>Flexible Working Hours</span>
                 </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ backgroundColor: '#26D466' }}>
-                    <span className="text-white text-xs">✓</span>
-                  </div>
-                  <span style={{ color: '#20242C' }}>Weekly Instant Payouts</span>
-                </div>
-              </div>
-              
-              <button className="px-8 py-4 rounded-lg text-white font-medium" style={{ backgroundColor: '#26D466' }}>
-                Become a Driver
+              ))}
+            </div>
+
+            {/* CTA Buttons with better styling */}
+            <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+              <button
+                className="group relative px-8 py-4 rounded-xl text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
+                style={{ backgroundColor: "var(--primary-green)" }}
+              >
+                <span className="relative z-10">Become a Driver</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </button>
+              <button
+                className="px-8 py-4 rounded-xl font-semibold border-2 bg-white hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md"
+                style={{ color: "var(--dark-heading)", borderColor: "#E5E7EB" }}
+              >
+                Learn More
               </button>
             </div>
-            
-            <div className="grid grid-cols-2 gap-6">
-              <div className="space-y-6">
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <MapPin className="w-8 h-8 mb-4" style={{ color: '#26D466' }} />
-                  <h4 className="font-bold mb-2" style={{ color: '#20242C' }}>Easy Rides</h4>
-                  <p className="text-sm" style={{ color: '#6A7181' }}>Get rides near your location with smart matching technology</p>
-                </div>
-                
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <Shield className="w-8 h-8 mb-4" style={{ color: '#26D466' }} />
-                  <h4 className="font-bold mb-2" style={{ color: '#20242C' }}>Insurance Coverage</h4>
-                  <p className="text-sm" style={{ color: '#6A7181' }}>Comprehensive insurance protection for peace of mind</p>
-                </div>
-              </div>
-              
-              <div className="space-y-6 pt-12">
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <Users className="w-8 h-8 mb-4" style={{ color: '#26D466' }} />
-                  <h4 className="font-bold mb-2" style={{ color: '#20242C' }}>Growing Network</h4>
-                  <p className="text-sm" style={{ color: '#6A7181' }}>Join thousands of drivers earning daily across Nepal</p>
-                </div>
-                
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <CreditCard className="w-8 h-8 mb-4" style={{ color: '#26D466' }} />
-                  <h4 className="font-bold mb-2" style={{ color: '#20242C' }}>Quick Payments</h4>
-                  <p className="text-sm" style={{ color: '#6A7181' }}>Get paid instantly after every completed ride</p>
-                </div>
-              </div>
-            </div>
           </div>
-          
-          <div className="mt-16 grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <h4 className="font-bold mb-2" style={{ color: '#20242C' }}>Requirements</h4>
-              <ul className="space-y-1 text-sm" style={{ color: '#6A7181' }}>
-                <li>• Valid driving license</li>
-                <li>• Vehicle registration papers</li>
-                <li>• Insurance documents</li>
-                <li>• Clean driving record</li>
-              </ul>
+
+          {/* Right Column - Benefits Grid */}
+          <div className="space-y-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {benefits.map((benefit, index) => {
+                const Icon = benefit.icon
+                return (
+                  <div
+                    key={index}
+                    className={`relative bg-white p-6 rounded-3xl shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer group animate-fade-in-up ${
+                      hoveredCard === index ? "scale-105" : ""
+                    }`}
+                    style={{ animationDelay: `${0.1 * index}s` }}
+                    onMouseEnter={() => setHoveredCard(index)}
+                    onMouseLeave={() => setHoveredCard(null)}
+                  >
+                    {/* Gradient background on hover */}
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${benefit.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl`}
+                    />
+
+                    <div className="relative z-10">
+                      <div
+                        className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 shadow-sm group-hover:scale-110 group-hover:rotate-6 transition-all duration-300"
+                        style={{ backgroundColor: "rgba(35, 124, 63, 0.1)" }}
+                      >
+                        <Icon className="w-7 h-7" style={{ color: "var(--primary-green)" }} />
+                      </div>
+                      <h4 className="font-bold text-lg mb-2" style={{ color: "var(--dark-heading)" }}>
+                        {benefit.title}
+                      </h4>
+                      <p className="text-sm leading-relaxed" style={{ color: "var(--text-color)" }}>
+                        {benefit.description}
+                      </p>
+                    </div>
+                  </div>
+                )
+              })}
             </div>
-            <div>
-              <h4 className="font-bold mb-2" style={{ color: '#20242C' }}>Vehicle Types</h4>
-              <ul className="space-y-1 text-sm" style={{ color: '#6A7181' }}>
-                <li>• Motorcycles</li>
-                <li>• Cars (Sedan/Hatchback)</li>
-                <li>• SUVs</li>
-                <li>• Commercial vehicles</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-2" style={{ color: '#20242C' }}>Benefits</h4>
-              <ul className="space-y-1 text-sm" style={{ color: '#6A7181' }}>
-                <li>• Flexible schedule</li>
-                <li>• Weekly bonuses</li>
-                <li>• Performance incentives</li>
-                <li>• 24/7 support</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-2" style={{ color: '#20242C' }}>Support</h4>
-              <ul className="space-y-1 text-sm" style={{ color: '#6A7181' }}>
-                <li>• Driver training</li>
-                <li>• Technical support</li>
-                <li>• Community forums</li>
-                <li>• Regular workshops</li>
-              </ul>
+
+            {/* Enhanced Requirements Section */}
+            <div
+              className="relative bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-lg border border-gray-100 overflow-hidden animate-fade-in-up"
+              style={{ animationDelay: "0.4s" }}
+            >
+              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-green-100/30 to-transparent rounded-full blur-3xl" />
+              <div className="relative">
+                <div className="flex items-center gap-3 mb-6">
+                  <div
+                    className="w-10 h-10 rounded-xl flex items-center justify-center shadow-sm"
+                    style={{ backgroundColor: "var(--primary-green)" }}
+                  >
+                    <MapPin className="w-5 h-5 text-white" />
+                  </div>
+                  <h4 className="font-bold text-xl" style={{ color: "var(--dark-heading)" }}>
+                    Requirements
+                  </h4>
+                </div>
+                <ul className="space-y-4">
+                  {requirements.map((requirement, index) => (
+                    <li key={index} className="flex items-start gap-3 group">
+                      <div
+                        className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform"
+                        style={{ backgroundColor: "rgba(35, 124, 63, 0.1)" }}
+                      >
+                        <CheckCircle2 className="w-4 h-4" style={{ color: "var(--primary-green)" }} />
+                      </div>
+                      <span className="text-sm font-medium leading-relaxed" style={{ color: "var(--text-color)" }}>
+                        {requirement}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
         </div>
-      </section>
-  );
-};
+      </div>
+    </section>
+  )
+}
 
-export default DriverSection;
+export default DriverSection

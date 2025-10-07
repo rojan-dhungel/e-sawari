@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
 
 @tailwind base;
 @tailwind components;
@@ -15,28 +17,10 @@
   /* Font variables */
   --font-family-sans: 'Inter', sans-serif;
   --font-inter: 'Inter', sans-serif;
+    --font-mono: 'Menlo', monospace; /* added Menlo */
 
 
-  /* Layout variables */
-  --background: #ffffff;
-  --foreground: #09090b;
-  --border: #e4e4e7;
-  --ring: #18181b;
-  --card: #ffffff;
-  --card-foreground: #09090b;
-  --popover: #ffffff;
-  --popover-foreground: #09090b;
-  --primary: #18181b;
-  --primary-foreground: #fafafa;
-  --secondary: #f4f4f5;
-  --secondary-foreground: #18181b;
-  --muted: #f4f4f5;
-  --muted-foreground: #71717a;
-  --accent: #f4f4f5;
-  --accent-foreground: #18181b;
-  --destructive: #ef4444;
-  --destructive-foreground: #fafafa;
-  --input: #e4e4e7;
+
 
   /* Size variables */
   --max-width-7xl: 80rem;
@@ -93,6 +77,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .bg-light {
   background-color: var(--light-background);
+}
+
+
+.font-menlo {
+  font-family: var(--font-mono);
 }
 
 /* Button hover effects */
