@@ -46,10 +46,10 @@ const DealsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Top Badge */}
         <div className="text-center mb-8">
-            <div className="inline-flex items-center gap-2 bg-[#DCFCE7] text-[#237C3F] px-4 py-2 rounded-full border border-[#C6F6D5]">
-  <Tag className="h-4 w-4" />
-  <span className="text-sm font-medium">Exclusive Deals to Make Your Day Easier & Cheaper</span>
-</div>
+          <div className="inline-flex items-center gap-2 bg-[#DCFCE7] text-[#237C3F] px-4 py-2 rounded-full border border-[#C6F6D5]">
+            <Tag className="h-4 w-4" />
+            <span className="text-sm font-medium">Exclusive Deals to Make Your Day Easier & Cheaper</span>
+          </div>
         </div>
 
         {/* Section Header */}

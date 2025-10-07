@@ -19,7 +19,7 @@ const TestimonialsSection = () => {
         background: 'var(--light-background)',
       }}
     >
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center space-y-5 mb-16">
           <h2

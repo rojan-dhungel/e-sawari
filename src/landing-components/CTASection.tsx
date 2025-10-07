@@ -9,7 +9,7 @@ const CTASection = () => {
       className="px-4 py-20 md:px-8"
       style={{ backgroundColor: 'var(--light-background)' }}
     >
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div
           className="relative rounded-3xl overflow-hidden text-center transition-all duration-500"
           style={{

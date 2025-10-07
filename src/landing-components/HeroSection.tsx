@@ -5,7 +5,7 @@ import Image from "next/image";
 const MobileAppShowcase = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[var(--light-background)] flex items-center justify-center p-8">
-      <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
         {/* Left Content */}
         <div className="space-y-8">
           {/* Badge */}

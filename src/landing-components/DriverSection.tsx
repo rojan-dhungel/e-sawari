@@ -54,7 +54,7 @@ const DriverSection = () => {
 
   return (
     <section
-      className="relative px-4 py-20 md:px-8 overflow-hidden"
+      className="relative px-4 py-20  overflow-hidden max-w-7xl mx-auto"
       style={{ backgroundColor: "var(--light-background)" }}
     >
       {/* Decorative background elements */}
@@ -161,26 +161,26 @@ const DriverSection = () => {
 
 
             {/* CTA Buttons */}
-<div className="flex flex-wrap gap-4 mt-8 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-  {/* Become a Driver */}
-  <button
-    className="px-8 py-4 rounded-xl text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-300"
-    style={{ backgroundColor: "var(--primary-green)" }}
-  >
-    Become a Driver
-  </button>
+            <div className="flex flex-wrap gap-4 mt-8 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+              {/* Become a Driver */}
+              <button
+                className="px-8 py-4 rounded-xl text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-300"
+                style={{ backgroundColor: "var(--primary-green)" }}
+              >
+                Become a Driver
+              </button>
 
-  {/* Learn More */}
-  <button
-    className="px-8 py-4 rounded-xl font-semibold border-2 text-dark-heading shadow-sm hover:scale-105 transition-transform duration-300"
-    style={{
-    borderColor: "var(--primary-green)",
-    color: "var(--primary-green)",
-  }}
-  >
-    Learn More
-  </button>
-</div>
+              {/* Learn More */}
+              <button
+                className="px-8 py-4 rounded-xl font-semibold border-2 text-dark-heading shadow-sm hover:scale-105 transition-transform duration-300"
+                style={{
+                  borderColor: "var(--primary-green)",
+                  color: "var(--primary-green)",
+                }}
+              >
+                Learn More
+              </button>
+            </div>
           </div>
 
           {/* Right Column - Benefits Grid */}
@@ -191,9 +191,8 @@ const DriverSection = () => {
                 return (
                   <div
                     key={index}
-                    className={`relative bg-white p-6 rounded-3xl shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer group animate-fade-in-up ${
-                      hoveredCard === index ? "scale-105" : ""
-                    }`}
+                    className={`relative bg-white p-6 rounded-3xl shadow-md border border-gray-100 hover:shadow-xl transition-all duration-300 cursor-pointer group animate-fade-in-up ${hoveredCard === index ? "scale-105" : ""
+                      }`}
                     style={{ animationDelay: `${0.1 * index}s` }}
                     onMouseEnter={() => setHoveredCard(index)}
                     onMouseLeave={() => setHoveredCard(null)}
