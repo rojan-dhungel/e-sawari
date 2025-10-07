@@ -65,7 +65,7 @@ const DriverSection = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           {/* Left Column - Content */}
           <div className="space-y-8">
-            {/* Badge with animation */}
+            {/* Badge */}
             <div
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full backdrop-blur-sm border border-green-200/50 shadow-sm animate-fade-in-up"
               style={{ backgroundColor: "rgba(35, 124, 63, 0.08)" }}
@@ -76,10 +76,10 @@ const DriverSection = () => {
               </span>
             </div>
 
-            {/* Heading with better typography */}
+            {/* Heading */}
             <div className="space-y-4 animate-fade-in-up" style={{ animationDelay: "0.1s" }}>
               <h2
-                className="text-5xl md:text-6xl font-bold leading-tight text-balance"
+                className="text-5xl md:text-6xl font-bold leading-tight"
                 style={{ color: "var(--dark-heading)" }}
               >
                 Drive with{" "}
@@ -96,16 +96,15 @@ const DriverSection = () => {
                   </svg>
                 </span>
               </h2>
-              <h3 className="text-3xl md:text-4xl font-bold text-balance" style={{ color: "var(--dark-heading)" }}>
+              <h3 className="text-3xl md:text-4xl font-bold" style={{ color: "var(--dark-heading)" }}>
                 & Earn On Your Terms
               </h3>
-              <p className="text-lg leading-relaxed text-pretty max-w-xl" style={{ color: "var(--text-color)" }}>
-                Join Nepal&apos;s fastest-growing ride-hailing platform. Whether you own a bike, car, or truck, start earning
-                today with flexible schedules and competitive rates.
+              <p className="text-lg leading-relaxed max-w-xl" style={{ color: "var(--text-color)" }}>
+                Join Nepal&apos;s fastest-growing ride-hailing platform. Whether you own a bike, car, or truck, start earning today with flexible schedules and competitive rates.
               </p>
             </div>
 
-            {/* Highlights with checkmarks */}
+            {/* Highlights */}
             <div className="space-y-3 animate-fade-in-up" style={{ animationDelay: "0.2s" }}>
               {highlights.map((highlight, index) => (
                 <div key={index} className="flex items-center gap-3 group">
@@ -160,22 +159,28 @@ const DriverSection = () => {
               ))}
             </div>
 
-            {/* CTA Buttons with better styling */}
-            <div className="flex flex-wrap gap-4 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
-              <button
-                className="group relative px-8 py-4 rounded-xl text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden"
-                style={{ backgroundColor: "var(--primary-green)" }}
-              >
-                <span className="relative z-10">Become a Driver</span>
-                <div className="absolute inset-0 bg-gradient-to-r from-green-600 to-emerald-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </button>
-              <button
-                className="px-8 py-4 rounded-xl font-semibold border-2 bg-white hover:bg-gray-50 transition-all duration-300 shadow-sm hover:shadow-md"
-                style={{ color: "var(--dark-heading)", borderColor: "#E5E7EB" }}
-              >
-                Learn More
-              </button>
-            </div>
+            {/* CTA Buttons */}
+            {/* CTA Buttons */}
+<div className="flex flex-wrap gap-4 mt-8 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+  {/* Become a Driver */}
+  <button
+    className="px-8 py-4 rounded-xl text-white font-semibold shadow-lg hover:scale-105 transition-transform duration-300"
+    style={{ backgroundColor: "var(--primary-green)" }}
+  >
+    Become a Driver
+  </button>
+
+  {/* Learn More */}
+  <button
+    className="px-8 py-4 rounded-xl font-semibold border-2 text-dark-heading shadow-sm hover:scale-105 transition-transform duration-300"
+    style={{
+    borderColor: "var(--primary-green)",
+    color: "var(--primary-green)",
+  }}
+  >
+    Learn More
+  </button>
+</div>
           </div>
 
           {/* Right Column - Benefits Grid */}
@@ -217,7 +222,7 @@ const DriverSection = () => {
               })}
             </div>
 
-            {/* Enhanced Requirements Section */}
+            {/* Requirements Section */}
             <div
               className="relative bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-lg border border-gray-100 overflow-hidden animate-fade-in-up"
               style={{ animationDelay: "0.4s" }}

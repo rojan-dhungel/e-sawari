@@ -42,7 +42,7 @@ const DealsSection = () => {
 
         {/* Section Header */}
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-dark-heading font-inter">
+          <h2 className="text-4xl md:text-4xl font-bold text-dark-heading font-inter">
             Exclusive <span className="text-primary-green">Deals & Offers</span>
           </h2>
           <p className="text-base max-w-2xl mx-auto text-paragraph font-inter">
