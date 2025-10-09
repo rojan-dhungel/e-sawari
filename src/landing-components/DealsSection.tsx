@@ -21,7 +21,7 @@ const DealsSection: React.FC = () => {
   const [copiedDealId, setCopiedDealId] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('http://158.220.89.34:3015/coupons')
+    fetch('http://api.esawari.com/coupon/coupons')
       .then((res) => res.json())
       .then((data: Deal[]) => {
         const activeDeals = data.filter((deal) => deal.is_active);

@@ -127,7 +127,7 @@ const MobileAppShowcase = () => {
               <div className="relative w-full h-full bg-[var(--light-background)] rounded-[3rem] overflow-hidden flex flex-col justify-center items-center text-center shadow-inner">
                 <div className="pt-32 pb-20 px-8 flex flex-col items-center justify-center text-center relative z-10">
                   {/* App Icon */}
-                  <div className="mb-8">
+                  <div className="mb-4">
                     <div className="w-28 h-28 flex items-center justify-center overflow-hidden">
                       <Image
                         src="/Images/sawari.png"
@@ -143,7 +143,9 @@ const MobileAppShowcase = () => {
 
                   {/* App Name */}
                   <div className="mb-12">
-                    <h3 className="text-3xl font-bold text-[var(--dark-heading)] mb-2">eSawari</h3>
+                    <span className=" text-3xl relative inline-block" style={{ color: "var(--primary-green)" }}>
+                  esawari
+                </span>
                     <p className="text-[var(--text-color)] text-lg">Your Travel Companion</p>
                   </div>
 
