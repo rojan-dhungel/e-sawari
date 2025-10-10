@@ -126,7 +126,7 @@ const HeroSection = () => {
 
                   <div className="mb-8 sm:mb-12 font-body text-center">
                     <span className="text-2xl sm:text-3xl font-heading text-primary-green font-semibold leading-tight sm:leading-[60px]">E Sawari</span>
-                    <p className="text-base sm:text-lg text-text-color">Your Travel Companion</p>
+                    <p className="text-base sm:text-lg text-dark-heading">Move. <span className="text-primary-green">Eat.</span>  Send. <span className="text-primary-green">Rent.</span></p>
                   </div>
 
                   <div className="w-full max-w-xs space-y-2 sm:space-y-3">
