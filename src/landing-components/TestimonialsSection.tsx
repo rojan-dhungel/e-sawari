@@ -18,12 +18,12 @@ const TestimonialsSection = () => {
       <div className="max-w-7xl mx-auto">
         {/* Heading */}
         <div className="text-center space-y-5 mb-16">
-          <h2
+          <h3
             className="text-4xl md:text-5xl font-heading font-semibold text-dark-heading leading-tight"
           >
             Read Reviews,{' '}
             <span className="text-primary-green font-semibold">Ride with Confidence</span>
-          </h2>
+          </h3>
           <p className="text-base max-w-3xl mx-auto text-paragraph leading-relaxed font-body">
             eSawari is the everyday choice for happy customers — trusted for seamless
             transportation, quick deliveries, and reliable daily services that make life easier.

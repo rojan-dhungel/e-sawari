@@ -1,8 +1,9 @@
 import React from 'react';
 import { Star, Download, Car } from 'lucide-react';
 import Image from "next/image";
+import { HeroSection } from '@/support-components/HeroSection';
 
-const MobileAppShowcase = () => {
+const HeroSection = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-light-background flex items-center justify-center p-4 sm:p-6 lg:p-8">
       <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -152,4 +153,4 @@ const MobileAppShowcase = () => {
   );
 };
 
-export default MobileAppShowcase;
+export default HeroSection;

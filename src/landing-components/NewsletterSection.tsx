@@ -13,9 +13,9 @@ const NewsletterSection = () => {
             </div>
 
             {/* Heading */}
-            <h2 className="text-4xl md:text-5xl font-semibold font-heading text-white leading-[1.2]">
+            <h3 className="text-4xl md:text-5xl font-semibold font-heading text-white leading-[1.2]">
               Never Miss a Deal!
-            </h2>
+            </h3>
 
             {/* Description */}
             <p className="text-base  max-w-2xl mx-auto text-paragraph font-body leading-relaxed text-light">

@@ -52,9 +52,9 @@ const DealsSection: React.FC = () => {
 
         {/* Section Header */}
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-4xl md:text-5xl font-heading font-semibold text-dark-heading leading-tight">
+          <h3 className="text-4xl md:text-5xl font-heading font-semibold text-dark-heading leading-tight">
             Exclusive <span className="text-primary-green">Deals & Offers</span>
-          </h2>
+          </h3>
           <p className="text-base max-w-2xl mx-auto text-paragraph leading-relaxed font-body">
             Save more on every ride, meal, and delivery with our special promotional
             codes. New offers added every week!
