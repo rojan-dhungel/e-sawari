@@ -6,7 +6,7 @@ const Header: React.FC = () => {
   const [showHeader, setShowHeader] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [showQR, setShowQR] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,14 +20,33 @@ const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [lastScrollY]);
 
-  const navLinks = ['Home', 'About', 'Services', 'Contact'];
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? 'hidden' : 'unset';
+  }, [menuOpen]);
+
+  const navItems = [
+
+    {
+      title: 'Company',
+      items: ['About us', 'How it works', 'Safety', 'Contact']
+    },
+    {
+      title: 'Services',
+      items: ['Ride-Hailing', 'Food Delivery', 'Parcel Delivery', 'Vehicle Rentals']
+    },
+
+    
+    {
+      title: 'Cities',
+      items: ['Kathmandu', 'Pokhara', 'Lalitpur', 'Bhaktapur']
+    }
+  ];
 
   return (
     <>
       <header
-        className={`px-4 py-4 md:px-8 shadow-sm sticky top-0 z-50 transform transition-transform duration-300 bg-[var(--light-background)] ${
-          showHeader ? 'translate-y-0' : '-translate-y-full'
-        }`}
+        className={`px-5 py-5 md:px-8 shadow-sm sticky top-0 z-50 transform transition-transform duration-300 bg-[var(--light-background)] ${showHeader ? 'translate-y-0' : '-translate-y-full'
+          }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
@@ -42,116 +61,157 @@ const Header: React.FC = () => {
             />
           </div>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-10">
-            {navLinks.map((link) => (
-              <a
-                key={link}
-                href="#"
-                className="text-base font-medium transition-colors duration-300"
-                style={{ color: 'var(--dark-heading)' }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.color = 'var(--primary-green)')
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = 'var(--dark-heading)')
-                }
-              >
-                {link}
-              </a>
-            ))}
-          </nav>
-
-          {/* Action Buttons */}
+          {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-4">
             <button
+              onClick={() => setShowQR(true)}
               className="px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:bg-[var(--dark-heading)] hover:text-[var(--light-background)] shadow-md"
               style={{
                 backgroundColor: 'var(--primary-green)',
                 color: 'var(--light-background)',
               }}
             >
-              Get Started
+              Download the app
             </button>
 
             <button
-              onClick={() => setShowQR(true)}
-              className="px-6 py-2 rounded-lg text-sm font-semibold border transition-all duration-300 hover:bg-[var(--primary-green)] hover:text-[var(--light-background)]"
-              style={{
-                color: 'var(--primary-green)',
-                borderColor: 'var(--primary-green)',
-                backgroundColor: 'transparent',
-              }}
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="px-4 py-2 rounded-lg transition-all duration-300 bg-[var(--primary-green)]  text-[var(--light-background)] flex items-center gap-2 font-medium"
             >
-              Download App
+              {menuOpen ? (
+                <>
+                  <X className="w-5 h-5" />
+                  <span className="text-sm">Close</span>
+                </>
+              ) : (
+                <>
+                  <Menu className="w-5 h-5" />
+                  <span className="text-sm">Menu</span>
+                </>
+              )}
             </button>
           </div>
 
-          {/* Mobile & Tablet Hamburger */}
+          {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center">
-            <button 
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-lg transition-all duration-300 hover:bg-[var(--primary-green)] group"
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="px-4 py-2 rounded-lg transition-all duration-300 bg-[var(--primary-green)] text-[var(--light-background)] flex items-center gap-2 font-medium"
             >
-              {mobileMenuOpen ? (
-                <X className="w-6 h-6 text-[var(--primary-green)] group-hover:text-[var(--light-background)] transition-colors duration-300" />
+              {menuOpen ? (
+                <>
+                  <X className="w-5 h-5" />
+                  <span className="text-sm">Close</span>
+                </>
               ) : (
-                <Menu className="w-6 h-6 text-[var(--primary-green)] group-hover:text-[var(--light-background)] transition-colors duration-300" />
+                <>
+                  <Menu className="w-5 h-5" />
+                  <span className="text-sm">Menu</span>
+                </>
               )}
             </button>
           </div>
         </div>
-
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden mt-4 bg-[var(--light-background)] rounded-lg shadow-lg overflow-hidden animate-slide-down">
-            <nav className="flex flex-col space-y-4 p-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link}
-                  href="#"
-                  className="text-base font-medium transition-colors duration-300"
-                  style={{ color: 'var(--dark-heading)' }}
-                  onClick={() => setMobileMenuOpen(false)}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.color = 'var(--primary-green)')
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.color = 'var(--dark-heading)')
-                  }
-                >
-                  {link}
-                </a>
-              ))}
-              <div className="flex flex-col space-y-2 mt-2">
-                <button
-                  className="w-full px-4 py-1.5 rounded-lg text-xs font-semibold transition-all duration-300 hover:bg-[var(--dark-heading)] hover:text-[var(--light-background)] shadow-sm"
-                  style={{
-                    backgroundColor: 'var(--primary-green)',
-                    color: 'var(--light-background)',
-                  }}
-                >
-                  Get Started
-                </button>
-                <button
-                  onClick={() => {
-                    setShowQR(true);
-                    setMobileMenuOpen(false);
-                  }}
-                  className="w-full px-4 py-1.5 rounded-lg text-xs font-semibold border transition-all duration-300 hover:bg-[var(--primary-green)] hover:text-[var(--light-background)]"
-                  style={{
-                    color: 'var(--primary-green)',
-                    borderColor: 'var(--primary-green)',
-                    backgroundColor: 'transparent',
-                  }}
-                >
-                  Download App
-                </button>
-              </div>
-            </nav>
-          </div>
-        )}
       </header>
+
+      {/* Side Slide Menu */}
+      <div
+        className={`fixed top-0 right-0 h-full w-80 max-w-full lg:w-full bg-white z-50 shadow-2xl transform transition-transform duration-500 ${menuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+      >
+        <div className="flex flex-col h-full">
+          {/* Header Section with Logo and Close */}
+          <div className="flex items-center justify-between p-6 lg:px-12 lg:py-8 border-b border-gray-200">
+            <div className="flex items-center">
+              <Image
+                src="/Images/SawariLogo.png"
+                alt="esawari logo"
+                width={100}
+                height={35}
+                className="object-contain lg:w-32"
+              />
+            </div>
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="p-2 rounded-full hover:bg-gray-100 transition"
+            >
+              <X className="w-6 h-6 text-[var(--dark-heading)] lg:w-8 lg:h-8" />
+            </button>
+          </div>
+
+          {/* Menu Content */}
+          <div className="flex-1 overflow-y-auto p-6 lg:p-12">
+            <div className="max-w-6xl mx-auto">
+              {/* Menu Items Grid */}
+              <nav className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
+                {navItems.map((section, idx) => (
+                  <div key={idx} className="space-y-3">
+                    <h3 className="text-lg lg:text-xl font-semibold text-[var(--dark-heading)] pb-2 border-b-2 border-[var(--primary-green)]">
+                      {section.title}
+                    </h3>
+                    <div className="flex flex-col space-y-2">
+                      {section.items.map((item, itemIdx) => (
+                        <a
+                          key={itemIdx}
+                          href="#"
+                          className="text-base lg:text-lg text-[var(--dark-heading)] hover:text-[var(--primary-green)] transition-colors py-1"
+                          onClick={() => setMenuOpen(false)}
+                        >
+                          {item}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </nav>
+
+              {/* Bottom CTA - Desktop */}
+              <div className="hidden lg:block mt-12 pt-8 border-t border-gray-200">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h4 className="text-2xl font-semibold text-[var(--dark-heading)] mb-2">
+                      Ready to get started?
+                    </h4>
+                    <p className="text-base text-[var(--text-color)] font-body">
+                      Download the app and experience seamless services
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setShowQR(true);
+                      setMenuOpen(false);
+                    }}
+                    className="px-8 py-4 rounded-xl text-lg font-semibold shadow-lg transition-all duration-300 hover:shadow-xl whitespace-nowrap"
+                    style={{
+                      backgroundColor: 'var(--primary-green)',
+                      color: 'var(--light-background)',
+                    }}
+                  >
+                    Download the app
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom CTA - Mobile */}
+          <div className="lg:hidden p-6 border-t border-gray-200">
+            <button
+              onClick={() => {
+                setShowQR(true);
+                setMenuOpen(false);
+              }}
+              className="w-full px-6 py-3 rounded-xl text-base font-semibold shadow-lg transition-all duration-300 hover:shadow-xl"
+              style={{
+                backgroundColor: 'var(--primary-green)',
+                color: 'var(--light-background)',
+              }}
+            >
+              Download the app
+            </button>
+          </div>
+        </div>
+      </div>
 
       {/* QR Popup */}
       {showQR && (

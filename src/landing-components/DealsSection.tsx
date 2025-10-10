@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Gift, UtensilsCrossed, Package, Tag, Copy, Check } from 'lucide-react';
+import { Gift, UtensilsCrossed, Package, Copy, Check } from 'lucide-react';
 
 interface Deal {
   id: string;
@@ -40,15 +40,8 @@ const DealsSection: React.FC = () => {
   return (
     <section className="px-4 py-20 md:px-8 bg-light-background font-body">
       <div className="max-w-7xl mx-auto">
-        {/* Top Badge */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-2 bg-green-100 text-primary-green px-4 py-2 rounded-full border border-green-200">
-            <Tag className="h-4 w-4" />
-            <span className="text-sm font-medium font-body">
-              Exclusive Deals to Make Your Day Easier & Cheaper
-            </span>
-          </div>
-        </div>
+
+        
 
         {/* Section Header */}
         <div className="text-center space-y-4 mb-12">

@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 const NewsletterSection = () => {
   return (
     <section className="px-4 py-20 md:px-8 bg-light">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="rounded-2xl p-10 md:p-16 text-center bg-primary-green shadow-lg font-body">
           <div className="space-y-6">
             {/* Icon */}

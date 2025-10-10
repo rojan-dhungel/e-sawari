@@ -1,7 +1,7 @@
 import React from 'react';
 import { Star, Download, Car } from 'lucide-react';
 import Image from "next/image";
-import { HeroSection } from '@/support-components/HeroSection';
+
 
 const HeroSection = () => {
   return (
@@ -10,15 +10,16 @@ const HeroSection = () => {
         {/* Left Content */}
         <div className="space-y-6 lg:space-y-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-[#DCFCE7] text-primary-green px-3 sm:px-4 py-2 rounded-full border border-[#C6F6D5] font-body font-medium text-xs sm:text-sm">
+          <div className="inline-flex items-center px-4 py-1.5 bg-primary-green/10 text-primary-green rounded-full text-xs font-semibold tracking-wider uppercase space-x-2">
             <Car className="h-3 w-3 sm:h-4 sm:w-4" />
-            Your Go-To App for Daily Needs
+            <span>Your Go-To App for Daily Needs</span>
           </div>
 
           {/* Main Heading */}
           <div className="space-y-4 lg:space-y-6">
             <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-heading leading-tight sm:leading-[1.2] lg:leading-[80px] text-dark-heading">
-              Move. <span className="text-primary-green">Eat.</span> Send. <span className="text-primary-green">Rent.</span>
+              Move. <span className="text-primary-green">Eat.</span> Send. <br />
+              <span className="text-primary-green">Rent.</span>
             </h3>
 
             <h6 className="text-xl sm:text-2xl lg:text-3xl font-medium font-heading text-dark-heading">
@@ -36,7 +37,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
             <button className="bg-primary-green hover:bg-[color-mix(in_srgb,primary-green_90%,black)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-[color-mix(in_srgb,primary-green_25%,transparent)] font-body">
               <Download className="h-4 w-4 sm:h-5 sm:w-5" />
-              Download App
+              Download The App
             </button>
 
             <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium border-2 border-primary-green text-primary-green shadow-sm hover:scale-105 transition-transform duration-300 font-body text-base sm:text-lg">
