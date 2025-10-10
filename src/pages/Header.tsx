@@ -167,18 +167,18 @@ const Header: React.FC = () => {
 
             {/* Logo */}
             <div className="flex justify-center mb-4">
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-4 rounded-xl shadow-md">
+              <div className="rounded-xl shadow-md">
                 <Image
                   src="/Images/sawari.png"
                   alt="Sawari app logo"
-                  width={50}
-                  height={50}
+                  width={100}
+                  height={100}
                 />
               </div>
             </div>
 
             <h2
-              className="text-2xl font-bold mb-2 leading-tight"
+              className="text-2xl font-semibold mb-2 leading-tight"
               style={{ color: 'var(--dark-heading)' }}
             >
               Download Sawari
