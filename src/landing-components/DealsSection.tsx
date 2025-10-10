@@ -18,6 +18,7 @@ interface Deal {
 const DealsSection: React.FC = () => {
   const [deals, setDeals] = useState<Deal[]>([]);
   const [copiedDealId, setCopiedDealId] = useState<string | null>(null);
+  const [hoveredDealId, setHoveredDealId] = useState<string | null>(null);
 
   useEffect(() => {
     fetch('http://api.esawari.com/coupon/coupons')
@@ -38,74 +39,126 @@ const DealsSection: React.FC = () => {
   };
 
   return (
-    <section className="px-4 py-20 md:px-8 bg-light-background font-body">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative px-4 py-20 md:px-8 bg-light font-body overflow-hidden">
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
+        <div className="text-center space-y-4 mb-14">
 
-        
 
-        {/* Section Header */}
-        <div className="text-center space-y-4 mb-12">
           <h3 className="text-4xl md:text-5xl font-heading font-semibold text-dark-heading leading-tight">
             Exclusive <span className="text-primary-green">Deals & Offers</span>
           </h3>
-          <p className="text-base max-w-2xl mx-auto text-paragraph leading-relaxed font-body">
+
+          <p className="text-base md:text-lg max-w-2xl mx-auto text-paragraph leading-relaxed font-body">
             Save more on every ride, meal, and delivery with our special promotional
             codes. New offers added every week!
           </p>
         </div>
 
         {/* Deal Cards */}
-        <div className="grid md:grid-cols-3 gap-10">
+        <div className="grid gap-8 md:grid-cols-3">
           {deals.map((deal, index) => {
             const Icon = icons[index % icons.length];
             const isCopied = copiedDealId === deal.id;
+            const isHovered = hoveredDealId === deal.id;
 
             return (
               <div
                 key={deal.id}
-                className="bg-white p-8 rounded-2xl shadow-md border hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                onMouseEnter={() => setHoveredDealId(deal.id)}
+                onMouseLeave={() => setHoveredDealId(null)}
+                className={`relative bg-white border border-gray-100 rounded-2xl shadow-sm overflow-hidden group transition-all duration-300 ${isHovered ? 'shadow-xl -translate-y-2' : ''
+                  }`}
               >
-                {/* Icon */}
+                {/* Top Accent */}
                 <div
-                  className="w-14 h-14 rounded-xl flex items-center justify-center mb-6"
-                  style={{ backgroundColor: deal.color }}
-                >
-                  <Icon className="w-7 h-7 text-white" />
-                </div>
+                  className="h-1.5 w-full transition-all duration-300"
+                  style={{ backgroundColor: deal.color, opacity: isHovered ? 1 : 0.8 }}
+                ></div>
 
-                {/* Title & Description */}
-                <h3 className="text-2xl font-heading font-semibold mb-3 text-dark-heading">
-                  {deal.name}
-                </h3>
-                <p className="text-base mb-6 text-paragraph font-body">
-                  {deal.sub_title}
-                </p>
+                <div className="p-8">
+                  {/* Icon */}
+                  <div className="relative mb-6 inline-block">
+                    <div
+                      className="w-14 h-14 rounded-xl flex items-center justify-center transition-transform duration-300"
+                      style={{
+                        backgroundColor: deal.color,
+                        transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1)',
+                      }}
+                    >
+                      <Icon className="w-7 h-7 text-white" />
+                    </div>
+                    <div
+                      className="absolute inset-0 rounded-xl blur-xl transition-opacity duration-300"
+                      style={{
+                        backgroundColor: deal.color,
+                        opacity: isHovered ? 0.3 : 0,
+                      }}
+                    ></div>
+                  </div>
 
-                {/* Promo Code & Copy */}
-                <div className="flex items-center justify-between">
-                  <span className="font-menlo text-dark-heading text-sm bg-gray-100 px-3 py-2 rounded-lg select-all">
-                    {deal.code}
-                  </span>
-                  <button
-                    className="flex items-center space-x-1 text-sm font-medium text-primary-green hover:text-dark-heading transition-colors duration-200 font-body focus:outline-none"
-                    onClick={() => handleCopy(deal.code, deal.id)}
+                  {/* Title & Description */}
+                  <h3
+                    className="text-2xl font-heading font-semibold mb-3 transition-colors duration-300"
+                    style={{ color: isHovered ? deal.color : 'var(--dark-heading)' }}
                   >
-                    {isCopied ? (
-                      <>
-                        <Check className="w-4 h-4" />
-                        <span>Copied</span>
-                      </>
-                    ) : (
-                      <>
-                        <Copy className="w-4 h-4" />
-                        <span>Copy Code</span>
-                      </>
-                    )}
-                  </button>
+                    {deal.name}
+                  </h3>
+                  <p className="text-base mb-6 text-paragraph font-body leading-relaxed">
+                    {deal.sub_title}
+                  </p>
+
+                  {/* Promo Code */}
+                  <div className="flex items-center justify-between gap-3 pt-4 border-t border-gray-100">
+                    <div
+                      className="flex-1 font-menlo text-dark-heading text-sm px-4 py-3 rounded-lg transition-all duration-300"
+                      style={{
+                        backgroundColor: isHovered ? `${deal.color}15` : '#f3f4f6',
+                        border: isHovered ? `2px solid ${deal.color}25` : '2px solid transparent',
+                      }}
+                    >
+                      {deal.code}
+                    </div>
+                    <button
+                      onClick={() => handleCopy(deal.code, deal.id)}
+                      className="flex items-center gap-2 text-sm font-medium px-4 py-3 rounded-lg transition-all duration-300 font-body whitespace-nowrap focus:outline-none"
+                      style={{
+                        color: isCopied ? '#10B981' : deal.color,
+                        backgroundColor: isHovered ? `${deal.color}10` : 'transparent',
+                      }}
+                    >
+                      {isCopied ? (
+                        <>
+                          <Check className="w-4 h-4" />
+                          <span>Copied!</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy className="w-4 h-4" />
+                          <span>Copy</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
             );
           })}
+        </div>
+
+        {/* CTA Button */}
+        <div className="text-center mt-12">
+          <button className="group inline-flex items-center gap-2 px-6 py-3 border-2 border-primary-green text-primary-green font-medium rounded-lg transition-all duration-300 hover:bg-primary-green hover:text-white hover:scale-105">
+            <span>View All Available Offers</span>
+            <svg
+              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
         </div>
       </div>
     </section>

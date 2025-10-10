@@ -1,15 +1,7 @@
 import React from 'react';
-import { Car, UtensilsCrossed, Package, Truck, LucideIcon } from 'lucide-react';
+import { Car, UtensilsCrossed, Package, Truck, ArrowRight, LucideIcon } from 'lucide-react';
 
-interface Service {
-  icon: LucideIcon;
-  title: string;
-  description: string;
-  bgColor: string;
-  iconColor: string;
-}
-
-const services: Service[] = [
+const services = [
   {
     icon: Car,
     title: 'Ride-Hailing',
@@ -40,21 +32,21 @@ const services: Service[] = [
     description:
       'Rent bikes, cars, and commercial vehicles for daily, weekly, or monthly needs at affordable rates.',
     bgColor: '#E8F5E9',
-    iconColor: 'var(--primary-green)',
+    iconColor: '#10B981',
   },
 ];
 
 const ServicesSection = () => {
   return (
-    <section className="px-4 py-20 md:px-8 bg-light">
+    <section className="px-4 py-20 md:px-8 bg-gray-50">
       <div className="max-w-7xl mx-auto">
         {/* Section Heading */}
         <div className="text-center space-y-4 mb-16">
-          <h3 className="text-4xl md:text-5xl font-semibold font-heading text-dark-heading">
+          <h3 className="text-4xl md:text-5xl font-semibold text-gray-900">
             Everything You Need in{' '}
             <span className="text-primary-green">One App</span>
           </h3>
-          <p className="text-base  max-w-2xl mx-auto text-paragraph font-body leading-relaxed">
+          <p className="text-lg max-w-2xl mx-auto text-gray-600 leading-relaxed">
             From daily commutes to special occasions, eSawari provides
             comprehensive solutions for all your transportation and delivery
             needs across Nepal.
@@ -80,34 +72,34 @@ interface ServiceCardProps {
   iconColor: string;
 }
 
-const ServiceCard: React.FC<ServiceCardProps> = ({
+const ServiceCard = ({
   icon: Icon,
   title,
   description,
   bgColor,
   iconColor,
-}) => {
+}: ServiceCardProps) => {
   const [isHovered, setIsHovered] = React.useState(false);
 
   return (
     <div
-      className="relative rounded-2xl transition-all duration-300 cursor-pointer p-10 min-h-[320px] flex flex-col bg-white"
+      className="group relative rounded-2xl transition-all duration-300 cursor-pointer p-8 min-h-[340px] flex flex-col bg-white overflow-hidden"
       style={{
         transform: isHovered ? 'translateY(-8px)' : 'translateY(0)',
         boxShadow: isHovered
-          ? '0 12px 24px rgba(0, 0, 0, 0.1)'
+          ? '0 20px 40px rgba(16, 185, 129, 0.15)'
           : '0 2px 8px rgba(0, 0, 0, 0.04)',
       }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="space-y-6 flex-1">
+      <div className="space-y-5 flex-1">
         {/* Icon */}
         <div
-          className="w-16 h-16 rounded-2xl flex items-center justify-center transition-transform duration-300"
+          className="w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-300"
           style={{
             backgroundColor: bgColor,
-            transform: isHovered ? 'scale(1.1)' : 'scale(1)',
+            transform: isHovered ? 'scale(1.1) rotate(5deg)' : 'scale(1) rotate(0deg)',
           }}
         >
           <Icon className="w-8 h-8" style={{ color: iconColor }} />
@@ -115,20 +107,34 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
 
         {/* Title + Description */}
         <div className="space-y-3">
-          <h3
-            className="font-heading text-2xl font-medium transition-colors duration-300"
+          <h4
+            className="text-2xl font-semibold transition-colors duration-300"
             style={{
-              color: isHovered
-                ? 'var(--primary-green)'
-                : 'var(--dark-heading)',
+              color: isHovered ? 'var(--primary-green)' : 'var(--dark-heading)',
             }}
           >
             {title}
-          </h3>
-          <p className="font-body text-base text-paragraph leading-relaxed text-justify">
+          </h4>
+          <p className="text-base text-paragraph leading-relaxed">
             {description}
           </p>
         </div>
+      </div>
+
+      {/* Learn More Link */}
+      <div className="mt-6 flex items-center gap-2 text-base font-medium transition-all duration-300 font-body"
+        style={{
+          color: isHovered ? 'var(--primary-green)' : 'var(--text-color)',
+          opacity: isHovered ? 1 : 0.7,
+        }}
+      >
+        <span>Learn more</span>
+        <ArrowRight 
+          className="w-4 h-4 transition-transform duration-300" 
+          style={{
+            transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
+          }}
+        />
       </div>
 
       {/* Animated Accent Bar */}
@@ -137,6 +143,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         style={{
           backgroundColor: 'var(--primary-green)',
           width: isHovered ? '100%' : '0%',
+        }}
+      />
+
+      {/* Subtle Background Gradient on Hover */}
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-2xl"
+        style={{
+          background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.03) 0%, transparent 100%)',
+          opacity: isHovered ? 1 : 0,
         }}
       />
     </div>
