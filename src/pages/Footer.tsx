@@ -4,7 +4,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#2C3340] text-white px-6 py-16 md:px-12 lg:px-16">
+    <footer className="bg-[#2C3340] text-white px-6 py-16 md:px-12 lg:px-16 font-body">
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 mb-16">
@@ -19,7 +19,6 @@ const Footer = () => {
                 className="w-auto h-20 md:h-24 lg:h-28"
               />
             </Link>
-
             <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs">
               Nepal&apos;s most trusted multi-service platform connecting you to transportation, food delivery, parcel
               services, and vehicle rentals across the country.
@@ -28,15 +27,15 @@ const Footer = () => {
             {/* Contact Info */}
             <div className="space-y-3.5 pt-4">
               <div className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-[#237C3F] flex-shrink-0" />
-                <span className="text-sm md:text-base text-gray-300">+977-01-4567890</span>
+                <Phone className="w-5 h-5 text-primary-green flex-shrink-0" />
+                <span className="text-sm md:text-base text-gray-300">{"+977-01-4567890"}</span>
               </div>
               <div className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-[#237C3F] flex-shrink-0" />
+                <Mail className="w-5 h-5 text-primary-green flex-shrink-0" />
                 <span className="text-sm md:text-base text-gray-300">support@esawari.com</span>
               </div>
               <div className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-[#237C3F] flex-shrink-0" />
+                <MapPin className="w-5 h-5 text-primary-green flex-shrink-0" />
                 <span className="text-sm md:text-base text-gray-300">Kathmandu, Nepal</span>
               </div>
             </div>
@@ -44,7 +43,7 @@ const Footer = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-semibold text-lg mb-5 text-white">Quick Links</h4>
+            <h4 className="font-heading font-semibold text-lg mb-5 text-white">Quick Links</h4>
             <ul className="space-y-3 text-sm md:text-base">
               {[
                 { label: "About Us", href: "/about" },
@@ -55,7 +54,7 @@ const Footer = () => {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-[#237C3F] transition-colors"
+                    className="text-gray-300 hover:text-primary-green transition-colors font-body"
                   >
                     {link.label}
                   </Link>
@@ -66,7 +65,7 @@ const Footer = () => {
 
           {/* Services */}
           <div>
-            <h4 className="font-semibold text-lg mb-5 text-white">Services</h4>
+            <h4 className="font-heading font-semibold text-lg mb-5 text-white">Services</h4>
             <ul className="space-y-3 text-sm md:text-base">
               {[
                 { label: "Ride-Hailing", href: "/ride-hailing" },
@@ -77,7 +76,7 @@ const Footer = () => {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-[#237C3F] transition-colors"
+                    className="text-gray-300 hover:text-primary-green transition-colors font-body"
                   >
                     {link.label}
                   </Link>
@@ -88,7 +87,7 @@ const Footer = () => {
 
           {/* Cities */}
           <div>
-            <h4 className="font-semibold text-lg mb-5 text-white">Cities</h4>
+            <h4 className="font-heading font-semibold text-lg mb-5 text-white">Cities</h4>
             <ul className="space-y-3 text-sm md:text-base">
               {[
                 { label: "Kathmandu", href: "/cities/kathmandu" },
@@ -99,7 +98,7 @@ const Footer = () => {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-gray-300 hover:text-[#237C3F] transition-colors"
+                    className="text-gray-300 hover:text-primary-green transition-colors font-body"
                   >
                     {link.label}
                   </Link>
@@ -109,20 +108,17 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-700 mb-10"></div>
-
-        {/* Bottom Section */}
+        {/* Social Media + App Downloads */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-10">
           {/* Social Media */}
           <div className="flex items-center gap-5">
-            <span className="text-sm md:text-base text-gray-300">Follow us:</span>
+            <span className="text-sm md:text-base text-gray-300 font-body">Follow us:</span>
             <div className="flex gap-3">
               <a
                 href="https://wa.me/9779014567890"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full bg-[#237C3F] flex items-center justify-center hover:bg-[#1d6332] transition-colors"
+                className="w-11 h-11 rounded-full bg-primary-green flex items-center justify-center hover:bg-green-700 transition-colors"
                 aria-label="WhatsApp"
               >
                 <MessageCircle className="w-5 h-5 text-white" />
@@ -131,7 +127,7 @@ const Footer = () => {
                 href="https://facebook.com/esawari"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full bg-[#237C3F] flex items-center justify-center hover:bg-[#1d6332] transition-colors"
+                className="w-11 h-11 rounded-full bg-primary-green flex items-center justify-center hover:bg-green-700 transition-colors"
                 aria-label="Facebook"
               >
                 <svg
@@ -146,7 +142,7 @@ const Footer = () => {
                 href="https://instagram.com/esawari"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full bg-[#237C3F] flex items-center justify-center hover:bg-[#1d6332] transition-colors"
+                className="w-11 h-11 rounded-full bg-primary-green flex items-center justify-center hover:bg-green-700 transition-colors"
                 aria-label="Instagram"
               >
                 <svg
@@ -161,15 +157,15 @@ const Footer = () => {
           </div>
 
           {/* App Download Buttons */}
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-wrap">
             <a
               href="https://play.google.com/store"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center px-5 py-2.5 bg-transparent border border-gray-600 rounded-lg hover:border-gray-500 transition-colors min-w-[140px]"
             >
-              <span className="text-xs text-gray-400">Download on</span>
-              <span className="text-sm font-semibold text-white mt-0.5">Google Play</span>
+              <span className="text-xs text-gray-400 font-body">Download on</span>
+              <span className="text-sm font-semibold text-white mt-0.5 font-body">Google Play</span>
             </a>
             <a
               href="https://apps.apple.com"
@@ -177,8 +173,8 @@ const Footer = () => {
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center px-5 py-2.5 bg-transparent border border-gray-600 rounded-lg hover:border-gray-500 transition-colors min-w-[140px]"
             >
-              <span className="text-xs text-gray-400">Download on</span>
-              <span className="text-sm font-semibold text-white mt-0.5">App Store</span>
+              <span className="text-xs text-gray-400 font-body">Download on</span>
+              <span className="text-sm font-semibold text-white mt-0.5 font-body">App Store</span>
             </a>
           </div>
         </div>
@@ -188,7 +184,7 @@ const Footer = () => {
 
         {/* Copyright and Legal Links */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm md:text-base">
-          <p className="text-gray-400">© 2025 esawari. All rights reserved.</p>
+          <p className="text-gray-400 font-body">© 2025 esawari. All rights reserved.</p>
           <div className="flex gap-6">
             {[
               { label: "Privacy Policy", href: "/privacy" },
@@ -198,7 +194,7 @@ const Footer = () => {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-400 hover:text-[#237C3F] transition-colors"
+                className="text-gray-400 hover:text-primary-green transition-colors font-body"
               >
                 {link.label}
               </Link>

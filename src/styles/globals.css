@@ -1,34 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* Global CSS Variables */
+:root {
+  /* Font Families */
+  --font-heading: 'Fredoka', sans-serif;
+  --font-body: 'Poppins', sans-serif;
+  --font-mono: 'Menlo', monospace;
 
 
+
+  /* Colors */
+  --primary-green: #237C3F;
+  --dark-heading: #333333;
+  --light-background: #FAFAFA;
+  --text-color: #666666;
+  --text-light: #FAFAFA; /* new light text color */
+}
+
+/* Tailwind directives */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* CSS Variables */
-:root {
-  /* Your existing variables */
-  --primary-green: #237C3F;
-  --dark-heading: #20242C;
-  --light-background: #FAFAFA;
-  --text-color: #6A7181;
-
-  /* Font variables */
-  --font-family-sans: 'Inter', sans-serif;
-  --font-inter: 'Inter', sans-serif;
-    --font-mono: 'Menlo', monospace; /* added Menlo */
-
-  /* Size variables */
-  --max-width-7xl: 80rem;
-  --border-radius-xl: 0.75rem;
-  --border-radius-2xl: 1rem;
-  --radius: 0.5rem;
-
-  /* Shadow variables */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-}
 
 /* Global reset */
 * {
@@ -39,16 +32,22 @@
 
 /* Body styling */
 body {
-  font-family: var(--font-inter);
-  background-color: var(--light-background);
+  font-family: var(--font-body);
+  font-size: 18px; /* matches Figma */
   color: var(--text-color);
+  background-color: var(--light-background);
   line-height: 1.6;
 }
 
-/* Headings */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--dark-heading);
-  font-weight: 700;
+  font-family: var(--font-heading);
+  margin-bottom: 0.5em;
+}
+
+/* Inline elements */
+p,  a, li, button {
+  font-family: var(--font-body);
+
 }
 
 /* Utility classes */
@@ -63,10 +62,6 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--primary-green);
 }
 
-.text-primary-green {
-  color: var(--primary-green);
-}
-
 .text-dark-heading {
   color: var(--dark-heading);
 }
@@ -79,14 +74,22 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--light-background);
 }
 
+/* Light text for dark backgrounds */
+.text-light {
+  color: var(--text-light);
+}
+.hover\:text-light:hover {
+  color: var(--text-light);
+}
 
 .font-menlo {
   font-family: var(--font-mono);
 }
 
-/* Button hover effects */
+/* Buttons */
 button {
   transition: all 0.2s ease-in-out;
+  font-family: var(--font-body);
 }
 
 button:hover {

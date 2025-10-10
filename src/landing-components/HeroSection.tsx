@@ -4,87 +4,73 @@ import Image from "next/image";
 
 const MobileAppShowcase = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[var(--light-background)] flex items-center justify-center p-8">
-      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+    <div className="min-h-screen bg-gradient-to-br from-light-background flex items-center justify-center p-4 sm:p-6 lg:p-8">
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
         {/* Left Content */}
-        <div className="space-y-8">
+        <div className="space-y-6 lg:space-y-8">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-[#DCFCE7] text-[#237C3F] px-4 py-2 rounded-full border border-[#C6F6D5]">
-            <Car className="h-4 w-4" />
-            <span className="text-sm font-medium">Your Go-To App for Daily Needs</span>
+          <div className="inline-flex items-center gap-2 bg-[#DCFCE7] text-primary-green px-3 sm:px-4 py-2 rounded-full border border-[#C6F6D5] font-body font-medium text-xs sm:text-sm">
+            <Car className="h-3 w-3 sm:h-4 sm:w-4" />
+            Your Go-To App for Daily Needs
           </div>
 
-
           {/* Main Heading */}
-          <div className="space-y-6">
-            {/* Title */}
-            <h1 className="text-5xl lg:text-6xl font-bold text-[var(--dark-heading)] leading-tight">
-              Move.{" "}
-              <span className="text-[var(--primary-green)]">Eat.</span>{" "}
-              Send.{" "}
-              <span className="text-[var(--primary-green)]">Rent.</span>
-            </h1>
+          <div className="space-y-4 lg:space-y-6">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-heading leading-tight sm:leading-[1.2] lg:leading-[80px] text-dark-heading">
+              Move. <span className="text-primary-green">Eat.</span> Send. <span className="text-primary-green">Rent.</span>
+            </h3>
 
-            {/* Subtitle */}
-            <h4 className="text-2xl lg:text-3xl font-semibold text-[var(--dark-heading)]">
+            <h6 className="text-xl sm:text-2xl lg:text-3xl font-medium font-heading text-dark-heading">
               All your services, in one app
-            </h4>
+            </h6>
 
-            {/* Description */}
-            <p className="text-base text-[var(--text-color)] leading-relaxed max-w-xl text-justify">
+            <p className="text-sm sm:text-base text-text-color leading-relaxed max-w-xl text-justify font-body">
               Experience seamless transportation across the city. Get food delivered to your
               doorstep and parcels sent with ease. Rent vehicles anytime, anywhere—
               your everyday needs, simplified.
             </p>
           </div>
 
-
           {/* Buttons */}
-          <div className="flex flex-wrap gap-4">
-            <button className="bg-[var(--primary-green)] hover:bg-[color-mix(in srgb,var(--primary-green)_90%,black)] text-white px-8 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-[color-mix(in srgb,var(--primary-green)_25%,transparent)]">
-              <Download className="h-5 w-5" />
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+            <button className="bg-primary-green hover:bg-[color-mix(in_srgb,primary-green_90%,black)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-[color-mix(in_srgb,primary-green_25%,transparent)] font-body">
+              <Download className="h-4 w-4 sm:h-5 sm:w-5" />
               Download App
             </button>
 
-            <button
-              className="px-8 py-4 rounded-xl font-semibold border-2 text-dark-heading shadow-sm hover:scale-105 transition-transform duration-300"
-              style={{
-                borderColor: "var(--primary-green)",
-                color: "var(--primary-green)",
-              }}
-            >
+            <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium border-2 border-primary-green text-primary-green shadow-sm hover:scale-105 transition-transform duration-300 font-body text-base sm:text-lg">
               Partner & Drive
             </button>
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 pt-8">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[var(--primary-green)] mb-2">50K+</div>
-              <div className="text-[var(--text-color)] font-medium">Active Users</div>
+          <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 pt-6 lg:pt-8">
+            <div className="text-center font-body">
+              <div className="text-2xl sm:text-3xl font-semibold text-primary-green mb-1 sm:mb-2 font-heading">50K+</div>
+              <div className="text-text-color font-medium text-xs sm:text-sm lg:text-base">Active Users</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-[var(--primary-green)] mb-2">1000+</div>
-              <div className="text-[var(--text-color)] font-medium">Partners</div>
+            <div className="text-center font-body">
+              <div className="text-2xl sm:text-3xl font-semibold text-primary-green mb-1 sm:mb-2 font-heading">1000+</div>
+              <div className="text-text-color font-medium text-xs sm:text-sm lg:text-base">Partners</div>
             </div>
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1 mb-2">
-                <span className="text-3xl font-bold text-[var(--primary-green)]">4.8</span>
-                <Star className="h-6 w-6 text-[var(--primary-green)] fill-current" />
+            <div className="text-center font-body">
+              <div className="flex items-center justify-center gap-1 mb-1 sm:mb-2">
+                <span className="text-2xl sm:text-3xl font-semibold text-primary-green font-heading">4.8</span>
+                <Star className="h-5 w-5 sm:h-6 sm:w-6 text-primary-green fill-current" />
               </div>
-              <div className="text-[var(--text-color)] font-medium">App Rating</div>
+              <div className="text-text-color font-medium text-xs sm:text-sm lg:text-base">App Rating</div>
             </div>
           </div>
         </div>
 
         {/* Right - iPhone Mockup + Badges */}
-        <div className="flex justify-center lg:justify-end">
+        <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
           <div className="relative">
             {/* Live Tracking Badge */}
-            <div className="absolute -top-10 -right-10 z-30 bg-white/90 backdrop-blur-md text-[var(--primary-green)] px-5 py-3 rounded-2xl text-sm font-semibold shadow-2xl border border-[color-mix(in srgb,var(--primary-green)_20%,white)] flex items-center gap-2">
+            <div className="absolute -top-6 sm:-top-10 -right-6 sm:-right-10 z-30 bg-white/90 backdrop-blur-md text-primary-green px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-semibold shadow-2xl border border-[color-mix(in_srgb,primary-green_20%,white)] flex items-center gap-2 font-body">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-[var(--primary-green)]"
+                className="h-3 w-3 sm:h-4 sm:w-4 text-primary-green"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -96,10 +82,10 @@ const MobileAppShowcase = () => {
             </div>
 
             {/* Available 24/7 Badge */}
-            <div className="absolute -bottom-10 -left-10 z-30 bg-[var(--primary-green)] text-white px-5 py-3 rounded-2xl text-sm font-semibold shadow-2xl flex items-center gap-2">
+            <div className="absolute -bottom-6 sm:-bottom-10 -left-6 sm:-left-10 z-30 bg-primary-green text-white px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-semibold shadow-2xl flex items-center gap-2 font-body">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 text-white"
+                className="h-3 w-3 sm:h-4 sm:w-4 text-white"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -114,59 +100,50 @@ const MobileAppShowcase = () => {
               <span>Available 24/7</span>
             </div>
 
-
             {/* iPhone Mockup */}
-            <div className="relative w-[320px] h-[660px] bg-gradient-to-br from-gray-900 to-gray-700 rounded-[3.2rem] p-2 shadow-2xl border-[3px] border-gray-600">
+            <div className="relative w-[280px] sm:w-[320px] h-[580px] sm:h-[660px] bg-gradient-to-br from-gray-900 to-gray-700 rounded-[2.8rem] sm:rounded-[3.2rem] p-2 shadow-2xl border-[3px] border-gray-600">
               {/* Metallic Frame */}
-              <div className="absolute inset-0 rounded-[3.2rem] bg-gradient-to-br from-gray-300/30 to-gray-100/10 pointer-events-none"></div>
+              <div className="absolute inset-0 rounded-[2.8rem] sm:rounded-[3.2rem] bg-gradient-to-br from-gray-300/30 to-gray-100/10 pointer-events-none"></div>
 
               {/* Dynamic Island */}
-              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-36 h-7 bg-black rounded-full z-20 shadow-inner"></div>
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-32 sm:w-36 h-6 sm:h-7 bg-black rounded-full z-20 shadow-inner"></div>
 
               {/* Screen */}
-              <div className="relative w-full h-full bg-[var(--light-background)] rounded-[3rem] overflow-hidden flex flex-col justify-center items-center text-center shadow-inner">
-                <div className="pt-32 pb-20 px-8 flex flex-col items-center justify-center text-center relative z-10">
-                  {/* App Icon */}
-                  <div className="mb-4">
-                    <div className="w-28 h-28 flex items-center justify-center overflow-hidden">
-                      <Image
-                        src="/Images/sawari.png"
-                        alt="eSawari Logo"
-                        width={112} // 28 * 4 = 112px
-                        height={112}
-                        className="object-contain w-full h-full"
-                        priority
-                      />
-                    </div>
+              <div className="relative w-full h-full bg-light-background rounded-[2.6rem] sm:rounded-[3rem] overflow-hidden flex flex-col justify-center items-center text-center shadow-inner">
+                <div className="pt-24 sm:pt-32 pb-16 sm:pb-20 px-6 sm:px-8 flex flex-col items-center justify-center text-center relative z-10">
+                  <div className="mb-3 sm:mb-4 w-24 h-24 sm:w-28 sm:h-28 flex items-center justify-center overflow-hidden">
+                    <Image
+                      src="/Images/sawari.png"
+                      alt="eSawari Logo"
+                      width={112}
+                      height={112}
+                      className="object-contain w-full h-full"
+                      priority
+                    />
                   </div>
 
-
-                  {/* App Name */}
-                  <div className="mb-12">
-                    <span className=" text-3xl relative inline-block" style={{ color: "var(--primary-green)" }}>
-                  esawari
-                </span>
-                    <p className="text-[var(--text-color)] text-lg">Your Travel Companion</p>
+                  <div className="mb-8 sm:mb-12 font-body text-center">
+                    <span className="text-2xl sm:text-3xl font-heading text-primary-green font-semibold leading-tight sm:leading-[60px]">E Sawari</span>
+                    <p className="text-base sm:text-lg text-text-color">Your Travel Companion</p>
                   </div>
 
-                  {/* Progress Bars */}
-                  <div className="w-full max-w-xs space-y-3">
+                  <div className="w-full max-w-xs space-y-2 sm:space-y-3">
                     <div className="bg-gray-300 h-2 rounded-full overflow-hidden">
-                      <div className="bg-[var(--primary-green)] h-full w-4/5 rounded-full"></div>
+                      <div className="bg-primary-green h-full w-4/5 rounded-full"></div>
                     </div>
                     <div className="bg-gray-300 h-2 rounded-full overflow-hidden">
-                      <div className="bg-[var(--primary-green)] h-full w-3/5 rounded-full"></div>
+                      <div className="bg-primary-green h-full w-3/5 rounded-full"></div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Side Buttons */}
-              <div className="absolute left-0 top-20 w-0.5 h-10 bg-gray-500 rounded-r-full"></div>
-              <div className="absolute right-0 top-32 w-0.5 h-16 bg-gray-500 rounded-l-full"></div>
+              <div className="absolute left-0 top-16 sm:top-20 w-0.5 h-8 sm:h-10 bg-gray-500 rounded-r-full"></div>
+              <div className="absolute right-0 top-28 sm:top-32 w-0.5 h-12 sm:h-16 bg-gray-500 rounded-l-full"></div>
 
               {/* Home Indicator */}
-              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-36 h-1.5 bg-gray-700 rounded-full"></div>
+              <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 w-32 sm:w-36 h-1 sm:h-1.5 bg-gray-700 rounded-full"></div>
             </div>
           </div>
         </div>

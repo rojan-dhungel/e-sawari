@@ -10,17 +10,19 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        inter: ['Inter', 'sans-serif'],
+        heading: ['Fredoka', 'sans-serif'], // For h1-h6
+        body: ['Poppins', 'sans-serif'],    // For p, span, buttons, etc.
+        mono: ['Menlo', 'monospace'],      // Optional mono font
       },
       colors: {
         primary: {
-          green: '#26D466',
+          green: '#237C3F',
         },
         dark: {
           heading: '#20242C',
         },
         light: {
-          background: '#F9FEFB',
+          background: '#Fafafa',
         },
         text: {
           color: '#6A7181',
