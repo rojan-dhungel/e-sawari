@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Menu, X, Instagram, Facebook } from 'lucide-react';
 
 const Header: React.FC = () => {
@@ -29,15 +30,30 @@ const Header: React.FC = () => {
   const navItems = [
     {
       title: 'Company',
-      items: ['About us', 'How it works', 'Safety', 'Contact'],
+      items: [
+        { name: 'About', path: '/about' },
+        { name: 'How it works', path: '/howit' },
+        { name: 'Safety', path: '/safety' },
+        { name: 'Contact', path: '/contact' },
+      ],
     },
     {
       title: 'Services',
-      items: ['Ride-Hailing', 'Food Delivery', 'Parcel Delivery', 'Vehicle Rentals'],
+      items: [
+        { name: 'Ride-Hailing', path: '/services/ride-hailing' },
+        { name: 'Food Delivery', path: '/services/food-delivery' },
+        { name: 'Parcel Delivery', path: '/services/parcel-delivery' },
+        { name: 'Vehicle Rentals', path: '/services/vehicle-rentals' },
+      ],
     },
     {
       title: 'Cities',
-      items: ['Kathmandu', 'Pokhara', 'Lalitpur', 'Bhaktapur'],
+      items: [
+        { name: 'Kathmandu', path: '/cities/kathmandu' },
+        { name: 'Pokhara', path: '/cities/pokhara' },
+        { name: 'Lalitpur', path: '/cities/lalitpur' },
+        { name: 'Bhaktapur', path: '/cities/bhaktapur' },
+      ],
     },
   ];
 
@@ -51,28 +67,31 @@ const Header: React.FC = () => {
     <>
       {/* NAVBAR */}
       <header
-        className={`px-6 py-6 md:px-10 shadow-sm sticky top-0 z-50 transform transition-transform duration-300 bg-[var(--light-background)] ${
-          showHeader ? 'translate-y-0' : '-translate-y-full'
-        }`}
+        className={`px-6 py-6 md:px-10 shadow-sm sticky top-0 z-50 transform transition-transform duration-300 bg-[var(--light-background)] ${showHeader ? 'translate-y-0' : '-translate-y-full'
+          }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
-            <Image
-              src="/Images/SawariLogo.png"
-              alt="Sawari logo"
-              width={140}
-              height={50}
-              className="object-contain"
-              priority
-            />
+            <Link href="/">
+              <Image
+                src="/Images/SawariLogo.png"
+                alt="Sawari logo"
+                width={140}
+                height={50}
+                className="object-contain transform transition-transform duration-300 hover:scale-105"
+                priority
+              />
+            </Link>
           </div>
+
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-6">
+
             <button
               onClick={() => setShowQR(true)}
-              className="px-7 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:bg-[var(--dark-heading)] hover:text-[var(--light-background)] shadow-md"
+              className="px-7 py-3 rounded-lg text-base font-semibold shadow-md transform transition-transform duration-300 hover:scale-105 hover:bg-[var(--dark-heading)] hover:text-[var(--light-background)]"
               style={{
                 backgroundColor: 'var(--primary-green)',
                 color: 'var(--light-background)',
@@ -83,7 +102,7 @@ const Header: React.FC = () => {
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="px-5 py-3 rounded-lg transition-all duration-300 bg-[var(--primary-green)] text-[var(--light-background)] flex items-center gap-2 font-medium"
+              className="px-5 py-3 rounded-lg flex items-center gap-2 font-medium bg-[var(--primary-green)] text-[var(--light-background)] transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
             >
               {menuOpen ? (
                 <>
@@ -97,6 +116,7 @@ const Header: React.FC = () => {
                 </>
               )}
             </button>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -123,9 +143,8 @@ const Header: React.FC = () => {
 
       {/* SIDE MENU */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 max-w-full lg:w-full bg-white z-50 shadow-2xl transform transition-transform duration-500 ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+        className={`fixed top-0 right-0 h-full w-80 max-w-full lg:w-full bg-white z-50 shadow-2xl transform transition-transform duration-500 ${menuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
       >
         <div className="flex flex-col h-full">
           {/* Header Section */}
@@ -151,40 +170,39 @@ const Header: React.FC = () => {
           <div className="flex-1 overflow-y-auto p-7 lg:p-14">
             <div className="max-w-6xl mx-auto">
               <nav className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-10">
-  {navItems.map((section, idx) => (
-    <div key={idx} className="space-y-3">
-      <h3 className="text-lg lg:text-2xl font-semibold text-[var(--dark-heading)] pb-2 border-b-2 border-[var(--primary-green)]">
-        {section.title}
-      </h3>
-      <div className="flex flex-col space-y-2">
-        {section.items.map((item, itemIdx) => (
-          <a
-            key={itemIdx}
-            href="#"
-            onClick={() => setMenuOpen(false)}
-            className="group flex items-center justify-between text-base lg:text-lg text-[var(--dark-heading)] hover:text-[var(--primary-green)] transition-colors py-1"
-          >
-            <span>{item}</span>
-            <svg
-              className="w-4 h-4 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </a>
-        ))}
-      </div>
-    </div>
-  ))}
-</nav>
-
+                {navItems.map((section, idx) => (
+                  <div key={idx} className="space-y-3">
+                    <h3 className="text-lg lg:text-2xl font-semibold text-[var(--dark-heading)] pb-2 border-b-2 border-[var(--primary-green)]">
+                      {section.title}
+                    </h3>
+                    <div className="flex flex-col space-y-2">
+                      {section.items.map((item, itemIdx) => (
+                        <Link
+                          key={itemIdx}
+                          href={item.path}
+                          onClick={() => setMenuOpen(false)}
+                          className="group flex items-center justify-between text-base lg:text-lg text-[var(--dark-heading)] hover:text-[var(--primary-green)] transition-colors py-1"
+                        >
+                          <span>{item.name}</span>
+                          <svg
+                            className="w-4 h-4 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M9 5l7 7-7 7"
+                            />
+                          </svg>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </nav>
 
               {/* Social Media Section */}
               <div className="mt-5 pt-8 border-t border-gray-200">

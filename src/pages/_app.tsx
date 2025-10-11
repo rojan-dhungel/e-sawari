@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <title>Esawari - Move, Eat, Send & Rent All In One App</title>
         <meta name="description" content="Experience seamless connectivity through our integrated platform offering ride-hailing, food delivery, parcel services, and vehicle rentals." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="Images/sawari.png" />
       </Head>
       <Component {...pageProps} />
     </>

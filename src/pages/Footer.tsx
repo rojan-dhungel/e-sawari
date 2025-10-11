@@ -18,7 +18,7 @@ const Footer = () => {
                 alt="esawari logo"
                 width={400}
                 height={160}
-                className="w-auto h-20 md:h-24 lg:h-28"
+                className="w-auto h-20 md:h-24 lg:h-28 transform transition-transform duration-300 hover:scale-105"
               />
             </Link>
             <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs">
@@ -49,7 +49,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm md:text-base">
               {[
                 { label: "About Us", href: "/about" },
-                { label: "How it Works", href: "/howit" },
+                { label: "How it Works", href: "/HowItWorks" },
                 { label: "Safety", href: "/safety" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (
