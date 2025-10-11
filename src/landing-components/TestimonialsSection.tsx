@@ -49,7 +49,7 @@ const TestimonialsSection = () => {
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary-green/5 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-green/5 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Heading */}
         <div className="text-center space-y-4 mb-12">
           <h3 className="text-4xl md:text-5xl font-heading font-semibold text-dark-heading leading-tight">

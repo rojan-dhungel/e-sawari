@@ -1,12 +1,20 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Nunito:wght@300;400;500;600;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap'); */
+
+
+
 
 /* Global CSS Variables */
 :root {
   /* Font Families */
-  --font-heading: 'Fredoka', sans-serif;
-  --font-body: 'Poppins', sans-serif;
+
+  --font-heading: 'Baloo 2', cursive;
+  --font-body: 'Nunito', sans-serif;
   --font-mono: 'Menlo', monospace;
+  
+  /* --font-heading: 'Manrope', sans-serif;
+  --font-body: 'Inter', sans-serif; */
 
 
 
@@ -14,8 +22,9 @@
   --primary-green: #237C3F;
   --dark-heading: #333333;
   --light-background: #FAFAFA;
-  --text-color: #666666;
-  --text-light: #FAFAFA; /* new light text color */
+  --text-dark: #666666;
+  --text-light: #FAFAFA;
+  /* new light text color */
 }
 
 /* Tailwind directives */
@@ -33,19 +42,28 @@
 /* Body styling */
 body {
   font-family: var(--font-body);
-  font-size: 18px; /* matches Figma */
+  font-size: 18px;
+  /* matches Figma */
   color: var(--text-color);
   background-color: var(--light-background);
   line-height: 1.6;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
   margin-bottom: 0.5em;
 }
 
 /* Inline elements */
-p,  a, li, button {
+p,
+a,
+li,
+button {
   font-family: var(--font-body);
 
 }
@@ -54,6 +72,7 @@ p,  a, li, button {
 .text-primary-green {
   color: var(--primary-green);
 }
+
 .hover\:text-primary-green:hover {
   color: var(--primary-green);
 }
@@ -78,6 +97,7 @@ p,  a, li, button {
 .text-light {
   color: var(--text-light);
 }
+
 .hover\:text-light:hover {
   color: var(--text-light);
 }

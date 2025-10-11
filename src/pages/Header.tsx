@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Instagram, Facebook } from 'lucide-react';
 
 const Header: React.FC = () => {
   const [showHeader, setShowHeader] = useState(true);
@@ -25,68 +25,73 @@ const Header: React.FC = () => {
   }, [menuOpen]);
 
   const navItems = [
-
     {
       title: 'Company',
-      items: ['About us', 'How it works', 'Safety', 'Contact']
+      items: ['About us', 'How it works', 'Safety', 'Contact'],
     },
     {
       title: 'Services',
-      items: ['Ride-Hailing', 'Food Delivery', 'Parcel Delivery', 'Vehicle Rentals']
+      items: ['Ride-Hailing', 'Food Delivery', 'Parcel Delivery', 'Vehicle Rentals'],
     },
-
-    
     {
       title: 'Cities',
-      items: ['Kathmandu', 'Pokhara', 'Lalitpur', 'Bhaktapur']
-    }
+      items: ['Kathmandu', 'Pokhara', 'Lalitpur', 'Bhaktapur'],
+    },
+  ];
+
+  const socialLinks = [
+    { name: 'TikTok', url: '#', icon: 'tiktok' },
+    { name: 'Instagram', url: '#', icon: 'instagram' },
+    { name: 'Facebook', url: '#', icon: 'facebook' },
   ];
 
   return (
     <>
+      {/* NAVBAR */}
       <header
-        className={`px-5 py-5 md:px-8 shadow-sm sticky top-0 z-50 transform transition-transform duration-300 bg-[var(--light-background)] ${showHeader ? 'translate-y-0' : '-translate-y-full'
-          }`}
+        className={`px-6 py-6 md:px-10 shadow-sm sticky top-0 z-50 transform transition-transform duration-300 bg-[var(--light-background)] ${
+          showHeader ? 'translate-y-0' : '-translate-y-full'
+        }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <div className="flex items-center">
             <Image
               src="/Images/SawariLogo.png"
-              alt="esawari logo"
-              width={120}
-              height={40}
+              alt="Sawari logo"
+              width={140}
+              height={50}
               className="object-contain"
               priority
             />
           </div>
 
           {/* Desktop Actions */}
-          <div className="hidden lg:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-6">
             <button
               onClick={() => setShowQR(true)}
-              className="px-6 py-2 rounded-lg text-sm font-semibold transition-all duration-300 hover:bg-[var(--dark-heading)] hover:text-[var(--light-background)] shadow-md"
+              className="px-7 py-3 rounded-lg text-base font-semibold transition-all duration-300 hover:bg-[var(--dark-heading)] hover:text-[var(--light-background)] shadow-md"
               style={{
                 backgroundColor: 'var(--primary-green)',
                 color: 'var(--light-background)',
               }}
             >
-              Download the app
+              <span className="text-base">Download The App</span>
             </button>
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="px-4 py-2 rounded-lg transition-all duration-300 bg-[var(--primary-green)]  text-[var(--light-background)] flex items-center gap-2 font-medium"
+              className="px-5 py-3 rounded-lg transition-all duration-300 bg-[var(--primary-green)] text-[var(--light-background)] flex items-center gap-2 font-medium"
             >
               {menuOpen ? (
                 <>
                   <X className="w-5 h-5" />
-                  <span className="text-sm">Close</span>
+                  <span className="text-base">Close</span>
                 </>
               ) : (
                 <>
                   <Menu className="w-5 h-5" />
-                  <span className="text-sm">Menu</span>
+                  <span className="text-base">Menu</span>
                 </>
               )}
             </button>
@@ -96,7 +101,7 @@ const Header: React.FC = () => {
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="px-4 py-2 rounded-lg transition-all duration-300 bg-[var(--primary-green)] text-[var(--light-background)] flex items-center gap-2 font-medium"
+              className="px-5 py-3 rounded-lg transition-all duration-300 bg-[var(--primary-green)] text-[var(--light-background)] flex items-center gap-2 font-medium"
             >
               {menuOpen ? (
                 <>
@@ -114,21 +119,22 @@ const Header: React.FC = () => {
         </div>
       </header>
 
-      {/* Side Slide Menu */}
+      {/* SIDE MENU */}
       <div
-        className={`fixed top-0 right-0 h-full w-80 max-w-full lg:w-full bg-white z-50 shadow-2xl transform transition-transform duration-500 ${menuOpen ? 'translate-x-0' : 'translate-x-full'
-          }`}
+        className={`fixed top-0 right-0 h-full w-80 max-w-full lg:w-full bg-white z-50 shadow-2xl transform transition-transform duration-500 ${
+          menuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
       >
         <div className="flex flex-col h-full">
-          {/* Header Section with Logo and Close */}
+          {/* Header Section */}
           <div className="flex items-center justify-between p-6 lg:px-12 lg:py-8 border-b border-gray-200">
             <div className="flex items-center">
               <Image
                 src="/Images/SawariLogo.png"
-                alt="esawari logo"
-                width={100}
-                height={35}
-                className="object-contain lg:w-32"
+                alt="Sawari logo"
+                width={120}
+                height={40}
+                className="object-contain lg:w-36"
               />
             </div>
             <button
@@ -140,13 +146,12 @@ const Header: React.FC = () => {
           </div>
 
           {/* Menu Content */}
-          <div className="flex-1 overflow-y-auto p-6 lg:p-12">
+          <div className="flex-1 overflow-y-auto p-7 lg:p-14">
             <div className="max-w-6xl mx-auto">
-              {/* Menu Items Grid */}
-              <nav className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-8">
+              <nav className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-10">
                 {navItems.map((section, idx) => (
                   <div key={idx} className="space-y-3">
-                    <h3 className="text-lg lg:text-xl font-semibold text-[var(--dark-heading)] pb-2 border-b-2 border-[var(--primary-green)]">
+                    <h3 className="text-lg lg:text-2xl font-semibold text-[var(--dark-heading)] pb-2 border-b-2 border-[var(--primary-green)]">
                       {section.title}
                     </h3>
                     <div className="flex flex-col space-y-2">
@@ -165,14 +170,45 @@ const Header: React.FC = () => {
                 ))}
               </nav>
 
+              {/* Social Media Section */}
+              <div className="mt-5 pt-8 border-t border-gray-200">
+                <h3 className="text-lg lg:text-2xl font-semibold text-[var(--dark-heading)] pb-2 mb-5 border-b-2 border-[var(--primary-green)] inline-block">
+                  Follow Us
+                </h3>
+                <div className="flex gap-4 lg:gap-6 mt-4">
+                  {socialLinks.map((social, idx) => (
+                    <a
+                      key={idx}
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center w-12 h-12 lg:w-14 lg:h-14 rounded-full transition-all duration-300 hover:shadow-lg"
+                      style={{
+                        backgroundColor: 'var(--primary-green)',
+                        color: 'var(--light-background)',
+                      }}
+                      title={social.name}
+                    >
+                      {social.icon === 'instagram' && <Instagram className="w-6 h-6 lg:w-7 lg:h-7" />}
+                      {social.icon === 'facebook' && <Facebook className="w-6 h-6 lg:w-7 lg:h-7" />}
+                      {social.icon === 'tiktok' && (
+                        <svg className="w-6 h-6 lg:w-7 lg:h-7" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.68v12.7a2.85 2.85 0 1 1-5.92-2.86 2.88 2.88 0 0 1 2.31 1.39V9.58a6.53 6.53 0 1 0 5.94 6.48v-3.78a8.38 8.38 0 0 0 3.12-1.61v-3.98z" />
+                        </svg>
+                      )}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
               {/* Bottom CTA - Desktop */}
-              <div className="hidden lg:block mt-12 pt-8 border-t border-gray-200">
+              <div className="hidden lg:block mt-14 pt-10 border-t border-gray-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-2xl font-semibold text-[var(--dark-heading)] mb-2">
+                    <h4 className="text-3xl font-semibold text-[var(--dark-heading)] mb-3">
                       Ready to get started?
                     </h4>
-                    <p className="text-base text-[var(--text-color)] font-body">
+                    <p className="text-lg text-[var(--text-color)] font-body">
                       Download the app and experience seamless services
                     </p>
                   </div>
@@ -181,13 +217,13 @@ const Header: React.FC = () => {
                       setShowQR(true);
                       setMenuOpen(false);
                     }}
-                    className="px-8 py-4 rounded-xl text-lg font-semibold shadow-lg transition-all duration-300 hover:shadow-xl whitespace-nowrap"
+                    className="px-10 py-5 rounded-xl text-lg font-semibold shadow-lg transition-all duration-300 hover:shadow-xl whitespace-nowrap"
                     style={{
                       backgroundColor: 'var(--primary-green)',
                       color: 'var(--light-background)',
                     }}
                   >
-                    Download the app
+                    <span className="text-base">Download The App</span>
                   </button>
                 </div>
               </div>
@@ -195,44 +231,44 @@ const Header: React.FC = () => {
           </div>
 
           {/* Bottom CTA - Mobile */}
-          <div className="lg:hidden p-6 border-t border-gray-200">
+          <div className="lg:hidden p-7 border-t border-gray-200">
             <button
               onClick={() => {
                 setShowQR(true);
                 setMenuOpen(false);
               }}
-              className="w-full px-6 py-3 rounded-xl text-base font-semibold shadow-lg transition-all duration-300 hover:shadow-xl"
+              className="w-full px-6 py-4 rounded-xl text-base font-semibold shadow-lg transition-all duration-300 hover:shadow-xl"
               style={{
                 backgroundColor: 'var(--primary-green)',
                 color: 'var(--light-background)',
               }}
             >
-              Download the app
+              Download The App
             </button>
           </div>
         </div>
       </div>
 
-      {/* QR Popup */}
+      {/* QR POPUP */}
       {showQR && (
         <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[999] backdrop-blur-sm p-4">
-          <div className="bg-white rounded-2xl p-6 max-w-sm w-full text-center shadow-2xl relative overflow-hidden animate-in fade-in duration-300">
-            {/* Close button */}
+          <div className="bg-white rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl relative overflow-hidden animate-in fade-in duration-300">
+            {/* Close */}
             <button
               onClick={() => setShowQR(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 hover:bg-gray-100 w-8 h-8 flex items-center justify-center rounded-full transition-all duration-200 text-xl font-light"
+              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 hover:bg-gray-100 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-200 text-xl font-light"
             >
               &times;
             </button>
 
             {/* Logo */}
-            <div className="flex justify-center mb-4">
+            <div className="flex justify-center mb-5">
               <div className="rounded-xl shadow-md">
                 <Image
                   src="/Images/sawari.png"
                   alt="Sawari app logo"
-                  width={100}
-                  height={100}
+                  width={110}
+                  height={110}
                 />
               </div>
             </div>
@@ -244,20 +280,20 @@ const Header: React.FC = () => {
               Download Sawari
             </h2>
             <p
-              className="text-sm mb-4"
+              className="text-sm mb-5"
               style={{ color: 'var(--dark-heading)', opacity: 0.7 }}
             >
               Point your smartphone camera at the QR code
             </p>
 
             {/* QR Code */}
-            <div className="flex justify-center my-4">
-              <div className="bg-gradient-to-br from-gray-50 to-white p-4 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div className="flex justify-center my-5">
+              <div className="bg-gradient-to-br from-gray-50 to-white p-5 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <Image
                   src="/Images/qr-sawari.png"
                   alt="QR Code"
-                  width={160}
-                  height={160}
+                  width={170}
+                  height={170}
                   className="rounded-lg"
                 />
               </div>

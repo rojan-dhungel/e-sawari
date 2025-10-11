@@ -77,7 +77,7 @@ const DriverSection = () => {
           </div>
 
           {/* Earnings Card */}
-          <div className="relative bg-gradient-to-br from-white to-green-50/30 p-8 rounded-3xl shadow-lg border border-green-100 overflow-hidden group hover:shadow-xl transition-all duration-300 animate-fade-in-up" style={{ animationDelay: "0.3s" }}>
+          <div className="relative bg-gradient-to-br from-white to-green-50/30 p-8 rounded-3xl shadow-lg border border-green-100 overflow-hidden group hover:shadow-xl transition-all">
             <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-green-200/20 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
             <div className="relative flex items-center gap-6">
               <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-md group-hover:rotate-6 transition-transform bg-primary-green">
@@ -90,18 +90,10 @@ const DriverSection = () => {
             </div>
           </div>
 
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center p-4 bg-white rounded-2xl shadow-sm border border-gray-100">
-                <div className="text-2xl font-heading font-semibold text-primary-green mb-1">{stat.value}</div>
-                <div className="text-xs font-medium text-text-color">{stat.label}</div>
-              </div>
-            ))}
-          </div>
+
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 mt-8 animate-fade-in-up" style={{ animationDelay: "0.5s" }}>
+          <div className="flex flex-wrap gap-4 mt-20">
             <button className="px-8 py-4 rounded-xl text-white font-body font-medium shadow-lg hover:scale-105 transition-transform duration-300 bg-primary-green">
               Become a Driver
             </button>

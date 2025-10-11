@@ -10,22 +10,26 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        heading: ['Fredoka', 'sans-serif'], // For h1-h6
-        body: ['Poppins', 'sans-serif'],    // For p, span, buttons, etc.
-        mono: ['Menlo', 'monospace'],      // Optional mono font
+
+        heading: ['Baloo 2', 'cursive'], 
+        body: ['Nunito', 'sans-serif'],
+
+        // heading: ['Manrope', 'sans-serif'], 
+        // body: ['Inter', 'sans-serif'],
+        mono: ['Menlo', 'monospace'],    
       },
       colors: {
         primary: {
           green: '#237C3F',
         },
         dark: {
-          heading: '#20242C',
+          heading: '#333333',
         },
         light: {
           background: '#Fafafa',
         },
         text: {
-          color: '#6A7181',
+          color: '#666666',
         },
       },
     },

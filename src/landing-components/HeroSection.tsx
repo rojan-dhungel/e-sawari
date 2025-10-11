@@ -37,7 +37,7 @@ const HeroSection = () => {
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
             <button className="bg-primary-green hover:bg-[color-mix(in_srgb,primary-green_90%,black)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-[color-mix(in_srgb,primary-green_25%,transparent)] font-body">
               <Download className="h-4 w-4 sm:h-5 sm:w-5" />
-              Download The App
+              <span className="text-base">Get E Sawari</span>
             </button>
 
             <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium border-2 border-primary-green text-primary-green shadow-sm hover:scale-105 transition-transform duration-300 font-body text-base sm:text-lg">
@@ -139,13 +139,6 @@ const HeroSection = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Side Buttons */}
-              <div className="absolute left-0 top-16 sm:top-20 w-0.5 h-8 sm:h-10 bg-gray-500 rounded-r-full"></div>
-              <div className="absolute right-0 top-28 sm:top-32 w-0.5 h-12 sm:h-16 bg-gray-500 rounded-l-full"></div>
-
-              {/* Home Indicator */}
-              <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 w-32 sm:w-36 h-1 sm:h-1.5 bg-gray-700 rounded-full"></div>
             </div>
           </div>
         </div>
