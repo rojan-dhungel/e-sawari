@@ -149,26 +149,40 @@ const Header: React.FC = () => {
           <div className="flex-1 overflow-y-auto p-7 lg:p-14">
             <div className="max-w-6xl mx-auto">
               <nav className="grid grid-cols-1 lg:grid-cols-4 gap-6 lg:gap-10">
-                {navItems.map((section, idx) => (
-                  <div key={idx} className="space-y-3">
-                    <h3 className="text-lg lg:text-2xl font-semibold text-[var(--dark-heading)] pb-2 border-b-2 border-[var(--primary-green)]">
-                      {section.title}
-                    </h3>
-                    <div className="flex flex-col space-y-2">
-                      {section.items.map((item, itemIdx) => (
-                        <a
-                          key={itemIdx}
-                          href="#"
-                          className="text-base lg:text-lg text-[var(--dark-heading)] hover:text-[var(--primary-green)] transition-colors py-1"
-                          onClick={() => setMenuOpen(false)}
-                        >
-                          {item}
-                        </a>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </nav>
+  {navItems.map((section, idx) => (
+    <div key={idx} className="space-y-3">
+      <h3 className="text-lg lg:text-2xl font-semibold text-[var(--dark-heading)] pb-2 border-b-2 border-[var(--primary-green)]">
+        {section.title}
+      </h3>
+      <div className="flex flex-col space-y-2">
+        {section.items.map((item, itemIdx) => (
+          <a
+            key={itemIdx}
+            href="#"
+            onClick={() => setMenuOpen(false)}
+            className="group flex items-center justify-between text-base lg:text-lg text-[var(--dark-heading)] hover:text-[var(--primary-green)] transition-colors py-1"
+          >
+            <span>{item}</span>
+            <svg
+              className="w-4 h-4 opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        ))}
+      </div>
+    </div>
+  ))}
+</nav>
+
 
               {/* Social Media Section */}
               <div className="mt-5 pt-8 border-t border-gray-200">

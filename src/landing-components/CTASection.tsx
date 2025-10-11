@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Smartphone, MapPin, Zap } from 'lucide-react';
+import { Smartphone, MapPin, Zap } from 'lucide-react';
 
 const CTASection = () => {
   const [isHovered, setIsHovered] = React.useState(false);
@@ -80,10 +80,14 @@ const CTASection = () => {
               }}
             >
               <span className="relative z-10">Get Started Today</span>
-              <ArrowRight
-                className="relative z-10 transition-all duration-300 group-hover:translate-x-1"
-                size={20}
-              />
+              <svg
+              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
               {/* Button Hover Effect */}
               <div
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-500 group-hover:translate-x-full"

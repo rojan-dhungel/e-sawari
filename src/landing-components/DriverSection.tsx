@@ -26,12 +26,6 @@ const DriverSection = () => {
     "Minimum age 21 years",
   ]
 
-  const stats = [
-    { value: "1000+", label: "Active Drivers" },
-    { value: "50K+", label: "Rides Completed" },
-    { value: "4.8★", label: "Average Rating" },
-  ]
-
   return (
     <section className="relative px-4 py-20 overflow-hidden max-w-7xl mx-auto bg-light">
       {/* Decorative background */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Car, UtensilsCrossed, Package, Truck, ArrowRight, LucideIcon } from 'lucide-react';
+import { Car, UtensilsCrossed, Package, Truck, LucideIcon } from 'lucide-react';
 
 const services = [
   {
@@ -129,12 +129,14 @@ const ServiceCard = ({
         }}
       >
         <span>Learn more</span>
-        <ArrowRight 
-          className="w-4 h-4 transition-transform duration-300" 
-          style={{
-            transform: isHovered ? 'translateX(4px)' : 'translateX(0)',
-          }}
-        />
+        <svg
+              className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
       </div>
 
       {/* Animated Accent Bar */}
