@@ -206,7 +206,7 @@ const Header: React.FC = () => {
 
               {/* Social Media Section */}
               <div className="mt-5 pt-8 border-t border-gray-200">
-                <h3 className="text-lg lg:text-2xl font-semibold text-[var(--dark-heading)] pb-2 mb-5 border-b-2 border-[var(--primary-green)] inline-block">
+                <h3 className="text-lg lg:text-2xl font-semibold text-[var(--dark-heading)] pb-2 border-b-2 border-[var(--primary-green)] inline-block">
                   Follow Us
                 </h3>
                 <div className="flex gap-4 lg:gap-6 mt-4">
@@ -239,9 +239,10 @@ const Header: React.FC = () => {
               <div className="hidden lg:block mt-14 pt-10 border-t border-gray-200">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h4 className="text-3xl font-semibold text-[var(--dark-heading)] mb-3">
+                    <h4 className="text-lg lg:text-2xl font-semibold text-[var(--dark-heading)] pb-2 mb-5 border-b-2 border-[var(--primary-green)] inline-block">
                       Ready to get started?
                     </h4>
+                    
                     <p className="text-lg text-[var(--text-color)] font-body">
                       Download the app and experience seamless services
                     </p>
