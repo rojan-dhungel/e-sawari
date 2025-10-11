@@ -1,3 +1,5 @@
+"use client"
+
 // src/pages/about.tsx
 import React from 'react';
 import HeroSection from '@/about-components/HeroSection';

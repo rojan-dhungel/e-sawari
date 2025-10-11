@@ -1,51 +1,121 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+"use client"
+
+import { useState } from "react"
+import { motion } from "framer-motion"
+import { Bell, Mail, CheckCircle, Send } from "lucide-react"
 
 const NewsletterSection = () => {
+  const [email, setEmail] = useState("")
+  const [isSubscribed, setIsSubscribed] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleSubscribe = async () => {
+    if (email && !isLoading) {
+      setIsLoading(true)
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 1500))
+      setIsSubscribed(true)
+      setIsLoading(false)
+      setEmail("")
+
+      // Reset after 3 seconds
+      setTimeout(() => setIsSubscribed(false), 3000)
+    }
+  }
+
   return (
-    <section className="px-4 py-20 md:px-8 bg-light">
+    <section className="px-8 py-20 md:px-8 bg-light">
       <div className="max-w-7xl mx-auto">
-        <div className="rounded-2xl p-10 md:p-16 text-center bg-primary-green shadow-lg font-body">
-          <div className="space-y-6">
-            {/* Icon */}
-            <div className="w-16 h-16 mx-auto rounded-2xl bg-white bg-opacity-20 flex items-center justify-center">
-              <ArrowRight className="w-8 h-8 text-white" />
-            </div>
-
-            {/* Heading */}
-            <h3 className="text-4xl md:text-5xl font-semibold font-heading text-white leading-[1.2]">
-              Never Miss a Deal!
-            </h3>
-
-            {/* Description */}
-            <p className="text-base  max-w-2xl mx-auto text-paragraph font-body leading-relaxed text-light">
-              Subscribe to get exclusive offers, weekly earnings summaries, and updates delivered straight to your inbox.
-            </p>
-
-            {/* Input & Button */}
-            <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Your email address here..."
-                className="flex-1 px-4 py-3 rounded-lg border-0 outline-none text-gray-900 placeholder-gray-500 shadow-sm focus:ring-2 focus:ring-white font-body"
-              />
-              <button
-                className="px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-dark-heading hover:text-white shadow-md font-body"
-                style={{ backgroundColor: 'white', color: 'var(--primary-green)' }}
-              >
-                Subscribe
-              </button>
-            </div>
-
-            {/* Privacy note */}
-            <p className="text-xs text-white text-opacity-70 font-body">
-              *We respect your privacy. No spam, unsubscribe anytime.
-            </p>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-white p-8 md:p-12 rounded-3xl text-center bg-primary-green shadow-2xl relative overflow-hidden"
+        >
+          <div className="absolute inset-0 opacity-20">
+            <div className="absolute inset-0 bg-white/10 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-96 h-96"></div>
+            <div className="absolute inset-0 bg-white/5 rounded-full blur-2xl transform translate-x-1/3 translate-y-1/3 top-1/4 right-1/4 w-64 h-64"></div>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-};
 
-export default NewsletterSection;
+          <motion.div
+            animate={{
+              rotate: [0, 10, -10, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 2,
+              repeat: Number.POSITIVE_INFINITY,
+              repeatType: "reverse",
+            }}
+            className="relative z-10"
+          >
+            <Bell className="w-16 h-16 mx-auto mb-6 opacity-90" />
+          </motion.div>
+
+   <h3 className="text-4xl md:text-5xl font-semibold font-heading text-white leading-[1.2]">
+           Never Miss a Deal!
+          </h3>
+          <p className="mb-8 text-base  max-w-2xl mx-auto text-paragraph font-body leading-relaxed text-light">
+            Get the latest news, updates, and exclusive offers delivered directly to your inbox. Be the first to know
+            about new features and services.
+          </p>
+
+          {!isSubscribed ? (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto relative z-10"
+            >
+              <div className="relative flex-1">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-paragraph/60" />
+                <input
+                  type="email"
+                  placeholder="Enter your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full pl-10 pr-4 py-3 rounded-xl text-dark-heading placeholder-paragraph/60 focus:outline-none focus:ring-2 focus:ring-primary-green/30 transition-all duration-200"
+                />
+              </div>
+              <motion.button
+                onClick={handleSubscribe}
+                disabled={isLoading}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="px-6 py-3 bg-white font-semibold rounded-xl text-primary-green hover:bg-gray-100 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 flex items-center justify-center"
+              >
+                {isLoading ? (
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                    className="w-5 h-5 border-2 border-primary-green border-t-transparent rounded-full"
+                  />
+                ) : (
+                  <>
+                    <Send className="w-4 h-4 mr-2" />
+                    Subscribe
+                  </>
+                )}
+              </motion.button>
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="flex items-center justify-center gap-3 text-white relative z-10"
+            >
+              <CheckCircle className="w-6 h-6 text-white/80" />
+              <span className="font-semibold">Thank you for subscribing!</span>
+            </motion.div>
+          )}
+        </motion.div>
+
+        
+      </div>
+ 
+    </section>
+  )
+}
+
+export default NewsletterSection
+

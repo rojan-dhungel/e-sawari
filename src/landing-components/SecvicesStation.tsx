@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import { Car, UtensilsCrossed, Package, Truck, LucideIcon } from 'lucide-react';
 

@@ -1,3 +1,5 @@
+"use client"
+
 import { Car, UtensilsCrossed, Package, Truck } from "lucide-react"
 import Image from "next/image"
 

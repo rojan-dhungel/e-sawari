@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import { Star, Download, Car } from 'lucide-react';
 import Image from "next/image";
@@ -17,7 +19,7 @@ const HeroSection = () => {
 
           {/* Main Heading */}
           <div className="space-y-4 lg:space-y-6">
-            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-heading leading-tight sm:leading-[1.2] lg:leading-[80px] text-dark-heading">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-heading leading-tight  lg:leading-[80px] text-dark-heading">
               Move. <span className="text-primary-green">Eat.</span> Send. <br />
               <span className="text-primary-green">Rent.</span>
             </h3>

@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import { Smartphone, MapPin, Zap } from 'lucide-react';
 

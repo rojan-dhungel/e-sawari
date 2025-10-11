@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react'
 import Support from '@/support-components/Support'
 import Footer from './Footer'

@@ -1,3 +1,5 @@
+"use client"
+
 import { EmergencySection } from '@/safety-components/EmergencySection'
 import { GuidelinesSection } from '@/safety-components/GuidelinesSection'
 import { HeroSection } from '@/safety-components/HeroSection'

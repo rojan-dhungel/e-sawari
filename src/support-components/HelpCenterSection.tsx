@@ -1,3 +1,5 @@
+"use client"
+
 import { Car, Utensils, Package, CreditCard, User, Settings } from "lucide-react"
 
 const helpCategories = [

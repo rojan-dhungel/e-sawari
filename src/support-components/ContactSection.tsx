@@ -1,3 +1,5 @@
+"use client"
+
 import { Phone, Mail, MessageSquare, MapPin, Clock } from "lucide-react"
 
 const contactMethods = [

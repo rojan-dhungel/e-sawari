@@ -1,3 +1,6 @@
+"use client"
+
+
 import { Headphones, MessageCircle } from "lucide-react"
 
 export function HeroSection() {
