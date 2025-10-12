@@ -49,7 +49,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm md:text-base">
               {[
                 { label: "About Us", href: "/about" },
-                { label: "How it Works", href: "/HowItWorks" },
+                { label: "How it Works", href: "/howit" },
                 { label: "Safety", href: "/safety" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (
@@ -93,7 +93,7 @@ const Footer = () => {
             <ul className="space-y-3 text-sm md:text-base">
               {[
                 { label: "Kathmandu", href: "/cities/kathmandu" },
-                { label: "Pokhara", href: "/cities/pokhara" },
+                // { label: "Pokhara", href: "/cities/pokhara" },
                 { label: "Lalitpur", href: "/cities/lalitpur" },
                 { label: "Bhaktapur", href: "/cities/bhaktapur" },
               ].map((link) => (

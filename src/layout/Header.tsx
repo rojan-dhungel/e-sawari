@@ -50,7 +50,7 @@ const Header: React.FC = () => {
       title: 'Cities',
       items: [
         { name: 'Kathmandu', path: '/cities/kathmandu' },
-        { name: 'Pokhara', path: '/cities/pokhara' },
+        // { name: 'Pokhara', path: '/cities/pokhara' },
         { name: 'Lalitpur', path: '/cities/lalitpur' },
         { name: 'Bhaktapur', path: '/cities/bhaktapur' },
       ],
@@ -127,7 +127,7 @@ const Header: React.FC = () => {
             >
               {menuOpen ? (
                 <>
-                  <X className="w-5 h-5" />
+                  <X className="w-5 h-5 "  />
                   <span className="text-sm">Close</span>
                 </>
               ) : (
@@ -274,7 +274,7 @@ const Header: React.FC = () => {
                 setShowQR(true);
                 setMenuOpen(false);
               }}
-              className="w-full px-6 py-4 rounded-xl text-base font-semibold shadow-lg transition-all duration-300 hover:shadow-xl"
+              className="w-full px-4 py-4 rounded-xl text-base font-semibold shadow-lg transition-all duration-300 hover:shadow-xl"
               style={{
                 backgroundColor: 'var(--primary-green)',
                 color: 'var(--light-background)',
