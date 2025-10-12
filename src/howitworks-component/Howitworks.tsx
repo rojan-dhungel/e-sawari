@@ -5,7 +5,7 @@ import FAQSection from "@/howitworks-component/FAQSection"
 import HowItWorksHeroSection from "@/howitworks-component/HowItWorksHeroSection"
 import ServicesSection from "@/howitworks-component/ServicesSection"
 import StepsSection from "@/howitworks-component/StepsSection"
-import Footer from "@/pages/Footer"
+import Footer from "@/layout/Footer"
 
 const Howitworks = () => {
   return (
