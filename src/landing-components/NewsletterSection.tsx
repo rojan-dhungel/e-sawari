@@ -31,12 +31,8 @@ const NewsletterSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-white p-8 md:p-12 rounded-3xl text-center bg-primary-green shadow-2xl relative overflow-hidden"
+          className="text-light p-8 md:p-12 rounded-3xl text-center bg-primary-green shadow-2xl relative overflow-hidden"
         >
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute inset-0 bg-white/10 rounded-full blur-3xl transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 w-96 h-96"></div>
-            <div className="absolute inset-0 bg-white/5 rounded-full blur-2xl transform translate-x-1/3 translate-y-1/3 top-1/4 right-1/4 w-64 h-64"></div>
-          </div>
 
           <motion.div
             animate={{
@@ -53,8 +49,8 @@ const NewsletterSection = () => {
             <Bell className="w-16 h-16 mx-auto mb-6 opacity-90" />
           </motion.div>
 
-   <h3 className="text-4xl md:text-5xl font-semibold font-heading text-white leading-[1.2]">
-           Never Miss a Deal!
+          <h3 className="text-4xl md:text-5xl font-semibold font-heading text-light leading-[1.2]">
+            Never Miss a Deal!
           </h3>
           <p className="mb-8 text-base  max-w-2xl mx-auto text-paragraph font-body leading-relaxed text-light">
             Get the latest news, updates, and exclusive offers delivered directly to your inbox. Be the first to know
@@ -110,9 +106,8 @@ const NewsletterSection = () => {
           )}
         </motion.div>
 
-        
       </div>
- 
+
     </section>
   )
 }

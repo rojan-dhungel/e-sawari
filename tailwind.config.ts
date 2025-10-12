@@ -10,31 +10,24 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-
-        heading: ['Baloo 2', 'cursive'], 
-        body: ['Nunito', 'sans-serif'],
-
-        // heading: ['Manrope', 'sans-serif'], 
-        // body: ['Inter', 'sans-serif'],
-        mono: ['Menlo', 'monospace'],    
-      },
+  heading: ['Baloo 2', 'cursive'], 
+  body: ['Nunito', 'sans-serif'],
+  mono: ['Menlo', 'monospace'],
+},
       colors: {
-        primary: {
-          green: '#237C3F',
-        },
-        dark: {
-          heading: '#333333',
-        },
-        light: {
-          background: '#Fafafa',
-        },
-        text: {
-          color: '#666666',
-        },
-      },
+  'primary-green': '#237C3F',
+  'dark-heading': '#333333',
+  'light-background': '#FAFAFA',
+  'text-dark': '#666666',
+  'text-light': '#FAFAFA',
+},
     },
   },
   plugins: [],
 };
 
 export default config;
+
+
+        // heading: ['Manrope', 'sans-serif'], 
+        // body: ['Inter', 'sans-serif'],

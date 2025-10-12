@@ -89,7 +89,7 @@ const DriverSection = () => {
           {/* CTA Buttons */}
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-            <button className="bg-primary-green hover:bg-[color-mix(in_srgb,primary-green_90%,black)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-[color-mix(in_srgb,primary-green_25%,transparent)] font-body">
+            <button className="bg-primary-green hover:bg-[color-mix(in_srgb,primary-green_90%,black)] text-light px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-[color-mix(in_srgb,primary-green_25%,transparent)] font-body">
               <span className="text-base">Become a Driver</span>
             </button>
             <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium border-2 border-primary-green text-primary-green shadow-sm hover:scale-105 transition-transform duration-300 font-body text-base sm:text-lg">

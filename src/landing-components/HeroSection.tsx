@@ -37,7 +37,7 @@ const HeroSection = () => {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-            <button className="bg-primary-green hover:bg-[color-mix(in_srgb,primary-green_90%,black)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-[color-mix(in_srgb,primary-green_25%,transparent)] font-body">
+            <button className="bg-primary-green hover:bg-[color-mix(in_srgb,primary-green_90%,black)] text-light px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-[color-mix(in_srgb,primary-green_25%,transparent)] font-body">
               <Download className="h-4 w-4 sm:h-5 sm:w-5" />
               <span className="text-base">Get E Sawari</span>
             </button>
