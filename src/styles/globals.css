@@ -16,15 +16,12 @@
   /* --font-heading: 'Manrope', sans-serif;
   --font-body: 'Inter', sans-serif; */
 
-
-
   /* Colors */
   --primary-green: #237C3F;
   --dark-heading: #333333;
   --light-background: #FAFAFA;
   --text-dark: #666666;
   --text-light: #FAFAFA;
-  /* new light text color */
 }
 
 /* Tailwind directives */

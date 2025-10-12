@@ -87,11 +87,12 @@ const DriverSection = () => {
 
 
           {/* CTA Buttons */}
-          <div className="flex flex-wrap gap-4 mt-20">
-            <button className="px-8 py-4 rounded-xl text-white font-body font-medium shadow-lg hover:scale-105 transition-transform duration-300 bg-primary-green">
-              Become a Driver
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+            <button className="bg-primary-green hover:bg-[color-mix(in_srgb,primary-green_90%,black)] text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-[color-mix(in_srgb,primary-green_25%,transparent)] font-body">
+              <span className="text-base">Become a Driver</span>
             </button>
-            <button className="px-8 py-4 rounded-xl font-body font-medium border-2 text-primary-green shadow-sm hover:scale-105 transition-transform duration-300 border-primary-green text-primary-green">
+            <button className="px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-medium border-2 border-primary-green text-primary-green shadow-sm hover:scale-105 transition-transform duration-300 font-body text-base sm:text-lg">
               Learn More
             </button>
           </div>
