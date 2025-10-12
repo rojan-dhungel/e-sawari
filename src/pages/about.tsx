@@ -10,14 +10,11 @@ import ServicesGrid from '@/about-components/ServicesGrid';
 import TeamSection from '@/about-components/TeamSection'
 import CTASection from '@/about-components/CTASection';
 import NewsletterSection from '@/about-components/NewsletterSection';
-import Footer from './Footer';
-import Header from './Header';
 
 
 const About = () => {
   return (
     <>
-      <Header />
       <HeroSection />
       <StoryTimeline />
       <MissionVision />
@@ -26,7 +23,6 @@ const About = () => {
       <TeamSection />
       <CTASection />
       <NewsletterSection />
-      <Footer />
     </>
   );
 };

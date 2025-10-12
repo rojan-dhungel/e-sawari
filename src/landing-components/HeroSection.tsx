@@ -19,7 +19,7 @@ const HeroSection = () => {
 
           {/* Main Heading */}
           <div className="space-y-4 lg:space-y-6">
-            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-heading leading-tight  lg:leading-[80px] text-dark-heading">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold font-heading leading-tight  lg:leading-[60px] text-dark-heading">
               Move. <span className="text-primary-green">Eat.</span> Send. <br />
               <span className="text-primary-green">Rent.</span>
             </h3>
@@ -68,7 +68,7 @@ const HeroSection = () => {
         </div>
 
         {/* Right - iPhone Mockup + Badges */}
-        <div className="flex justify-center lg:justify-end mt-8 lg:mt-0">
+        <div className="flex justify-center lg:justify-end mt-4 lg:mt-0">
           <div className="relative">
             {/* Live Tracking Badge */}
             <div className="absolute -top-6 sm:-top-10 -right-6 sm:-right-10 z-30 bg-white/90 backdrop-blur-md text-primary-green px-3 sm:px-5 py-2 sm:py-3 rounded-xl sm:rounded-2xl text-xs sm:text-sm font-semibold shadow-2xl border border-[color-mix(in_srgb,primary-green_20%,white)] flex items-center gap-2 font-body">

@@ -150,6 +150,7 @@ const Header: React.FC = () => {
           {/* Header Section */}
           <div className="flex items-center justify-between p-6 lg:px-12 lg:py-8 border-b border-gray-200">
             <div className="flex items-center">
+               <Link href="/">
               <Image
                 src="/Images/SawariLogo.png"
                 alt="Sawari logo"
@@ -157,6 +158,7 @@ const Header: React.FC = () => {
                 height={40}
                 className="object-contain lg:w-36"
               />
+            </Link>
             </div>
             <button
               onClick={() => setMenuOpen(false)}
