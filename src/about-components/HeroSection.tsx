@@ -1,114 +1,164 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Car, MapPin, Users, TrendingUp } from "lucide-react"
+import { Zap, Shield, DollarSign, Briefcase, Heart} from "lucide-react"
 
 const HeroSection = () => {
-  const stats = [
-    { number: "2025", label: "Founded", suffix: "", icon: <TrendingUp className="w-5 h-5" /> },
-    { number: "50K", label: "Active Users", suffix: "+", icon: <Users className="w-5 h-5" /> },
-    { number: "1000", label: "Partner Drivers", suffix: "+", icon: <Car className="w-5 h-5" /> },
-    { number: "5", label: "Cities Served", suffix: "", icon: <MapPin className="w-5 h-5" /> },
+  const features = [
+    {
+      icon: <Zap className="w-6 h-6" />,
+      label: "Electric Power Vehicle",
+      description: "100% electric vehicles for sustainable transportation",
+    },
+    {
+      icon: <DollarSign className="w-6 h-6" />,
+      label: "40% Cost-Effective",
+      description: "Riders save 40% on operational costs",
+    },
+    {
+      icon: <DollarSign className="w-6 h-6" />,
+      label: "25% Cost-Saving",
+      description: "Passengers enjoy 25% lower fares",
+    },
+    {
+      icon: <Briefcase className="w-6 h-6" />,
+      label: "1 Lakh+ Work Opportunities",
+      description: "Creating employment for thousands of drivers",
+    },
+    {
+      icon: <Heart className="w-6 h-6" />,
+      label: "5 Lakhs Medical Insurance",
+      description: "Comprehensive health coverage for riders & passengers",
+    },
+    {
+      icon: <Shield className="w-6 h-6" />,
+      label: "10 Lakhs Accidental Insurance",
+      description: "Complete accident protection for riders & passengers",
+    },
   ]
 
   return (
     <>
-      {/* Hero Section */}
-      <section
-        className="px-4 py-20 md:px-8 bg-light relative overflow-hidden"
-        style={{ background: "linear-gradient(135deg, var(--light-background) 0%, #f0fdf4 50%, white 100%)" }}
-      >
-        <div className="absolute inset-0 opacity-30">
-          <div
-            className="absolute top-10 left-10 w-2 h-2 rounded-full"
-            style={{ backgroundColor: "var(--primary-green)" }}
-          ></div>
-          <div
-            className="absolute top-20 right-20 w-1 h-1 rounded-full"
-            style={{ backgroundColor: "var(--primary-green)" }}
-          ></div>
-          <div
-            className="absolute bottom-20 left-20 w-1.5 h-1.5 rounded-full"
-            style={{ backgroundColor: "var(--primary-green)" }}
-          ></div>
-          <div
-            className="absolute bottom-10 right-10 w-2 h-2 rounded-full"
-            style={{ backgroundColor: "var(--primary-green)" }}
-          ></div>
-          <div
-            className="absolute top-1/3 left-1/4 w-1 h-1 rounded-full"
-            style={{ backgroundColor: "var(--primary-green)" }}
-          ></div>
-          <div
-            className="absolute top-2/3 right-1/3 w-1.5 h-1.5 rounded-full"
-            style={{ backgroundColor: "var(--primary-green)" }}
-          ></div>
-          <div
-            className="absolute top-1/2 left-1/2 w-1 h-1 rounded-full"
-            style={{ backgroundColor: "var(--primary-green)" }}
-          ></div>
-        </div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+      {/* ===== HERO SECTION ===== */}
+      <section className="min-h-screen bg-gradient-to-br from-light-background flex items-center justify-center p-4 sm:p-6 lg:p-8">
+        {/* Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-[#f0fdf4] -z-10" />
+
+        {/* Decorative Elements */}
+        <div className="absolute top-20 right-0 w-96 h-96 bg-[var(--primary-green)] opacity-5 rounded-full blur-3xl -z-10" />
+        <div className="absolute -bottom-32 left-0 w-96 h-96 bg-[var(--primary-green)] opacity-5 rounded-full blur-3xl -z-10" />
+
+        {/* Hero Content */}
+        <div className="relative z-10 max-w-5xl mx-auto text-center">
+          {/* Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center px-6 py-3 rounded-full text-sm font-medium text-white mb-8 bg-primary-green shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer"
+            className="inline-flex items-center px-4 py-1.5 bg-primary-green/10 text-primary-green rounded-full text-xs font-semibold tracking-wider uppercase space-x-2"
           >
-            <Car className="w-4 h-4 mr-2" />
-            About esawari
+            <Zap className="w-4 h-4" />
+            <span>Nepal&apos;s First Integrated Lifestyle Platform</span>
           </motion.div>
+
+          {/* Main Heading */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-4xl md:text-6xl font-extrabold mb-6 text-dark-heading leading-tight"
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold mt-6 leading-tight lg:leading-[80px] text-[var(--dark-heading)]"
+            style={{ fontFamily: "var(--font-heading)" }}
           >
-            Connecting Nepal Through <span className="text-primary-green">Smart Mobility</span>
+            Building a Smarter <span className="text-[var(--primary-green)]">Lifestyle for Nepal</span>
           </motion.h1>
+
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xl leading-relaxed max-w-3xl mx-auto text-paragraph"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-base md:text-lg max-w-3xl mx-auto text-paragraph leading-relaxed font-body mt-6"
           >
-            We&apos;re on a mission to make transportation accessible, affordable, and sustainable for everyone in Nepal.
-            Since 2025, we&apos;ve been building the future of mobility, one ride at a time.
+            Sawari Sewa Nepal Limited is a unified digital platform delivering essential daily services — including
+            Ride-sharing, Hotel booking, Food delivery, Parcel delivery, Grocery delivery and E-commerce. With an
+            emphasis on reliability and user experience, Sawari simplifies daily routine, saves time and provides a
+            seamless, on-demand solution for all needs.
           </motion.p>
+
+          {/* CTA Button */}
+          <motion.button
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="px-8 py-4 bg-[var(--primary-green)] mt-8 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            style={{ fontFamily: "var(--font-body)" }}
+          >
+            Get Started
+          </motion.button>
         </div>
       </section>
 
-      {/* Enhanced Stats Section */}
-      <section className="px-4 py-16 md:px-8 bg-white shadow-sm relative">
+      {/* ===== FEATURES SECTION ===== */}
+      <section className="relative px-6 md:px-12 py-20 bg-light border-t border-gray-100">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
+          {/* Section Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h3
+              className="text-4xl md:text-5xl font-heading font-semibold text-dark-heading leading-tight"
+              style={{ fontFamily: "var(--font-heading)" }}
+            >
+              Why Choose <span className="text-[var(--primary-green)]">Sawari</span>
+            </h3>
+            <p className="text-base md:text-lg max-w-2xl mx-auto text-paragraph leading-relaxed font-body mt-4">
+              We&apos;re committed to providing the best experience for riders and drivers alike
+            </p>
+          </motion.div>
+
+          {/* Features Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {features.map((feature, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group p-6 text-center bg-light rounded-2xl border hover:shadow-lg transition-all duration-300 cursor-pointer"
-                style={{
-                  borderColor: "rgba(38, 212, 102, 0.2)",
-                  background: "linear-gradient(135deg, var(--light-background) 0%, #f0fdf4 100%)",
-                }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ translateY: -8 }}
+                className="group relative bg-white rounded-2xl border border-gray-100 p-8 shadow-sm hover:shadow-lg hover:border-[var(--primary-green)]/20 transition-all duration-300"
               >
-                <div className="flex items-center justify-center mb-3">
-                  <div className="p-2 rounded-lg bg-primary-green text-white transition-colors duration-300">
-                    {stat.icon}
-                  </div>
+                {/* Icon Container */}
+                <div className="flex items-center justify-center mb-6">
+                  <motion.div
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                    className="p-4 rounded-xl bg-[var(--primary-green)] text-white shadow-md"
+                  >
+                    {feature.icon}
+                  </motion.div>
                 </div>
-                <motion.div
-                  className="text-4xl font-extrabold mb-2 text-primary-green"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+
+                {/* Label */}
+                <h3
+                  className="text-xl font-semibold text-[var(--dark-heading)] mb-2"
+                  style={{ fontFamily: "var(--font-heading)" }}
                 >
-                  {stat.number}
-                  {stat.suffix}
-                </motion.div>
-                <div className="text-lg font-medium text-paragraph">{stat.label}</div>
+                  {feature.label}
+                </h3>
+
+                {/* Description */}
+                <p className="text-[var(--text-dark)] text-base" style={{ fontFamily: "var(--font-body)" }}>
+                  {feature.description}
+                </p>
+
+                {/* Accent Line */}
+                <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 w-12 bg-[var(--primary-green)] rounded-t-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </motion.div>
             ))}
           </div>

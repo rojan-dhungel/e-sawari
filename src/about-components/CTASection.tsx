@@ -12,7 +12,7 @@ const CTASection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="text-3xl md:text-4xl font-extrabold mb-6 text-dark-heading"
+          className="text-4xl md:text-5xl font-heading font-semibold text-dark-heading leading-tight"
         >
           Ready to Join the <span className="text-primary-green">esawari Family?</span>
         </motion.h2>
@@ -22,7 +22,7 @@ const CTASection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
-          className="text-lg mb-12 max-w-2xl mx-auto text-paragraph"
+          className="text-base md:text-lg max-w-2xl mx-auto text-paragraph leading-relaxed font-body my-10"
         >
           Whether you&apos;re a user looking for reliable services or a driver wanting to earn with flexible hours, we
           welcome you to be part of our growing community.
@@ -37,8 +37,8 @@ const CTASection = () => {
             className="p-6 bg-primary-green/5 rounded-2xl border border-primary-green/20"
           >
             <Smartphone className="w-12 h-12 text-primary-green mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2 text-dark-heading">For Users</h3>
-            <p className="text-paragraph mb-4">Download our app and enjoy seamless rides, food delivery, and more.</p>
+            <h3 className="text-xl font-semibold mb-2 text-dark-heading">For Users</h3>
+            <p className="text-paragraph  text-base mb-4">Download our app and enjoy seamless rides, food delivery, and more.</p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -57,8 +57,8 @@ const CTASection = () => {
             className="p-6 bg-primary-green/5 rounded-2xl border border-primary-green/20"
           >
             <Car className="w-12 h-12 text-primary-green mx-auto mb-4" />
-            <h3 className="text-xl font-bold mb-2 text-dark-heading">For Drivers</h3>
-            <p className="text-paragraph mb-4">Join our partner network and start earning with flexible schedules.</p>
+            <h3 className="text-xl font-semibold mb-2 text-dark-heading">For Drivers</h3>
+            <p className="text-paragraph text-base mb-4">Join our partner network and start earning with flexible schedules.</p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

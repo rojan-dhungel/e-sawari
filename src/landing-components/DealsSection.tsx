@@ -55,6 +55,7 @@ const DealsSection: React.FC = () => {
             Save more on every ride, meal, and delivery with our special promotional
             codes. New offers added every week!
           </p>
+          
         </div>
 
         {/* Deal Cards */}

@@ -60,10 +60,11 @@ const TestimonialsSection = () => {
               Ride with Confidence
             </span>
           </h3>
-          <p className="text-base max-w-2xl mx-auto text-gray-600 leading-relaxed font-body">
+          <p className="text-base md:text-lg max-w-2xl mx-auto text-paragraph leading-relaxed font-body">
             eSawari is the everyday choice for happy customers — trusted for seamless
             transportation, quick deliveries, and reliable daily services that make life easier.
           </p>
+          
         </div>
 
         {/* Carousel Container */}
@@ -110,7 +111,7 @@ const TestimonialsSection = () => {
                     </div>
 
                     {/* Testimonial Text */}
-                    <p className="text-base md:text-lg leading-relaxed mb-6 text-gray-700 font-body italic">
+                    <p className="text-base md:text-lg leading-relaxed mb-6 text-paragraph font-body italic">
                       &quot;{testimonial.text}&quot;
                     </p>
 

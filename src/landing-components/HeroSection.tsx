@@ -27,12 +27,10 @@ const HeroSection = () => {
             <h6 className="text-xl sm:text-2xl lg:text-3xl font-medium font-heading text-dark-heading">
               All your services, in one app
             </h6>
-
-            <p className="text-sm sm:text-base text-text-color leading-relaxed max-w-xl text-justify font-body">
-              Experience seamless transportation across the city. Get food delivered to your
-              doorstep and parcels sent with ease. Rent vehicles anytime, anywhere—
-              your everyday needs, simplified.
+            <p className="text-base md:text-lg max-w-2xl mx-auto text-paragraph leading-relaxed font-body">
+              Experience smarter living with Sawari, your all-in-one app for daily needs. Ride, book hotels, order food, send parcels, shop and more, all in one place. Fast, reliable and built for modern Nepal.
             </p>
+
           </div>
 
           {/* Buttons */}
