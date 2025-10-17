@@ -70,23 +70,33 @@ const CTASection = () => {
           </motion.div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          viewport={{ once: true }}
-          className="flex justify-center"
-        >
-          <motion.button
-            whileHover={{ x: 5 }}
-            className="flex items-center text-primary-green font-medium hover:text-primary-green/80 transition-colors duration-200"
-          >
-            Learn more about our services <ArrowRight className="w-4 h-4 ml-2" />
-          </motion.button>
-        </motion.div>
+ <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.5 }}
+  viewport={{ once: true }}
+  className="flex justify-center"
+>
+  <motion.a
+    whileHover={{ x: 5 }}
+    href="#"
+    className="relative flex items-center text-primary-green font-medium transition-colors duration-200 group 
+               select-none no-underline outline-none border-none focus:outline-none focus:ring-0"
+  >
+    Learn more about our services
+    <ArrowRight className="w-4 h-4 ml-2" />
+
+    {/* Smooth underline animation */}
+    <span className="absolute bottom-0 left-0 w-0 h-[2px] bg-primary-green transition-all duration-300 ease-in-out group-hover:w-full"></span>
+  </motion.a>
+</motion.div>
+
+
+
       </div>
     </section>
   )
 }
 
 export default CTASection
+ 

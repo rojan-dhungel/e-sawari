@@ -8,15 +8,13 @@ import {
   Package,
   Utensils,
   Car,
-  Hotel,
-  LucideIcon,
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 
 interface Step {
-  icon: LucideIcon;
+  icon: React.ElementType;
   title: string;
   description: string;
 }
@@ -24,13 +22,11 @@ interface Step {
 interface ServiceButton {
   key: string;
   label: string;
-  icon: LucideIcon;
+  icon: React.ElementType;
   color: string;
 }
 
-type ServiceKey = "ride" | "food" | "parcel" | "hotel";
-
-const services: Record<ServiceKey, Step[]> = {
+const services: Record<string, Step[]> = {
   ride: [
     {
       icon: Smartphone,
@@ -109,45 +105,18 @@ const services: Record<ServiceKey, Step[]> = {
         "Deliver to receiver, get digital signature confirmation, and receive instant payment for your service.",
     },
   ],
-  hotel: [
-    {
-      icon: Hotel,
-      title: "List Your Property",
-      description:
-        "Register your hotel on eSawari platform. Add property details, amenities, room types, and competitive pricing.",
-    },
-    {
-      icon: MapPin,
-      title: "Receive Bookings",
-      description:
-        "Get instant notifications when guests book your property. View guest details and booking information in real-time.",
-    },
-    {
-      icon: CreditCard,
-      title: "Manage Reservations",
-      description:
-        "Confirm bookings, update room availability, and manage check-in/check-out schedules through the partner dashboard.",
-    },
-    {
-      icon: Star,
-      title: "Earn & Grow",
-      description:
-        "Receive payments directly to your account. Build your reputation through guest reviews and grow your business.",
-    },
-  ],
 };
 
 const serviceButtons: ServiceButton[] = [
   { key: "ride", label: "Ride Hailing", icon: Car, color: "#1976D2" },
   { key: "food", label: "Food Delivery", icon: Utensils, color: "#F97316" },
   { key: "parcel", label: "Parcel Delivery", icon: Package, color: "#7B1FA2" },
-  { key: "hotel", label: "Hotel Booking", icon: Hotel, color: "#CA8A04" },
 ];
 
 export default function RiderStepsSection() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
-  const [activeService, setActiveService] = useState<ServiceKey>("ride");
+  const [activeService, setActiveService] = useState<string>("ride");
 
   const steps = services[activeService];
   const currentService = serviceButtons.find((s) => s.key === activeService);
@@ -184,21 +153,21 @@ export default function RiderStepsSection() {
           className="text-center mb-14"
         >
           <h2 className="text-4xl md:text-5xl font-heading font-semibold text-dark-heading mb-4">
-            How It Works for <span className="text-primary-green">Partners</span>
+            How It Works for <span className="text-primary-green">Riders</span>
           </h2>
           <p className="text-base md:text-lg text-paragraph max-w-2xl mx-auto leading-relaxed">
-            Start earning with eSawari in just a few simple steps. Choose a service to see how you can become a partner.
+            Start earning with eSawari in just a few simple steps. Choose a service to see how you can get started.
           </p>
 
           {/* Service Buttons */}
           <div className="flex flex-wrap justify-center gap-3 mt-8">
-            {serviceButtons.map((service) => {
+            {serviceButtons.map((service: ServiceButton) => {
               const Icon = service.icon;
               const isActive = activeService === service.key;
               return (
                 <motion.button
                   key={service.key}
-                  onClick={() => setActiveService(service.key as ServiceKey)}
+                  onClick={() => setActiveService(service.key)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.97 }}
                   className={`flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-all border-2 ${

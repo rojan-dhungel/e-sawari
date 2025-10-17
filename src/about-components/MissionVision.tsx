@@ -8,7 +8,7 @@ import Image from "next/image";
 const MissionVisionValues = () => {
   const [activeTab, setActiveTab] = useState("mission")
 
-  const missionImage = "/Images/mission.jpg" // ✅ Update these paths
+  const missionImage = "" // ✅ Update these paths
   const visionImage = "/Images/vision.jpg"
 
   const tabs = [
