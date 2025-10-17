@@ -23,7 +23,7 @@ const DealsSection: React.FC = () => {
   const [hoveredDealId, setHoveredDealId] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('http://api.esawari.com/coupon/coupons')
+    fetch('https://api.esawari.com/coupon/coupons')
       .then((res) => res.json())
       .then((data: Deal[]) => {
         const activeDeals = data.filter((deal) => deal.is_active);

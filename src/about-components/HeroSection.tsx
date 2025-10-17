@@ -32,7 +32,7 @@ const HeroSection = () => {
     },
     {
       icon: <Shield className="w-6 h-6" />,
-      label: "10 Lakhs Accidental Insurance",
+      label: "25 Lakhs Accidental Insurance",
       description: "Complete accident protection for riders & passengers",
     },
   ]
