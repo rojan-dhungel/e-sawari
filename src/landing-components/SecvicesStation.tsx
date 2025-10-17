@@ -1,7 +1,8 @@
 "use client"
 
 import React from 'react';
-import { Car, UtensilsCrossed, Package, Truck, Plane, Hotel } from 'lucide-react';
+import { Car, UtensilsCrossed, Package, Truck,Hotel } from 'lucide-react';
+import { FaHelicopter } from "react-icons/fa";
 
 const services = [
   {
@@ -46,7 +47,7 @@ const services = [
     comingSoon: true,
   },
   {
-    icon: Plane,
+    icon: FaHelicopter,
     title: 'Helicopter Rental',
     description:
       'Experience premium aerial transportation for business travel, tourism, and special events across Nepal.',
