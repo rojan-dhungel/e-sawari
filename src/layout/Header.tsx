@@ -42,12 +42,12 @@ const Header: React.FC = () => {
     {
       title: 'Services',
       items: [
-        { name: 'Ride-Hailing', path: '/services/ride-hailing' },
-        { name: 'Food Delivery', path: '/services/food-delivery' },
-        { name: 'Parcel Delivery', path: '/services/parcel-delivery' },
+        { name: 'Ride-Hailing', path: '/staytuned' },
+        { name: 'Food Delivery', path: '/staytuned' },
+        { name: 'Parcel Delivery', path: '/staytuned' },
         // { name: 'Vehicle Rentals', path: '/services/vehicle-rentals' },
         // { name: 'Helicopter Rental', path: '/services/helicopter-rental' },
-        { name: 'Hotel Booking', path: '/services/hotel-booking' },
+        { name: 'Hotel Booking', path: '/staytuned' },
       ],
     },
     {

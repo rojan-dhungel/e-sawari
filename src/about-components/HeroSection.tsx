@@ -1,7 +1,8 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Zap, Shield, IndianRupee ,Briefcase, Heart } from "lucide-react"
+import { Zap, Shield,Briefcase, Heart } from "lucide-react"
+import { NepaliRupee } from "@/about-components/ui/NepaliRupee"
 
 const HeroSection = () => {
   const features = [
@@ -11,12 +12,12 @@ const HeroSection = () => {
       description: "100% electric vehicles for sustainable transportation",
     },
     {
-      icon: <IndianRupee className="w-6 h-6" />,
+      icon: <NepaliRupee size={24} color="#FFFFFF" />,
       label: "40% Cost-Effective",
       description: "Riders save 40% on operational costs",
     },
     {
-      icon: <IndianRupee className="w-6 h-6" />,
+      icon: <NepaliRupee size={24} color="#FFFFFF" />,
       label: "25% Cost-Saving",
       description: "Passengers enjoy 25% lower fares",
     },

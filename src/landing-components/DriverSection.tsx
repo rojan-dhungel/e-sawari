@@ -14,7 +14,7 @@ const DriverSection = () => {
   ]
 
   const highlights = [
-    { icon: CheckCircle2, text: "₹25,000+ Average Monthly Earnings" },
+    { icon: CheckCircle2, text: "रु25,000+ Average Monthly Earnings" },
     { icon: Zap, text: "Instant Daily Payouts" },
     { icon: Award, text: "Performance Bonuses & Rewards" },
   ]
@@ -78,7 +78,7 @@ const DriverSection = () => {
                 <TrendingUp className="w-8 h-8 text-white" />
               </div>
               <div>
-                <div className="text-3xl font-heading font-semibold text-primary-green mb-1">₹25,000+</div>
+                <div className="text-3xl font-heading font-semibold text-primary-green mb-1">रु25,000+</div>
                 <div className="text-sm font-medium text-text-color">Average monthly earnings</div>
               </div>
             </div>

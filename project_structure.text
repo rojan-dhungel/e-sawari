@@ -10,9 +10,7 @@
 - postcss.config.mjs
 - project_structure.text
 - public
-  - .DS_Store
   - Images
-    - .DS_Store
     - Avatars
       - gamer.png
       - man.png
@@ -25,6 +23,8 @@
   - .DS_Store
   - Documents
     - PrivacyPolicy.tsx
+  - StayTuned
+    - StayTunedPage.tsx
   - about-components
     - CTASection.tsx
     - HeroSection.tsx
@@ -59,8 +59,9 @@
     - contact.tsx
     - howit.tsx
     - index.tsx
-    - privacypolicy.tsx
+    - privacy.tsx
     - safety.tsx
+    - staytuned.tsx
   - safety-components
     - EmergencySection.tsx
     - GuidelinesSection.tsx

@@ -29,6 +29,7 @@
     "zod": "^4.1.9"
   },
   "devDependencies": {
+    "@types/node": "24.8.1",
     "@types/react": "19.1.13"
   }
 }
