@@ -140,17 +140,6 @@ const Footer = () => {
                 <FaInstagram className="w-5 h-5 text-white" />
               </a>
 
-              {/* X */}
-              <a
-                href="https://x.com/esawari"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-11 h-11 rounded-full bg-primary-green flex items-center justify-center hover:bg-green-700 transition-transform transform hover:scale-110"
-                aria-label="X"
-              >
-                <SiX className="w-5 h-5 text-white" />
-              </a>
-
               {/* TikTok */}
               <a
                 href="https://tiktok.com/@esawari"
@@ -160,6 +149,16 @@ const Footer = () => {
                 aria-label="TikTok"
               >
                 <SiTiktok className="w-5 h-5 text-white" />
+              </a>
+              {/* X */}
+              <a
+                href="https://x.com/esawari"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-11 h-11 rounded-full bg-primary-green flex items-center justify-center hover:bg-green-700 transition-transform transform hover:scale-110"
+                aria-label="X"
+              >
+                <SiX className="w-5 h-5 text-white" />
               </a>
             </div>
           </div>

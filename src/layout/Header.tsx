@@ -3,7 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, X, Instagram, Facebook } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
+import { FaFacebookF, FaInstagram } from "react-icons/fa";
+import { SiX, SiTiktok } from "react-icons/si";
 
 const Header: React.FC = () => {
   const [showHeader, setShowHeader] = useState(true);
@@ -60,9 +62,10 @@ const Header: React.FC = () => {
   ];
 
   const socialLinks = [
-    { name: 'TikTok', url: '#', icon: 'tiktok' },
-    { name: 'Instagram', url: '#', icon: 'instagram' },
     { name: 'Facebook', url: '#', icon: 'facebook' },
+    { name: 'Instagram', url: '#', icon: 'instagram' },
+    { name: 'TikTok', url: '#', icon: 'tiktok' },
+    { name: 'X', url: '#', icon: 'x' },
   ];
 
   return (
@@ -129,7 +132,7 @@ const Header: React.FC = () => {
             >
               {menuOpen ? (
                 <>
-                  <X className="w-5 h-5 "  />
+                  <X className="w-5 h-5 " />
                   <span className="text-sm">Close</span>
                 </>
               ) : (
@@ -152,15 +155,15 @@ const Header: React.FC = () => {
           {/* Header Section */}
           <div className="flex items-center justify-between p-6 lg:px-12 lg:py-8 border-b border-gray-200">
             <div className="flex items-center">
-               <Link href="/">
-              <Image
-                src="/Images/SawariLogo.png"
-                alt="Sawari logo"
-                width={120}
-                height={40}
-                className="object-contain lg:w-36"
-              />
-            </Link>
+              <Link href="/">
+                <Image
+                  src="/Images/SawariLogo.png"
+                  alt="Sawari logo"
+                  width={120}
+                  height={40}
+                  className="object-contain lg:w-36"
+                />
+              </Link>
             </div>
             <button
               onClick={() => setMenuOpen(false)}
@@ -227,13 +230,10 @@ const Header: React.FC = () => {
                       }}
                       title={social.name}
                     >
-                      {social.icon === 'instagram' && <Instagram className="w-6 h-6 lg:w-7 lg:h-7" />}
-                      {social.icon === 'facebook' && <Facebook className="w-6 h-6 lg:w-7 lg:h-7" />}
-                      {social.icon === 'tiktok' && (
-                        <svg className="w-6 h-6 lg:w-7 lg:h-7" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.68v12.7a2.85 2.85 0 1 1-5.92-2.86 2.88 2.88 0 0 1 2.31 1.39V9.58a6.53 6.53 0 1 0 5.94 6.48v-3.78a8.38 8.38 0 0 0 3.12-1.61v-3.98z" />
-                        </svg>
-                      )}
+                      {social.icon === 'instagram' && <FaInstagram className="w-6 h-6 lg:w-7 lg:h-7" />}
+                      {social.icon === 'facebook' && <FaFacebookF className="w-6 h-6 lg:w-7 lg:h-7" />}
+                      {social.icon === 'tiktok' && <SiTiktok className="w-6 h-6 lg:w-7 lg:h-7" />}
+                      {social.icon === 'x' && <SiX className="w-6 h-6 lg:w-7 lg:h-7" />}
                     </a>
                   ))}
                 </div>
@@ -246,7 +246,7 @@ const Header: React.FC = () => {
                     <h4 className="text-lg lg:text-2xl font-semibold text-[var(--dark-heading)] pb-2 mb-5 border-b-2 border-[var(--primary-green)] inline-block">
                       Ready to get started?
                     </h4>
-                    
+
                     <p className="text-lg text-[var(--text-color)] font-body">
                       Download the app and experience seamless services
                     </p>
