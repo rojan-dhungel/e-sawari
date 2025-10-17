@@ -53,10 +53,10 @@ const Header: React.FC = () => {
     {
       title: 'Cities',
       items: [
-        { name: 'Kathmandu', path: '/cities/kathmandu' },
+        { name: 'Kathmandu', path: '/staytuned' },
         // { name: 'Pokhara', path: '/cities/pokhara' },
-        { name: 'Lalitpur', path: '/cities/lalitpur' },
-        { name: 'Bhaktapur', path: '/cities/bhaktapur' },
+        { name: 'Lalitpur', path: '/staytuned' },
+        { name: 'Bhaktapur', path: '/staytuned' },
       ],
     },
   ];

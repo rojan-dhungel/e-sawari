@@ -94,9 +94,9 @@ const Footer = () => {
             <h4 className="font-heading font-semibold text-lg mb-5 text-white">Cities</h4>
             <ul className="space-y-3 text-sm md:text-base">
               {[
-                { label: "Kathmandu", href: "/cities/kathmandu" },
-                { label: "Lalitpur", href: "/cities/lalitpur" },
-                { label: "Bhaktapur", href: "/cities/bhaktapur" },
+                { label: "Kathmandu", href: "/staytuned" },
+                { label: "Lalitpur", href: "/staytuned" },
+                { label: "Bhaktapur", href: "/staytuned" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
