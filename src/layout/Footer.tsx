@@ -70,10 +70,12 @@ const Footer = () => {
             <h4 className="font-heading font-semibold text-lg mb-5 text-white">Services</h4>
             <ul className="space-y-3 text-sm md:text-base">
               {[
-                { label: "Ride-Hailing", href: "/ride-hailing" },
-                { label: "Food Delivery", href: "/food-delivery" },
-                { label: "Parcel Delivery", href: "/parcel-delivery" },
-                { label: "Vehicle Rentals", href: "/vehicle-rentals" },
+                { label: "Ride-Hailing", href: "/services/ride-hailing" },
+                { label: "Food Delivery", href: "/services/food-delivery" },
+                { label: "Parcel Delivery", href: "/services/parcel-delivery" },
+                // { label: "Vehicle Rentals", href: "/services/vehicle-rentals" },
+                {label: "Hotel Booking", href: "/services/hotel-booking" },
+                // { label: "Helicopter Services", href: "/services/helicopter-services" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
