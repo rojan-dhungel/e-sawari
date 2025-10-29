@@ -72,7 +72,7 @@ const Header: React.FC = () => {
     <>
       {/* NAVBAR */}
       <header
-        className={`px-6 py-6 md:px-10 shadow-sm sticky top-0 z-50 transform transition-transform duration-300 bg-[var(--light-background)] ${showHeader ? 'translate-y-0' : '-translate-y-full'
+        className={`px-6 py-3 md:py-4 md:px-10 shadow-sm sticky top-0 z-50 transform transition-transform duration-300 bg-[var(--light-background)] ${showHeader ? 'translate-y-0' : '-translate-y-full'
           }`}
       >
         <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -82,9 +82,9 @@ const Header: React.FC = () => {
               <Image
                 src="/Images/SawariLogo.png"
                 alt="Sawari logo"
-                width={180}
-                height={80}
-                className="object-contain transform transition-transform duration-300 hover:scale-105"
+                width={160}
+                height={60}
+                className="object-contain w-32 h-auto md:w-40 lg:w-44 transform transition-transform duration-300 hover:scale-105"
                 priority
               />
             </Link>
@@ -128,7 +128,7 @@ const Header: React.FC = () => {
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="px-5 py-3 rounded-lg transition-all duration-300 bg-[var(--primary-green)] text-[var(--light-background)] flex items-center gap-2 font-medium"
+              className="px-4 py-2.5 rounded-lg transition-all duration-300 bg-[var(--primary-green)] text-[var(--light-background)] flex items-center gap-2 font-medium"
             >
               {menuOpen ? (
                 <>
@@ -159,9 +159,9 @@ const Header: React.FC = () => {
                 <Image
                   src="/Images/SawariLogo.png"
                   alt="Sawari logo"
-                  width={180}
-                  height={80}
-                  className="object-contain lg:w-36"
+                  width={160}
+                  height={60}
+                  className="object-contain w-32 lg:w-36"
                 />
               </Link>
             </div>
