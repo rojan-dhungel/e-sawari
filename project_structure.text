@@ -1,20 +1,110 @@
 - .DS_Store
 - .gitignore
 - README.md
+- dist.zip
 - eslint.config.mjs
 - next-env.d.ts
 - next.config.mjs
-- next.config.ts
-- package-lock.json
+- out
+  - build-manifest.json
+  - cache
+    - .rscinfo
+    - chrome-devtools-workspace-uuid
+    - next-devtools-config.json
+    - swc
+      - plugins
+        - macos_aarch64_18.0.0
+  - package.json
+  - prerender-manifest.json
+  - react-loadable-manifest.json
+  - routes-manifest.json
+  - server
+    - _error.js
+    - interception-route-rewrite-manifest.js
+    - middleware-build-manifest.js
+    - middleware-manifest.json
+    - middleware-react-loadable-manifest.js
+    - next-font-manifest.js
+    - next-font-manifest.json
+    - pages
+      - _app.js
+      - _document.js
+      - _error.js
+      - about.js
+      - howit.js
+      - index.js
+      - safety.js
+    - pages-manifest.json
+    - vendor-chunks
+      - @swc.js
+      - lucide-react.js
+      - next.js
+      - react-icons.js
+    - webpack-runtime.js
+  - static
+    - chunks
+      - _error.js
+      - main.js
+      - pages
+        - _app.js
+        - _error.js
+        - about.js
+        - howit.js
+        - index.js
+        - safety.js
+      - polyfills.js
+      - react-refresh.js
+      - webpack.js
+    - development
+      - _buildManifest.js
+      - _ssgManifest.js
+    - webpack
+      - 1f2f6b20b26d290c.webpack.hot-update.json
+      - 37ebc47d890cd1aa.webpack.hot-update.json
+      - 633457081244afec._.hot-update.json
+      - 78bd8291637bf663.webpack.hot-update.json
+      - 83e13825e3aa8233.webpack.hot-update.json
+      - bad54e43e38e7895.webpack.hot-update.json
+      - c1660a5f4237031c.webpack.hot-update.json
+      - ce37533fddd63c37.webpack.hot-update.json
+      - f4af6dab705f742a.webpack.hot-update.json
+      - fe75f35adfa05682.webpack.hot-update.json
+      - pages
+        - _app.37ebc47d890cd1aa.hot-update.js
+        - _app.ce37533fddd63c37.hot-update.js
+        - about.37ebc47d890cd1aa.hot-update.js
+        - about.c1660a5f4237031c.hot-update.js
+        - about.fe75f35adfa05682.hot-update.js
+      - webpack.1f2f6b20b26d290c.hot-update.js
+      - webpack.37ebc47d890cd1aa.hot-update.js
+      - webpack.78bd8291637bf663.hot-update.js
+      - webpack.83e13825e3aa8233.hot-update.js
+      - webpack.bad54e43e38e7895.hot-update.js
+      - webpack.c1660a5f4237031c.hot-update.js
+      - webpack.ce37533fddd63c37.hot-update.js
+      - webpack.f4af6dab705f742a.hot-update.js
+      - webpack.fe75f35adfa05682.hot-update.js
+  - trace
+  - types
+    - routes.d.ts
+    - validator.ts
 - package.json
 - postcss.config.mjs
 - project_structure.text
 - public
+  - .DS_Store
   - Images
+    - .DS_Store
     - Avatars
       - gamer.png
       - man.png
       - woman.png
+    - Directors
+      - AmbikaPudasaini.jpeg
+      - AshokKumarRai.jpeg
+      - BachchhuNarayan Shrestha.jpeg
+      - GhanashyamPaudyal.jpeg
+      - RajanKumar Shrestha.jpeg
     - SawariLogo.png
     - qr-sawari.png
     - sawari.png
@@ -23,6 +113,7 @@
   - .DS_Store
   - Documents
     - PrivacyPolicy.tsx
+    - TermsandConditions.tsx
   - StayTuned
     - StayTunedPage.tsx
   - about-components
@@ -34,6 +125,8 @@
     - StoryTimeline.tsx
     - TeamSection.tsx
     - ValuesSection.tsx
+    - ui
+      - NepaliRupee.tsx
   - howitworks-component
     - FAQSection.tsx
     - HowItWorksHeroSection.tsx
@@ -62,6 +155,7 @@
     - privacy.tsx
     - safety.tsx
     - staytuned.tsx
+    - terms.tsx
   - safety-components
     - EmergencySection.tsx
     - GuidelinesSection.tsx

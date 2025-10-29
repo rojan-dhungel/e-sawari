@@ -59,13 +59,13 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="px-4 py-12 md:px-8 bg-gray-50">
+    <section className="px-4 py-12 md:px-8 bg-light">
       <div className="max-w-7xl mx-auto">
         {/* Section Heading */}
         <div className="text-center space-y-3 mb-12">
           <h3 className="text-4xl md:text-5xl font-heading font-semibold text-dark-heading leading-tight">
-            Everything You Need in{' '}
-            <span className="text-primary-green">One App</span>
+            Rides, Meals, Parcels & More -{' '}
+            <span className="text-primary-green">Fast, Easy & Reliable</span>
           </h3>
           
           <p className="text-base md:text-lg max-w-2xl mx-auto text-paragraph leading-relaxed font-body">

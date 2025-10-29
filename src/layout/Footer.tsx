@@ -18,9 +18,9 @@ const Footer = () => {
               <Image
                 src="/Images/sawari.png"
                 alt="esawari logo"
-                width={400}
-                height={160}
-                className="w-auto h-20 md:h-24 lg:h-28 transform transition-transform duration-300 hover:scale-105"
+                width={600}
+                height={180}
+                className="w-auto h-32 md:h-36 lg:h-40 transform transition-transform duration-300 hover:scale-105"
               />
             </Link>
             <p className="text-gray-400 text-sm md:text-base leading-relaxed max-w-xs">

@@ -1,35 +1,31 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { Heart, Shield, Globe, Users, Sparkles } from "lucide-react"
+import { Users, Globe, Rocket, Sparkles } from "lucide-react"
 
 const ValuesSection = () => {
   const values = [
     {
-      icon: <Heart className="w-8 h-8" />,
-      title: "Customer First",
-      description: "Every decision we make puts our customers and their needs at the center.",
-      color: "bg-primary-green",
-      bgColor: "bg-light",
-    },
-    {
-      icon: <Shield className="w-8 h-8" />,
-      title: "Safety & Trust",
-      description: "We prioritize the safety and security of all our users and partners.",
+      icon: <Users className="w-8 h-8" />,
+      title: "People",
+      description:
+        "Empowering every rider and driver through connection, respect, and shared growth.",
       color: "bg-primary-green",
       bgColor: "bg-light",
     },
     {
       icon: <Globe className="w-8 h-8" />,
-      title: "Innovation",
-      description: "We constantly innovate to provide better, smarter transportation solutions.",
+      title: "Planet",
+      description:
+        "Driving towards a greener tomorrow with sustainable and eco-friendly rides.",
       color: "bg-primary-green",
       bgColor: "bg-light",
     },
     {
-      icon: <Users className="w-8 h-8" />,
-      title: "Community",
-      description: "Building strong communities through accessible and reliable services.",
+      icon: <Rocket className="w-8 h-8" />,
+      title: "Progress",
+      description:
+        "Innovating mobility to move faster, safer, and smarter every single day.",
       color: "bg-primary-green",
       bgColor: "bg-light",
     },
@@ -46,14 +42,14 @@ const ValuesSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-3xl md:text-4xl font-extrabold mb-4 text-dark-heading">
-            Our <span className="text-primary-green">Values</span>
+            The <span className="text-primary-green">3Ps</span> that drive us
           </h2>
           <p className="text-lg max-w-2xl mx-auto text-paragraph">
-            These core values guide everything we do and help us build a better future for transportation in Nepal.
+            Our purpose goes beyond rides — we move people, protect the planet, and push progress forward.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {values.map((value, index) => (
             <motion.div
               key={index}

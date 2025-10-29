@@ -82,8 +82,8 @@ const Header: React.FC = () => {
               <Image
                 src="/Images/SawariLogo.png"
                 alt="Sawari logo"
-                width={140}
-                height={50}
+                width={180}
+                height={80}
                 className="object-contain transform transition-transform duration-300 hover:scale-105"
                 priority
               />
@@ -159,8 +159,8 @@ const Header: React.FC = () => {
                 <Image
                   src="/Images/SawariLogo.png"
                   alt="Sawari logo"
-                  width={120}
-                  height={40}
+                  width={180}
+                  height={80}
                   className="object-contain lg:w-36"
                 />
               </Link>

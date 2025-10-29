@@ -1,136 +1,187 @@
 "use client"
 
 import { motion } from "framer-motion"
-import useEmblaCarousel from "embla-carousel-react"
-import Autoplay from "embla-carousel-autoplay"
-import { Linkedin, Mail, Award } from "lucide-react"
-import { useCallback, useEffect, useState } from "react"
+import { Mail } from "lucide-react"
+import Image from "next/image"
+
+interface TeamMember {
+  name: string
+  role: string
+  image: string
+  email: string
+  quote: string
+}
+
+interface TeamGroup {
+  title: string
+  members: TeamMember[]
+}
 
 const TeamSection = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "center" }, [Autoplay({ delay: 3500 })])
-  const [selectedIndex, setSelectedIndex] = useState(0)
-
-  const team = [
+  const teams: TeamGroup[] = [
     {
-      name: "Rajesh Hamal",
-      role: "CEO & Co-Founder",
-      image: "👨‍💼",
-      description: "10+ years in tech industry, passionate about sustainable transportation.",
-    },
-    {
-      name: "Priya Sharma",
-      role: "CTO & Co-Founder",
-      image: "👩‍💻",
-      description: "Expert in mobile development and scalable systems architecture.",
-    },
-    {
-      name: "Amit Thapa",
-      role: "Head of Operations",
-      image: "👨‍🏭",
-      description: "Logistics expert ensuring smooth operations across all cities.",
-    },
-    {
-      name: "Sita Gurung",
-      role: "Head of Marketing",
-      image: "👩‍💼",
-      description: "Brand strategist focused on customer experience and growth.",
+      title: "Board of Directors",
+      members: [
+        {
+          name: "Rajan Kumar Shrestha",
+          role: "Chairman",
+          image: "/Images/Directors/RajanKumar Shrestha.jpeg",
+          email: "chairman@esawari.com",
+          quote:
+            "Leading Nepal towards a sustainable future with innovative electric mobility solutions.",
+        },
+        {
+          name: "Ghanashyam Paudyal",
+          role: "Director",
+          image: "/Images/Directors/GhanashyamPaudyal.jpeg",
+          email: "director1@esawari.com",
+          quote:
+            "Committed to making green transportation accessible to every Nepali citizen.",
+        },
+        {
+          name: "Ashok Kumar Rai",
+          role: "Director",
+          image: "/Images/Directors/AshokKumarRai.jpeg",
+          email: "director2@esawari.com",
+          quote:
+            "Building infrastructure that empowers communities through sustainable mobility.",
+        },
+        {
+          name: "Ambika Pudasaini",
+          role: "Director",
+          image: "/Images/Directors/AmbikaPudasaini.jpeg",
+          email: "director4@esawari.com",
+          quote:
+            "Passionate about creating inclusive and eco-friendly transportation for all.",
+        },
+        {
+          name: "Bachchhu Narayan Shrestha",
+          role: "Director",
+          image: "/Images/Directors/BachchhuNarayan Shrestha.jpeg",
+          email: "director5@esawari.com",
+          quote:
+            "Fostering innovation and excellence in Nepal's electric vehicle industry.",
+        },
+      ],
     },
   ]
 
-  const scrollTo = useCallback(
-    (index: number) => emblaApi && emblaApi.scrollTo(index),
-    [emblaApi]
-  )
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.1, delayChildren: 0.15 },
+    },
+  }
 
-  useEffect(() => {
-    if (!emblaApi) return
-    const onSelect = () => setSelectedIndex(emblaApi.selectedScrollSnap())
-    emblaApi.on("select", onSelect)
-    onSelect()
-  }, [emblaApi])
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  }
 
   return (
-    <section className="relative px-4 py-20 overflow-hidden max-w-7xl mx-auto bg-light">
-      <div className="max-w-7xl mx-auto text-center mb-14">
-        <motion.h2
-          initial={{ opacity: 0, y: 30 }}
+    <section className="px-4 py-20 md:px-8 bg-gradient-to-b from-light to-white relative overflow-hidden">
+      {/* Soft radial background accent */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(35,124,63,0.05)_0%,_transparent_70%)] pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true }}
-          className="text-4xl md:text-5xl font-semibold mb-4 text-dark-heading"
+          className="text-center mb-14 md:mb-20"
         >
-          Meet Our <span className="text-primary-green">Team</span>
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
-          className="text-lg max-w-2xl mx-auto text-paragraph"
-        >
-          The passionate people behind <span className="font-semibold text-primary-green">Esawari</span> who make sustainable mobility possible every day.
-        </motion.p>
-      </div>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dark-heading mb-3 tracking-tight">
+            Meet Our{" "}
+            <span className="text-primary-green bg-gradient-to-r from-primary-green to-emerald-600 bg-clip-text text-transparent">
+              Leadership
+            </span>
+          </h2>
+          <p className="text-base md:text-lg text-paragraph max-w-2xl mx-auto leading-relaxed">
+            Experienced professionals driving sustainable transportation
+            solutions across Nepal.
+          </p>
+        </motion.div>
 
-      {/* Carousel */}
-      <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex">
-          {team.map((member, index) => (
+        {/* Teams */}
+        <div className="space-y-16">
+          {teams.map((team, teamIndex) => (
             <motion.div
-              key={index}
-              className="flex-[0_0_80%] sm:flex-[0_0_45%] lg:flex-[0_0_25%] mx-4 bg-white border border-primary-green/10 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 cursor-pointer relative group overflow-hidden"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              key={teamIndex}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              whileHover={{ y: -10 }}
             >
-              <div className="absolute inset-0 bg-primary-green/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6"
+              >
+                {team.members.map((member, memberIndex) => (
+                  <motion.div key={memberIndex} variants={itemVariants} className="group">
+                    <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-400 hover:-translate-y-1.5">
+                      {/* Image */}
+                      <div className="relative w-full aspect-[3/4] overflow-hidden bg-gray-100">
+                        <motion.div
+                          className="w-full h-full"
+                          whileHover={{ scale: 1.05 }}
+                          transition={{ duration: 0.5, ease: "easeOut" }}
+                        >
+                          <Image
+                            src={member.image || "/placeholder.svg"}
+                            alt={member.name}
+                            width={250}
+                            height={320}
+                            className="w-full h-full object-cover transition-transform duration-700"
+                          />
+                        </motion.div>
 
-              <div className="p-8 flex flex-col items-center text-center relative z-10">
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 8 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-7xl mb-4"
-                >
-                  {member.image}
-                </motion.div>
-                <h4 className="text-xl font-bold mb-1 text-dark-heading">{member.name}</h4>
-                <div className="text-sm font-medium mb-4 px-4 py-1 rounded-full bg-primary-green text-white flex items-center gap-1 justify-center">
-                  <Award className="w-3 h-3" />
-                  {member.role}
-                </div>
-                <p className="text-sm text-paragraph mb-6 leading-relaxed">{member.description}</p>
+                        {/* Quote Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-3">
+                          <p className="text-white text-xs md:text-sm leading-relaxed italic transform translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
+                            &quot;{member.quote}&quot;
+                          </p>
+                        </div>
 
-                <div className="flex justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    className="p-2 rounded-lg bg-primary-green text-white hover:bg-primary-green/80 transition-colors duration-200"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                  </motion.button>
-                  <motion.button
-                    whileHover={{ scale: 1.1 }}
-                    className="p-2 rounded-lg bg-paragraph text-white hover:bg-paragraph/80 transition-colors duration-200"
-                  >
-                    <Mail className="w-4 h-4" />
-                  </motion.button>
-                </div>
-              </div>
+                        {/* Email Icon */}
+                        <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-all duration-400 transform -translate-y-1 group-hover:translate-y-0">
+                          <motion.a
+                            href={`mailto:${member.email}`}
+                            whileHover={{ scale: 1.15, rotate: 5 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="w-8 h-8 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-md text-primary-green shadow-md hover:bg-primary-green hover:text-white transition-all duration-300"
+                            aria-label={`Email ${member.name}`}
+                          >
+                            <Mail className="w-4 h-4" />
+                          </motion.a>
+                        </div>
+                      </div>
+
+                      {/* Info */}
+                      <div className="p-3 text-center">
+                        <h4 className="text-sm md:text-base font-semibold text-dark-heading mb-0.5 group-hover:text-primary-green transition-colors duration-300">
+                          {member.name}
+                        </h4>
+                        <p className="text-xs text-paragraph font-medium uppercase tracking-wide">
+                          {member.role}
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
             </motion.div>
           ))}
         </div>
-      </div>
-
-      {/* Carousel Indicators */}
-      <div className="flex justify-center mt-8 gap-3">
-        {team.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => scrollTo(i)}
-            className={`w-3 h-3 rounded-full transition-all ${
-              i === selectedIndex ? "bg-primary-green scale-125" : "bg-gray-300 hover:bg-gray-400"
-            }`}
-          ></button>
-        ))}
       </div>
     </section>
   )
