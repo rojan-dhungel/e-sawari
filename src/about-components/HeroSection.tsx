@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion"
 import { Zap, Shield,Briefcase, Heart } from "lucide-react"
-import { NepaliRupee } from "@/about-components/ui/NepaliRupee"
+import { NepaliRupee } from "@/ui/NepaliRupee"
 
 const HeroSection = () => {
   const features = [
@@ -102,6 +102,7 @@ const HeroSection = () => {
 
       {/* ===== FEATURES SECTION ===== */}
       <section className="relative w-full px-4 sm:px-6 md:px-8 lg:px-12 py-12 sm:py-16 md:py-20 lg:py-28 bg-light border-t border-gray-100">
+        
         <div className="max-w-7xl mx-auto">
           {/* Section Heading */}
           <motion.div

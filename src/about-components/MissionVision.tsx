@@ -18,8 +18,8 @@ const MissionVisionValues = () => {
     }))
   }
 
-  const missionImage = "" 
-  const visionImage = "/Images/vision.jpg"
+  const missionImage = "/Images/mission.png" 
+  const visionImage = "/Images/vision.png"
 
   const tabs = [
     { id: "mission" as const, label: "Mission" },
@@ -33,7 +33,7 @@ const MissionVisionValues = () => {
         "Empowering riders and drivers through fairness, opportunity, and connection.",
       detailedContent:
         "We believe in putting people first. Our platform creates meaningful opportunities for drivers to earn a sustainable income while providing riders with reliable, safe transportation. We foster a community built on mutual respect, fair compensation, and shared success. Every feature we build, every policy we create, is designed with the wellbeing of our community at its core.",
-      image: "/Images/values/people.jpg",
+      image: "/Images/Values/people.png",
     },
     {
       title: "Planet",
@@ -41,7 +41,8 @@ const MissionVisionValues = () => {
         "Driving towards a sustainable future with eco-friendly and shared mobility.",
       detailedContent:
         "Environmental responsibility drives our innovation. We're committed to reducing carbon emissions through shared rides, supporting electric vehicle adoption, and optimizing routes for efficiency. Our vision is a Nepal where mobility and sustainability go hand in hand, creating cleaner cities and a healthier planet for future generations.",
-      image: "/Images/values/planet.jpg",
+      image: "/Images/Values/planets.png",
+
     },
     {
       title: "Progress",
@@ -49,7 +50,7 @@ const MissionVisionValues = () => {
         "Innovating to move Nepal faster, safer, and smarter — every single day.",
       detailedContent:
         "Progress is in our DNA. We continuously innovate to solve transportation challenges, improve safety standards, and enhance user experience. Through technology and collaboration, we're building the infrastructure that will power Nepal's mobility future, making every journey more efficient, secure, and seamless.",
-      image: "/Images/values/progress.jpg",
+      image: "/Images/Values/progress.png",
     },
   ]
 
@@ -131,7 +132,7 @@ const MissionVisionValues = () => {
                       alt="Our Mission"
                       width={800}
                       height={600}
-                      className="w-full h-full object-cover aspect-[4/3]"
+                      className="w-full h-full object-contain aspect-[4/3]"
                     />
                   </div>
                 </div>
@@ -226,8 +227,8 @@ const MissionVisionValues = () => {
                     <Image
                       src={item.image}
                       alt={item.title}
-                      width={800}
-                      height={600}
+                      width={400}
+                      height={200}
                       className="w-full h-full object-cover"
                     />
 
@@ -240,7 +241,7 @@ const MissionVisionValues = () => {
                       <p className="text-base opacity-90 mb-5">{item.description}</p>
                       <button
                         onClick={() => toggleFlip(index)}
-                        className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[var(--primary-green)] text-black font-medium hover:bg-white transition-all duration-300"
+                        className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[var(--primary-green)] text-light font-medium hover:bg-[var(--primary-green)]/90 transition-all duration-300"
                       >
                         Learn more
                         <svg

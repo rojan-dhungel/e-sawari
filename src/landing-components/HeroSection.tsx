@@ -5,6 +5,7 @@ import { Star, Download, Car } from 'lucide-react';
 import Image from "next/image";
 
 
+
 const HeroSection = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-light-background flex items-center justify-center p-4 sm:p-6 lg:p-8">

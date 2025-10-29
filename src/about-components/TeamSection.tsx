@@ -85,8 +85,7 @@ const TeamSection = () => {
 
   return (
     <section className="px-4 py-20 md:px-8 bg-gradient-to-b from-light to-white relative overflow-hidden">
-      {/* Soft radial background accent */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(35,124,63,0.05)_0%,_transparent_70%)] pointer-events-none" />
+    
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
@@ -97,7 +96,7 @@ const TeamSection = () => {
           viewport={{ once: true }}
           className="text-center mb-14 md:mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-dark-heading mb-3 tracking-tight">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold text-dark-heading mb-3 tracking-tight">
             Meet Our{" "}
             <span className="text-primary-green bg-gradient-to-r from-primary-green to-emerald-600 bg-clip-text text-transparent">
               Leadership
