@@ -1,9 +1,56 @@
+// {
+//   "compilerOptions": {
+//     "target": "ES2017",
+//     "module": "ESNext",
+//     "moduleResolution": "node",
+//     "lib": ["dom", "dom.iterable", "esnext"],
+//     "allowJs": true,
+//     "allowImportingTsExtensions": true,
+//     "esModuleInterop": true,
+//     "strict": true,
+//     "skipLibCheck": true,
+//     "noEmit": true,
+//     "resolveJsonModule": true,
+//     "isolatedModules": true,
+//     "jsx": "preserve",
+//     "incremental": true,
+//     "baseUrl": "./src",
+//     "paths": {
+//       "@/*": ["*"],
+//       "@/pages/*": ["pages/*"],
+//       "@/landing-components/*": ["landing-components/*"],
+//       "@/styles/*": ["styles/*"],
+//       "@/lib/*": ["../lib/*"],
+//       "@/app/*": ["../app/*"],
+//       "@/components/*": ["../components/*"],
+//       "@/utils/*": ["../utils/*"]
+//     },
+//     "plugins": [{ "name": "next" }]
+//   },
+//   "include": [
+//     "**/*.ts",
+//     "**/*.tsx",
+//     "app/**/*",
+//     "components/**/*",
+//     "lib/**/*",
+//     ".next/types/**/*.ts"
+//   ],
+//   "exclude": ["node_modules"],
+//   "ts-node": {
+//     "esm": true,
+//     "experimentalSpecifierResolution": "node"
+//   }
+// }
 {
   "compilerOptions": {
     "target": "ES2017",
     "module": "ESNext",
     "moduleResolution": "node",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "allowImportingTsExtensions": true,
     "esModuleInterop": true,
@@ -14,28 +61,61 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    // ✅ This means "all imports start from /src"
     "baseUrl": "./src",
+    // ✅ Fix alias definitions
     "paths": {
-      "@/*": ["*"],
-      "@/pages/*": ["pages/*"],
-      "@/landing-components/*": ["landing-components/*"],
-      "@/styles/*": ["styles/*"],
-      "@/lib/*": ["../lib/*"],
-      "@/app/*": ["../app/*"],
-      "@/components/*": ["../components/*"],
-      "@/utils/*": ["../utils/*"]
+      "@/*": [
+        "*"
+      ], // e.g. "@/components/admin/sidebar"
+      "@/pages/*": [
+        "pages/*"
+      ],
+      "@/landing-components/*": [
+        "landing-components/*"
+      ],
+      "@/styles/*": [
+        "styles/*"
+      ],
+      "@/layout/*": [
+        "layout/*"
+      ],
+      "@/components/*": [
+        "components/*"
+      ],
+      "@/howitworks-component/*": [
+        "howitworks-component/*"
+      ],
+      "@/safety-components/*": [
+        "safety-components/*"
+      ],
+      "@/support-components/*": [
+        "support-components/*"
+      ],
+      "@/ui/*": [
+        "ui/*"
+      ],
+      "@/documents/*": [
+        "Documents/*"
+      ]
     },
-    "plugins": [{ "name": "next" }]
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "app/**/*",
-    "components/**/*",
-    "lib/**/*",
-    ".next/types/**/*.ts"
+    "../app/**/*", // ✅ include Next.js 13+ App Router
+    "../src/**/*",
+    ".next/types/**/*.ts",
+    "out/types/**/*.ts"
   ],
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules"
+  ],
   "ts-node": {
     "esm": true,
     "experimentalSpecifierResolution": "node"

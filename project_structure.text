@@ -1,15 +1,55 @@
 - .DS_Store
 - .gitignore
 - README.md
+- app
+  - .DS_Store
+  - admin
+    - dashboard
+      - administration
+        - admin-users
+          - page.tsx
+        - page.tsx
+      - fleet
+        - page.tsx
+        - vehicle-types
+          - page.tsx
+      - food
+        - menu-category
+          - page.tsx
+        - menu-items
+          - page.tsx
+        - page.tsx
+        - restaurant-category
+          - page.tsx
+        - restaurants
+          - page.tsx
+      - layout.tsx
+      - orders
+        - page.tsx
+      - page.tsx
+      - parcels
+        - package-types
+          - page.tsx
+        - page.tsx
+        - parcel-orders
+          - page.tsx
+      - users
+        - customers
+          - page.tsx
+        - drivers
+          - page.tsx
+        - page.tsx
+    - layout.tsx
+    - login
+      - page.tsx
+    - page.tsx
 - dist.zip
 - eslint.config.mjs
 - next-env.d.ts
 - next.config.mjs
-- out
   - build-manifest.json
   - cache
     - .rscinfo
-    - chrome-devtools-workspace-uuid
     - next-devtools-config.json
     - swc
       - plugins
@@ -30,10 +70,8 @@
       - _app.js
       - _document.js
       - _error.js
-      - about.js
-      - howit.js
+      - admin.js
       - index.js
-      - safety.js
     - pages-manifest.json
     - vendor-chunks
       - @swc.js
@@ -48,10 +86,8 @@
       - pages
         - _app.js
         - _error.js
-        - about.js
-        - howit.js
+        - admin.js
         - index.js
-        - safety.js
       - polyfills.js
       - react-refresh.js
       - webpack.js
@@ -59,35 +95,43 @@
       - _buildManifest.js
       - _ssgManifest.js
     - webpack
-      - 1f2f6b20b26d290c.webpack.hot-update.json
-      - 37ebc47d890cd1aa.webpack.hot-update.json
+      - 0809676ec3f704c9.webpack.hot-update.json
+      - 13e5a629e82d2e45.webpack.hot-update.json
+      - 3285d39c74a210af.webpack.hot-update.json
+      - 3648324c9be12855.webpack.hot-update.json
+      - 418af52de3440b5c.webpack.hot-update.json
+      - 444a395ce3bb1cbe.webpack.hot-update.json
+      - 605f42669031d1eb.webpack.hot-update.json
       - 633457081244afec._.hot-update.json
-      - 78bd8291637bf663.webpack.hot-update.json
-      - 83e13825e3aa8233.webpack.hot-update.json
-      - bad54e43e38e7895.webpack.hot-update.json
-      - c1660a5f4237031c.webpack.hot-update.json
-      - ce37533fddd63c37.webpack.hot-update.json
-      - f4af6dab705f742a.webpack.hot-update.json
-      - fe75f35adfa05682.webpack.hot-update.json
+      - a1007a90276ccedb.webpack.hot-update.json
+      - ce72d711d3104171.webpack.hot-update.json
+      - dff14658a0ac0efc.webpack.hot-update.json
+      - ee8f88b1c8bd1a9a.webpack.hot-update.json
       - pages
-        - _app.37ebc47d890cd1aa.hot-update.js
-        - _app.ce37533fddd63c37.hot-update.js
-        - about.37ebc47d890cd1aa.hot-update.js
-        - about.c1660a5f4237031c.hot-update.js
-        - about.fe75f35adfa05682.hot-update.js
-      - webpack.1f2f6b20b26d290c.hot-update.js
-      - webpack.37ebc47d890cd1aa.hot-update.js
-      - webpack.78bd8291637bf663.hot-update.js
-      - webpack.83e13825e3aa8233.hot-update.js
-      - webpack.bad54e43e38e7895.hot-update.js
-      - webpack.c1660a5f4237031c.hot-update.js
-      - webpack.ce37533fddd63c37.hot-update.js
-      - webpack.f4af6dab705f742a.hot-update.js
-      - webpack.fe75f35adfa05682.hot-update.js
+        - _app.13e5a629e82d2e45.hot-update.js
+        - _app.3285d39c74a210af.hot-update.js
+        - _app.605f42669031d1eb.hot-update.js
+        - _app.dff14658a0ac0efc.hot-update.js
+        - admin.13e5a629e82d2e45.hot-update.js
+        - admin.a1007a90276ccedb.hot-update.js
+        - admin.ce72d711d3104171.hot-update.js
+        - admin.ee8f88b1c8bd1a9a.hot-update.js
+      - webpack.0809676ec3f704c9.hot-update.js
+      - webpack.13e5a629e82d2e45.hot-update.js
+      - webpack.3285d39c74a210af.hot-update.js
+      - webpack.3648324c9be12855.hot-update.js
+      - webpack.418af52de3440b5c.hot-update.js
+      - webpack.444a395ce3bb1cbe.hot-update.js
+      - webpack.605f42669031d1eb.hot-update.js
+      - webpack.a1007a90276ccedb.hot-update.js
+      - webpack.ce72d711d3104171.hot-update.js
+      - webpack.dff14658a0ac0efc.hot-update.js
+      - webpack.ee8f88b1c8bd1a9a.hot-update.js
   - trace
   - types
     - routes.d.ts
     - validator.ts
+- package-lock.json
 - package.json
 - postcss.config.mjs
 - project_structure.text
@@ -100,14 +144,24 @@
       - man.png
       - woman.png
     - Directors
+      - .DS_Store
       - AmbikaPudasaini.jpeg
       - AshokKumarRai.jpeg
       - BachchhuNarayan Shrestha.jpeg
       - GhanashyamPaudyal.jpeg
       - RajanKumar Shrestha.jpeg
+    - Sawari Final.svg
+    - Sawari.png
+    - SawariLogo 2.jpeg
     - SawariLogo.png
+    - Values
+      - people.png
+      - planets.png
+      - progress.png
+    - mission.png
+    - people.jpg
     - qr-sawari.png
-    - sawari.png
+    - vision.png
   - favicon.ico
 - src
   - .DS_Store
@@ -125,8 +179,72 @@
     - StoryTimeline.tsx
     - TeamSection.tsx
     - ValuesSection.tsx
+  - components
+    - admin
+      - dashboard-content.tsx
+      - data-table.tsx
+      - header.tsx
+      - page-header.tsx
+      - sidebar.tsx
+    - theme-provider.tsx
     - ui
-      - NepaliRupee.tsx
+      - accordion.tsx
+      - alert-dialog.tsx
+      - alert.tsx
+      - aspect-ratio.tsx
+      - avatar.tsx
+      - badge.tsx
+      - breadcrumb.tsx
+      - button-group.tsx
+      - button.tsx
+      - calendar.tsx
+      - card.tsx
+      - carousel.tsx
+      - chart.tsx
+      - checkbox.tsx
+      - collapsible.tsx
+      - command.tsx
+      - context-menu.tsx
+      - dialog.tsx
+      - drawer.tsx
+      - dropdown-menu.tsx
+      - empty.tsx
+      - field.tsx
+      - form.tsx
+      - hover-card.tsx
+      - input-group.tsx
+      - input-otp.tsx
+      - input.tsx
+      - item.tsx
+      - kbd.tsx
+      - label.tsx
+      - menubar.tsx
+      - navigation-menu.tsx
+      - pagination.tsx
+      - popover.tsx
+      - progress.tsx
+      - radio-group.tsx
+      - resizable.tsx
+      - scroll-area.tsx
+      - select.tsx
+      - separator.tsx
+      - sheet.tsx
+      - sidebar.tsx
+      - skeleton.tsx
+      - slider.tsx
+      - sonner.tsx
+      - spinner.tsx
+      - switch.tsx
+      - table.tsx
+      - tabs.tsx
+      - textarea.tsx
+      - toast.tsx
+      - toaster.tsx
+      - toggle-group.tsx
+      - toggle.tsx
+      - tooltip.tsx
+      - use-mobile.tsx
+      - use-toast.ts
   - howitworks-component
     - FAQSection.tsx
     - HowItWorksHeroSection.tsx
@@ -143,9 +261,11 @@
     - SecvicesStation.tsx
     - TestimonialsSection.tsx
   - layout
+    - .DS_Store
     - Footer.tsx
     - Header.tsx
   - pages
+    - .DS_Store
     - _app.tsx
     - _document.tsx
     - about.tsx
@@ -169,5 +289,8 @@
     - HelpCenterSection.tsx
     - HeroSection.tsx
     - Support.tsx
+  - ui
+    - NepaliRupee.tsx
+    - TopographicPattern.tsx
 - tailwind.config.ts
 - tsconfig.json
