@@ -2,18 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import Image from "next/image"
-import {
-  ChevronDown,
-  Settings,
-  Truck,
-  Users,
-  UtensilsCrossed,
-  ShoppingCart,
-  Package,
-  LayoutDashboard,
-  LucideIcon,
-} from "lucide-react"
+import { ChevronDown, Settings, Truck, Users, UtensilsCrossed, ShoppingCart, Package, LayoutDashboard, Car, Store, LucideIcon } from 'lucide-react'
 
 interface MenuItem {
   id: string
@@ -52,14 +41,35 @@ const MENU_ITEMS: MenuItem[] = [
     ],
   },
   {
+    id: "rides",
+    label: "Rides",
+    icon: Car,
+    children: [
+      { id: "completed-rides", label: "Completed Rides", href: "/admin/dashboard/rides/completed-rides" },
+      { id: "cancelled-rides", label: "Cancelled Rides", href: "/admin/dashboard/rides/cancelled-rides" },
+      { id: "promo-rides", label: "Promo Rides", href: "/admin/dashboard/rides/promo-rides" },
+    ],
+  },
+  {
+    id: "restaurant-management",
+    label: "Restaurant Management",
+    icon: Store,
+    children: [
+      { id: "restaurants", label: "Restaurant List", href: "/admin/dashboard/restaurant-management/restaurants" },
+      { id: "add-restaurant", label: "Add Restaurant", href: "/admin/dashboard/restaurant-management/add-restaurant" },
+      { id: "cuisines", label: "Cuisines", href: "/admin/dashboard/restaurant-management/cuisines" },
+      { id: "store-toppings", label: "Store Toppings", href: "/admin/dashboard/restaurant-management/store-toppings" },
+    ],
+  },
+  {
     id: "food",
-    label: "Food",
+    label: "Food Management",
     icon: UtensilsCrossed,
     children: [
       { id: "restaurant-category", label: "Restaurant Category", href: "/admin/dashboard/food/restaurant-category" },
       { id: "menu-category", label: "Menu Category", href: "/admin/dashboard/food/menu-category" },
-      { id: "restaurants", label: "Restaurants", href: "/admin/dashboard/food/restaurants" },
       { id: "menu-items", label: "Menu Items", href: "/admin/dashboard/food/menu-items" },
+      { id: "food-addons", label: "Food Add-ons", href: "/admin/dashboard/food/food-addons" },
     ],
   },
   {
@@ -84,6 +94,8 @@ export default function AdminSidebar({ isOpen }: { isOpen: boolean }) {
     "administration",
     "fleet",
     "users",
+    "rides",
+    "restaurant-management",
     "food",
     "orders",
     "parcels",
@@ -95,27 +107,33 @@ export default function AdminSidebar({ isOpen }: { isOpen: boolean }) {
 
   return (
     <aside
-      className={`${
-        isOpen ? "w-64" : "w-0"
-      } overflow-y-auto border-r border-gray-200 bg-light transition-all duration-200`}
+      className={`${isOpen ? "w-64" : "w-0"} overflow-y-auto border-r transition-all duration-200`}
+      style={{
+        backgroundColor: "#FAFAFA",
+        borderColor: "#E5E5E5",
+        fontFamily: "'Nunito', sans-serif",
+      }}
     >
       {/* Sidebar Header */}
-      <div className="border-b border-gray-200 p-6">
+      <div className="p-6 border-b" style={{ borderColor: "#E5E5E5" }}>
         <div className="flex items-center gap-3">
-          <div className="flex items-center justify-center overflow-hidden rounded-lg shadow-sm bg-transparent">
-            <Image
-              src="/Images/Sawari.png"
-              alt="Sawari Logo"
-              width={80}
-              height={80}
-              className="object-contain p-1"
-            />
+          <div
+            className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-white text-lg"
+            style={{ backgroundColor: "#247C3F" }}
+          >
+            S
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-dark-heading">
+            <h2
+              className="font-bold text-base"
+              style={{
+                color: "#333333",
+                fontFamily: "'Baloo 2', cursive",
+              }}
+            >
               Sawari
             </h2>
-            <p className="text-xs text-paragraph">
+            <p className="text-xs" style={{ color: "#999999" }}>
               Admin Panel
             </p>
           </div>
@@ -123,55 +141,94 @@ export default function AdminSidebar({ isOpen }: { isOpen: boolean }) {
       </div>
 
       {/* Menu Items */}
-      <nav className="space-y-1 p-4">
-        {MENU_ITEMS.map((item) => {
-          const Icon = item.icon
-          const isExpanded = expandedItems.includes(item.id)
-          
-          return (
-            <div key={item.id}>
-              {item.children ? (
-                <div>
-                  <button
-                    onClick={() => toggleExpand(item.id)}
-                    className="group flex w-full items-center gap-3 rounded-lg px-4 py-2.5 text-dark-heading transition-all duration-200 hover:bg-gray-100"
-                  >
-                    {Icon && <Icon className="h-5 w-5 transition-colors group-hover:text-primary-green" />}
-                    <span className="flex-1 text-left font-medium">{item.label}</span>
-                    <ChevronDown
-                      className={`h-4 w-4 transition-transform duration-200 ${
-                        isExpanded ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-
-                  {/* Submenu */}
-                  {isExpanded && (
-                    <div className="ml-4 mt-1 space-y-0.5 border-l-2 border-primary-green pl-2">
-                      {item.children.map((child) => (
-                        <Link
-                          key={child.id}
-                          href={child.href || "#"}
-                          className="block rounded-lg px-4 py-2 text-sm text-paragraph transition-all duration-200 hover:bg-gray-100 hover:text-primary-green"
-                        >
-                          {child.label}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <Link
-                  href={item.href || "#"}
-                  className="group flex items-center gap-3 rounded-lg px-4 py-2.5 text-dark-heading transition-all duration-200 hover:bg-gray-100"
+      <nav className="p-4 space-y-2">
+        {MENU_ITEMS.map((item) => (
+          <div key={item.id}>
+            {item.children ? (
+              <div>
+                <button
+                  onClick={() => toggleExpand(item.id)}
+                  className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors hover:bg-gray-200"
+                  style={{
+                    color: "#333333",
+                  }}
                 >
-                  {Icon && <Icon className="h-5 w-5 transition-colors group-hover:text-primary-green" />}
-                  <span className="font-medium group-hover:text-primary-green">{item.label}</span>
-                </Link>
-              )}
-            </div>
-          )
-        })}
+                  {item.icon && <item.icon className="w-5 h-5" />}
+                  <span className="flex-1 text-left font-medium">{item.label}</span>
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${expandedItems.includes(item.id) ? "rotate-180" : ""}`}
+                  />
+                </button>
+
+                {/* Submenu */}
+                {expandedItems.includes(item.id) && (
+                  <div className="mt-1 ml-4 space-y-1 border-l-2" style={{ borderColor: "#247C3F" }}>
+                    {item.children.map((child) => (
+                      <div key={child.id}>
+                        {child.children ? (
+                          <div>
+                            <button
+                              onClick={() => toggleExpand(child.id)}
+                              className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors hover:bg-gray-200"
+                              style={{
+                                color: "#333333",
+                              }}
+                            >
+                              {child.icon && <child.icon className="w-5 h-5" />}
+                              <span className="flex-1 text-left font-medium">{child.label}</span>
+                              <ChevronDown
+                                className={`w-4 h-4 transition-transform ${expandedItems.includes(child.id) ? "rotate-180" : ""}`}
+                              />
+                            </button>
+
+                            {/* Sub-submenu */}
+                            {expandedItems.includes(child.id) && (
+                              <div className="mt-1 ml-4 space-y-1 border-l-2" style={{ borderColor: "#247C3F" }}>
+                                {child.children.map((subChild) => (
+                                  <Link
+                                    key={subChild.id}
+                                    href={subChild.href || "#"}
+                                    className="block px-4 py-2 rounded-lg text-sm transition-colors hover:bg-gray-200"
+                                    style={{
+                                      color: "#666666",
+                                    }}
+                                  >
+                                    {subChild.label}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
+                          </div>
+                        ) : (
+                          <Link
+                            href={child.href || "#"}
+                            className="block px-4 py-2 rounded-lg text-sm transition-colors hover:bg-gray-200"
+                            style={{
+                              color: "#666666",
+                            }}
+                          >
+                            {child.label}
+                          </Link>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                href={item.href || "#"}
+                className="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors hover:bg-gray-200"
+                style={{
+                  color: "#333333",
+                }}
+              >
+                {item.icon && <item.icon className="w-5 h-5" />}
+                <span className="font-medium">{item.label}</span>
+              </Link>
+            )}
+          </div>
+        ))}
       </nav>
     </aside>
   )

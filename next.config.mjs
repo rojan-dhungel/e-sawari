@@ -97,6 +97,70 @@
 
 
 
+// /**
+//  * @type {import('next').NextConfig}
+//  */
+// const nextConfig = {
+//   // ✅ Keep React strict mode for debugging & consistency
+//   reactStrictMode: true,
+
+//   // ✅ Enable static site generation (Next.js Export)
+//   output: 'export',
+
+//   // ✅ Output folder for static build
+//   distDir: 'out',
+
+//   // ✅ Allow using both "src/pages" and "app" directories
+//   experimental: {
+//     appDir: true, // Enables App Router for your static admin panel
+//   },
+
+//   // ✅ Linting and TypeScript checks
+//   eslint: {
+//     ignoreDuringBuilds: false,
+//   },
+//   typescript: {
+//     ignoreBuildErrors: false,
+//   },
+
+//   // ✅ Image optimization settings (required for `next export`)
+//   images: {
+//     unoptimized: true, // Must be true for static export
+//     remotePatterns: [
+//       {
+//         protocol: "https",
+//         hostname: "blob.v0.dev",
+//         pathname: "/**",
+//       },
+//       {
+//         protocol: "https",
+//         hostname: "placeholder.svg",
+//         pathname: "/**",
+//       },
+//       {
+//         protocol: "https",
+//         hostname: "images.unsplash.com",
+//         pathname: "/**",
+//       },
+//       {
+//         protocol: "https",
+//         hostname: "i.pinimg.com",
+//         pathname: "/**",
+//       },
+//     ],
+//   },
+
+//   // ✅ Optimize Webpack for static export + disable caching in dev
+//   webpack: (config, { dev }) => {
+//     if (dev) {
+//       config.cache = false;
+//     }
+//     return config;
+//   },
+// };
+
+// export default nextConfig;
+
 /**
  * @type {import('next').NextConfig}
  */
@@ -104,17 +168,14 @@ const nextConfig = {
   // ✅ Keep React strict mode for debugging & consistency
   reactStrictMode: true,
 
-  // ✅ Enable static site generation (Next.js Export)
-  output: 'export',
+  // ❌ REMOVED: output: 'export' - conflicts with App Router dynamic features
+  // If you need static export, you'll need to choose either Pages Router OR App Router
+  
+  // ✅ Output folder for builds (only used if you enable output: 'export' later)
+  distDir: '.next',
 
-  // ✅ Output folder for static build
-  distDir: 'out',
-
-  // ✅ Allow using both "src/pages" and "app" directories
-  experimental: {
-    appDir: true, // Enables App Router for your static admin panel
-  },
-
+  // ❌ REMOVED: experimental.appDir - it's stable in Next.js 15, no longer experimental
+  
   // ✅ Linting and TypeScript checks
   eslint: {
     ignoreDuringBuilds: false,
@@ -123,9 +184,10 @@ const nextConfig = {
     ignoreBuildErrors: false,
   },
 
-  // ✅ Image optimization settings (required for `next export`)
+  // ✅ Image optimization settings
   images: {
-    unoptimized: true, // Must be true for static export
+    // Set to true only if using output: 'export'
+    unoptimized: false,
     remotePatterns: [
       {
         protocol: "https",
@@ -150,7 +212,7 @@ const nextConfig = {
     ],
   },
 
-  // ✅ Optimize Webpack for static export + disable caching in dev
+  // ✅ Optimize Webpack
   webpack: (config, { dev }) => {
     if (dev) {
       config.cache = false;
