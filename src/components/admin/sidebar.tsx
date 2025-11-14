@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import { ChevronDown, Settings, Truck, Users, UtensilsCrossed, ShoppingCart, Package, LayoutDashboard, Car, Store, LucideIcon } from 'lucide-react'
+import Image from "next/image";
 
 interface MenuItem {
   id: string
@@ -116,29 +117,39 @@ export default function AdminSidebar({ isOpen }: { isOpen: boolean }) {
     >
       {/* Sidebar Header */}
       <div className="p-6 border-b" style={{ borderColor: "#E5E5E5" }}>
-        <div className="flex items-center gap-3">
-          <div
-            className="w-10 h-10 rounded-lg flex items-center justify-center font-bold text-white text-lg"
-            style={{ backgroundColor: "#247C3F" }}
-          >
-            S
-          </div>
-          <div>
-            <h2
-              className="font-bold text-base"
-              style={{
-                color: "#333333",
-                fontFamily: "'Baloo 2', cursive",
-              }}
-            >
-              Sawari
-            </h2>
-            <p className="text-xs" style={{ color: "#999999" }}>
-              Admin Panel
-            </p>
-          </div>
-        </div>
-      </div>
+  <div className="flex items-center gap-3">
+    
+    {/* Avatar */}
+    <div className="w-10 h-10 flex-shrink-0">
+      <Image
+        src="/Images/sawari.png"
+        alt="User"
+        width={40}
+        height={40}
+        className="rounded-lg object-cover"
+      />
+    </div>
+
+    {/* Text Section */}
+    <div className="flex flex-col leading-tight">
+      <h2
+        className="font-bold text-base"
+        style={{
+          color: "#333333",
+          fontFamily: "'Baloo 2', cursive",
+        }}
+      >
+        Sawari
+      </h2>
+
+      <p className="text-xs" style={{ color: "#999999" }}>
+        Admin Panel
+      </p>
+    </div>
+
+  </div>
+</div>
+
 
       {/* Menu Items */}
       <nav className="p-4 space-y-2">
