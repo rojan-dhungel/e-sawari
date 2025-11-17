@@ -71,7 +71,6 @@ const MENU_ITEMS: MenuItem[] = [
       { id: "restaurant-category", label: "Restaurant Category", href: "/admin/dashboard/food/restaurant-category" },
       { id: "menu-category", label: "Menu Category", href: "/admin/dashboard/food/menu-category" },
       { id: "menu-items", label: "Menu Items", href: "/admin/dashboard/food/menu-items" },
-      { id: "food-addons", label: "Food Add-ons", href: "/admin/dashboard/food/food-addons" },
     ],
   },
   {
