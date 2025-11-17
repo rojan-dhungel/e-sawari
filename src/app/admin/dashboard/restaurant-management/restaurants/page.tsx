@@ -21,7 +21,19 @@ export default function RestaurantsPage() {
   const [statusFilter, setStatusFilter] = useState("All")
   const [viewingId, setViewingId] = useState<number | null>(null)
   const [editingId, setEditingId] = useState<number | null>(null)
-  const [formData, setFormData] = useState({ name: "", category: "", cuisine: "", zone: "", status: "Active" as const })
+  const [formData, setFormData] = useState<{
+    name: string
+    category: string
+    cuisine: string
+    zone: string
+    status: "Active" | "Inactive"
+  }>({
+    name: "",
+    category: "",
+    cuisine: "",
+    zone: "",
+    status: "Active"
+  })
   const [restaurants, setRestaurants] = useState<Restaurant[]>([])
 
   useEffect(() => {
