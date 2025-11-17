@@ -49,6 +49,7 @@ const MENU_ITEMS: MenuItem[] = [
       { id: "completed-rides", label: "Completed Rides", href: "/admin/dashboard/rides/completed-rides" },
       { id: "cancelled-rides", label: "Cancelled Rides", href: "/admin/dashboard/rides/cancelled-rides" },
       { id: "promo-rides", label: "Promo Rides", href: "/admin/dashboard/rides/promo-rides" },
+      { id: "riders-details", label: "Riders Details", href: "/admin/dashboard/rides/riders-details" },
     ],
   },
   {
