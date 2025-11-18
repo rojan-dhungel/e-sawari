@@ -1,14 +1,14 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
-import { ChevronDown, Settings, Truck, Users, UtensilsCrossed, ShoppingCart, Package, LayoutDashboard, Car, Store, LucideIcon } from 'lucide-react'
+import { ChevronDown, Settings, Truck, Users, UtensilsCrossed, ShoppingCart, Package, LayoutDashboard, Car, Store } from 'lucide-react'
 import Image from "next/image";
 
 interface MenuItem {
   id: string
   label: string
-  icon?: LucideIcon
+  icon?: React.ComponentType<{ className?: string }>
   href?: string
   children?: MenuItem[]
 }
@@ -90,157 +90,200 @@ const MENU_ITEMS: MenuItem[] = [
   },
 ]
 
-export default function AdminSidebar({ isOpen }: { isOpen: boolean }) {
-  const [expandedItems, setExpandedItems] = useState<string[]>([
-    "administration",
-    "fleet",
-    "users",
-    "rides",
-    "restaurant-management",
-    "food",
-    "orders",
-    "parcels",
-  ])
+export default function AdminSidebar({ isOpen, onClose }: { isOpen: boolean; onClose?: () => void }) {
+  const [isMobile, setIsMobile] = useState(false)
+  const [isTablet, setIsTablet] = useState(false)
+  const [expandedItems, setExpandedItems] = useState<string[]>([])
+
+  // Check screen size on mount and resize
+  useEffect(() => {
+    const checkScreenSize = () => {
+      const width = window.innerWidth
+      setIsMobile(width < 640) // sm breakpoint
+      setIsTablet(width >= 640 && width < 1024) // md breakpoint
+    }
+    
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
 
   const toggleExpand = (id: string) => {
     setExpandedItems((prev) => (prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]))
   }
 
-  return (
-    <aside
-      className={`${isOpen ? "w-64" : "w-0"} overflow-y-auto border-r transition-all duration-200`}
-      style={{
-        backgroundColor: "#FAFAFA",
-        borderColor: "#E5E5E5",
-        fontFamily: "'Nunito', sans-serif",
-      }}
-    >
-      {/* Sidebar Header */}
-      <div className="p-6 border-b" style={{ borderColor: "#E5E5E5" }}>
-  <div className="flex items-center gap-3">
-    
-    {/* Avatar */}
-    <div className="w-10 h-10 flex-shrink-0">
-      <Image
-        src="/Images/sawari.png"
-        alt="User"
-        width={40}
-        height={40}
-        className="rounded-lg object-cover"
-      />
-    </div>
+  const handleLinkClick = () => {
+    // Close sidebar on mobile/tablet when a link is clicked
+    if ((isMobile || isTablet) && onClose) {
+      onClose()
+    }
+  }
 
-    {/* Text Section */}
-    <div className="flex flex-col leading-tight">
-      <h2
-        className="font-bold text-base"
+  return (
+    <>
+      {/* Backdrop for mobile and tablet */}
+      {(isMobile || isTablet) && isOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity"
+          onClick={onClose}
+        />
+      )}
+      
+      <aside
+        className={`
+          ${isMobile || isTablet 
+            ? `fixed left-0 top-0 h-full z-50 ${isOpen ? "translate-x-0" : "-translate-x-full"}`
+            : isOpen ? "w-64" : "w-0"
+          }
+          ${isMobile ? "w-[280px]" : isTablet ? "w-64" : ""}
+          overflow-y-auto border-r transition-all duration-300 ease-in-out
+          ${!isMobile && !isTablet ? "relative" : ""}
+        `}
         style={{
-          color: "#333333",
-          fontFamily: "'Baloo 2', cursive",
+          backgroundColor: "var(--light-background)",
+          borderColor: "#E5E5E5",
+          fontFamily: "var(--font-body)",
         }}
       >
-        Sawari
-      </h2>
+        {/* Sidebar Header */}
+        <div className="p-4 sm:p-5 md:p-6 border-b" style={{ borderColor: "#E5E5E5" }}>
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Avatar */}
+            <div className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
+              <Image
+                src="/Images/sawari.png"
+                alt="User"
+                width={40}
+                height={40}
+                className="rounded-lg object-cover w-full h-full"
+              />
+            </div>
 
-      <p className="text-xs" style={{ color: "#999999" }}>
-        Admin Panel
-      </p>
-    </div>
-
-  </div>
-</div>
-
-
-      {/* Menu Items */}
-      <nav className="p-4 space-y-2">
-        {MENU_ITEMS.map((item) => (
-          <div key={item.id}>
-            {item.children ? (
-              <div>
-                <button
-                  onClick={() => toggleExpand(item.id)}
-                  className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors hover:bg-gray-200"
-                  style={{
-                    color: "#333333",
-                  }}
-                >
-                  {item.icon && <item.icon className="w-5 h-5" />}
-                  <span className="flex-1 text-left font-medium">{item.label}</span>
-                  <ChevronDown
-                    className={`w-4 h-4 transition-transform ${expandedItems.includes(item.id) ? "rotate-180" : ""}`}
-                  />
-                </button>
-
-                {/* Submenu */}
-                {expandedItems.includes(item.id) && (
-                  <div className="mt-1 ml-4 space-y-1 border-l-2" style={{ borderColor: "#247C3F" }}>
-                    {item.children.map((child) => (
-                      <div key={child.id}>
-                        {child.children ? (
-                          <div>
-                            <button
-                              onClick={() => toggleExpand(child.id)}
-                              className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors hover:bg-gray-200"
-                              style={{
-                                color: "#333333",
-                              }}
-                            >
-                              {child.icon && <child.icon className="w-5 h-5" />}
-                              <span className="flex-1 text-left font-medium">{child.label}</span>
-                              <ChevronDown
-                                className={`w-4 h-4 transition-transform ${expandedItems.includes(child.id) ? "rotate-180" : ""}`}
-                              />
-                            </button>
-
-                            {/* Sub-submenu */}
-                            {expandedItems.includes(child.id) && (
-                              <div className="mt-1 ml-4 space-y-1 border-l-2" style={{ borderColor: "#247C3F" }}>
-                                {child.children.map((subChild) => (
-                                  <Link
-                                    key={subChild.id}
-                                    href={subChild.href || "#"}
-                                    className="block px-4 py-2 rounded-lg text-sm transition-colors hover:bg-gray-200"
-                                    style={{
-                                      color: "#666666",
-                                    }}
-                                  >
-                                    {subChild.label}
-                                  </Link>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        ) : (
-                          <Link
-                            href={child.href || "#"}
-                            className="block px-4 py-2 rounded-lg text-sm transition-colors hover:bg-gray-200"
-                            style={{
-                              color: "#666666",
-                            }}
-                          >
-                            {child.label}
-                          </Link>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ) : (
-              <Link
-                href={item.href || "#"}
-                className="flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors hover:bg-gray-200"
+            {/* Text Section */}
+            <div className="flex flex-col leading-tight min-w-0">
+              <h2
+                className="font-bold text-sm sm:text-base truncate"
                 style={{
-                  color: "#333333",
+                  color: "var(--dark-heading)",
+                  fontFamily: "var(--font-heading)",
                 }}
               >
-                {item.icon && <item.icon className="w-5 h-5" />}
-                <span className="font-medium">{item.label}</span>
-              </Link>
-            )}
+                Sawari
+              </h2>
+
+              <p 
+                className="text-xs" 
+                style={{ 
+                  color: "var(--text-dark)",
+                  fontFamily: "var(--font-body)"
+                }}
+              >
+                Admin Panel
+              </p>
+            </div>
           </div>
-        ))}
-      </nav>
-    </aside>
+        </div>
+
+        {/* Menu Items */}
+        <nav className="p-2 sm:p-3 md:p-4 space-y-1 sm:space-y-2">
+          {MENU_ITEMS.map((item) => (
+            <div key={item.id}>
+              {item.children ? (
+                <div>
+                  <button
+                    onClick={() => toggleExpand(item.id)}
+                    className="w-full flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg transition-colors hover:bg-gray-200 active:bg-gray-300"
+                    style={{
+                      color: "var(--dark-heading)",
+                      fontFamily: "var(--font-body)",
+                    }}
+                  >
+                    {item.icon && <item.icon className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />}
+                    <span className="flex-1 text-left font-medium text-sm sm:text-base truncate">{item.label}</span>
+                    <ChevronDown
+                      className={`w-3 h-3 sm:w-4 sm:h-4 transition-transform flex-shrink-0 ${expandedItems.includes(item.id) ? "rotate-180" : ""}`}
+                    />
+                  </button>
+
+                  {/* Submenu */}
+                  {expandedItems.includes(item.id) && (
+                    <div className="mt-1 ml-2 sm:ml-4 space-y-1 border-l-2" style={{ borderColor: "var(--primary-green)" }}>
+                      {item.children.map((child) => (
+                        <div key={child.id}>
+                          {child.children ? (
+                            <div>
+                              <button
+                                onClick={() => toggleExpand(child.id)}
+                                className="w-full flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg transition-colors hover:bg-gray-200 active:bg-gray-300"
+                                style={{
+                                  color: "var(--dark-heading)",
+                                  fontFamily: "var(--font-body)",
+                                }}
+                              >
+                                {child.icon && <child.icon className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />}
+                                <span className="flex-1 text-left font-medium text-sm sm:text-base truncate">{child.label}</span>
+                                <ChevronDown
+                                  className={`w-3 h-3 sm:w-4 sm:h-4 transition-transform flex-shrink-0 ${expandedItems.includes(child.id) ? "rotate-180" : ""}`}
+                                />
+                              </button>
+
+                              {/* Sub-submenu */}
+                              {expandedItems.includes(child.id) && (
+                                <div className="mt-1 ml-2 sm:ml-4 space-y-1 border-l-2" style={{ borderColor: "var(--primary-green)" }}>
+                                  {child.children.map((subChild) => (
+                                    <Link
+                                      key={subChild.id}
+                                      href={subChild.href || "#"}
+                                      onClick={handleLinkClick}
+                                      className="block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm transition-colors hover:bg-gray-200 active:bg-gray-300 truncate"
+                                      style={{
+                                        color: "var(--text-dark)",
+                                        fontFamily: "var(--font-body)",
+                                      }}
+                                    >
+                                      {subChild.label}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          ) : (
+                            <Link
+                              href={child.href || "#"}
+                              onClick={handleLinkClick}
+                              className="block px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm transition-colors hover:bg-gray-200 active:bg-gray-300 truncate"
+                              style={{
+                                color: "var(--text-dark)",
+                                fontFamily: "var(--font-body)",
+                              }}
+                            >
+                              {child.label}
+                            </Link>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  href={item.href || "#"}
+                  onClick={handleLinkClick}
+                  className="flex items-center gap-2 sm:gap-3 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg transition-colors hover:bg-gray-200 active:bg-gray-300"
+                  style={{
+                    color: "var(--dark-heading)",
+                    fontFamily: "var(--font-body)",
+                  }}
+                >
+                  {item.icon && <item.icon className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />}
+                  <span className="font-medium text-sm sm:text-base truncate">{item.label}</span>
+                </Link>
+              )}
+            </div>
+          ))}
+        </nav>
+      </aside>
+    </>
   )
 }

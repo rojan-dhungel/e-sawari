@@ -49,10 +49,14 @@ export default function OrdersPage() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "Delivered": return "bg-green-100 text-green-800"
-      case "In Progress": return "bg-yellow-100 text-yellow-800"
-      case "Cancelled": return "bg-red-100 text-red-800"
-      default: return "bg-gray-100 text-gray-800"
+      case "Delivered": 
+        return { bg: '#D1FAE5', text: '#065F46' }
+      case "In Progress": 
+        return { bg: '#FEF3C7', text: '#92400E' }
+      case "Cancelled": 
+        return { bg: '#FEE2E2', text: '#991B1B' }
+      default: 
+        return { bg: '#F3F4F6', text: '#374151' }
     }
   }
 
@@ -105,12 +109,19 @@ export default function OrdersPage() {
   }
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
+    <div>
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <PageHeader title="Orders" description="Manage all food orders" />
         <button
           onClick={() => setShowAddModal(true)}
-          className="px-4 py-2 bg-[#247C3F] text-white rounded-lg hover:bg-[#1a5a2f] transition flex items-center gap-2"
+          className="px-4 sm:px-6 py-2 rounded-lg transition-all hover:shadow-md active:scale-95 flex items-center gap-2 w-full sm:w-auto justify-center"
+          style={{ 
+            backgroundColor: 'var(--primary-green)',
+            color: 'var(--text-light)',
+            fontFamily: 'var(--font-body)'
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1a5a2f'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--primary-green)'}
         >
           <Plus className="w-4 h-4" />
           Add Order
@@ -118,93 +129,404 @@ export default function OrdersPage() {
       </div>
 
       {/* Search Bar */}
-      <div className="mb-6 bg-white rounded-lg p-4 flex gap-3">
+      <div 
+        className="mb-4 sm:mb-6 rounded-lg p-3 sm:p-4 flex flex-col sm:flex-row gap-2 sm:gap-3"
+        style={{ backgroundColor: '#FFFFFF' }}
+      >
         <input
           type="text"
           placeholder="Search by Order ID or Customer name..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]"
-          style={{ borderColor: "#E5E5E5" }}
+          className="flex-1 px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+          style={{ 
+            borderColor: '#E5E5E5',
+            fontFamily: 'var(--font-body)'
+          }}
+          onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+          onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
         />
-        <button onClick={() => setSearchTerm("")} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Reset</button>
+        <button 
+          onClick={() => setSearchTerm("")} 
+          className="px-4 sm:px-6 py-2 border rounded-lg transition-all active:scale-95"
+          style={{ 
+            borderColor: '#D1D5DB',
+            color: 'var(--dark-heading)',
+            fontFamily: 'var(--font-body)'
+          }}
+          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
+          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+        >
+          Reset
+        </button>
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-lg shadow overflow-x-auto">
-        <table className="w-full">
-          <thead className="bg-gray-50 border-b">
-            <tr>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Order ID</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Customer</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Restaurant</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Total</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Date</th>
-              <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Actions</th>
+      <div 
+        className="rounded-lg shadow-sm overflow-hidden -mx-3 sm:mx-0"
+        style={{ backgroundColor: '#FFFFFF' }}
+      >
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[640px]">
+            <thead 
+              className="border-b"
+              style={{ 
+                backgroundColor: '#F9FAFB',
+                borderColor: '#E5E5E5'
+              }}
+            >
+              <tr>
+                <th 
+                  className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold whitespace-nowrap"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Order ID
+                </th>
+                <th 
+                  className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold whitespace-nowrap"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Customer
+                </th>
+                <th 
+                  className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold whitespace-nowrap"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Restaurant
+                </th>
+                <th 
+                  className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold whitespace-nowrap"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Total
+                </th>
+                <th 
+                  className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold whitespace-nowrap"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Status
+                </th>
+                <th 
+                  className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold whitespace-nowrap"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Date
+                </th>
+                <th 
+                  className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-center text-xs sm:text-sm font-semibold whitespace-nowrap"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Actions
+                </th>
             </tr>
           </thead>
-          <tbody>
+            <tbody className="divide-y" style={{ borderColor: '#E5E5E5' }}>
             {filteredOrders.length > 0 ? (
-              filteredOrders.map((order) => (
-                <tr key={order.id} className="border-b hover:bg-gray-50 transition">
-                  <td className="px-6 py-3 text-sm font-medium text-gray-900">{order.id}</td>
-                  <td className="px-6 py-3 text-sm text-gray-600">{order.customer}</td>
-                  <td className="px-6 py-3 text-sm text-gray-600">{order.restaurant}</td>
-                  <td className="px-6 py-3 text-sm font-medium text-gray-900">Rs. {order.total}</td>
-                  <td className="px-6 py-3 text-sm">
-                    <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(order.status)}`}>
+                filteredOrders.map((order) => {
+                  const statusColors = getStatusColor(order.status)
+                  return (
+                    <tr 
+                      key={order.id} 
+                      className="transition-colors duration-200"
+                      style={{ backgroundColor: '#FFFFFF' }}
+                      onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
+                      onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FFFFFF'}
+                    >
+                      <td 
+                        className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm font-medium"
+                        style={{ 
+                          color: 'var(--dark-heading)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        {order.id}
+                      </td>
+                      <td 
+                        className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm"
+                        style={{ 
+                          color: 'var(--text-dark)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        {order.customer}
+                      </td>
+                      <td 
+                        className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm"
+                        style={{ 
+                          color: 'var(--text-dark)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        {order.restaurant}
+                      </td>
+                      <td 
+                        className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm font-medium"
+                        style={{ 
+                          color: 'var(--dark-heading)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        Rs. {order.total}
+                      </td>
+                      <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm">
+                        <span 
+                          className="px-2 py-1 rounded text-xs font-medium"
+                          style={{ 
+                            backgroundColor: statusColors.bg,
+                            color: statusColors.text,
+                            fontFamily: 'var(--font-body)'
+                          }}
+                        >
                       {order.status}
                     </span>
                   </td>
-                  <td className="px-6 py-3 text-sm text-gray-600">{order.date}</td>
-                  <td className="px-6 py-3 text-center">
-                    <div className="flex justify-center gap-2">
-                      <button onClick={() => handleView(order)} className="p-2 hover:bg-gray-100 rounded transition" title="View">
-                        <Eye className="w-4 h-4 text-gray-600" />
+                      <td 
+                        className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm"
+                        style={{ 
+                          color: 'var(--text-dark)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        {order.date}
+                      </td>
+                      <td className="px-3 sm:px-4 md:px-6 py-3 text-center">
+                        <div className="flex justify-center gap-1 sm:gap-2">
+                          <button 
+                            onClick={() => handleView(order)} 
+                            className="p-1.5 hover:shadow-sm rounded transition active:scale-95"
+                            style={{ backgroundColor: '#DBEAFE' }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#BFDBFE'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#DBEAFE'}
+                            title="View"
+                          >
+                            <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" style={{ color: 'var(--primary-green)' }} />
                       </button>
-                      <button onClick={() => handleEdit(order)} className="p-2 hover:bg-blue-100 rounded transition" title="Edit">
-                        <Edit2 className="w-4 h-4 text-blue-600" />
+                          <button 
+                            onClick={() => handleEdit(order)} 
+                            className="p-1.5 hover:shadow-sm rounded transition active:scale-95"
+                            style={{ backgroundColor: '#DBEAFE' }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#BFDBFE'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#DBEAFE'}
+                            title="Edit"
+                          >
+                            <Edit2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" style={{ color: '#2563EB' }} />
                       </button>
-                      <button onClick={() => handleDelete(order.id)} className="p-2 hover:bg-red-100 rounded transition" title="Delete">
-                        <Trash2 className="w-4 h-4 text-red-600" />
+                          <button 
+                            onClick={() => handleDelete(order.id)} 
+                            className="p-1.5 hover:shadow-sm rounded transition active:scale-95"
+                            style={{ backgroundColor: '#FEE2E2' }}
+                            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#FECACA'}
+                            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FEE2E2'}
+                            title="Delete"
+                          >
+                            <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" style={{ color: '#DC2626' }} />
                       </button>
                     </div>
                   </td>
                 </tr>
-              ))
+                  )
+                })
             ) : (
               <tr>
-                <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
+                  <td 
+                    colSpan={7} 
+                    className="px-3 sm:px-4 md:px-6 py-8 sm:py-12 text-center text-xs sm:text-sm"
+                    style={{ 
+                      color: 'var(--text-dark)',
+                      fontFamily: 'var(--font-body)'
+                    }}
+                  >
                   No orders found
                 </td>
               </tr>
             )}
           </tbody>
         </table>
+        </div>
       </div>
 
       {/* View Modal */}
       {viewingId && !editingId && editData && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-gray-900">Order Details</h2>
-              <button onClick={handleCloseModal} className="text-gray-500 hover:text-gray-700">
-                <X className="w-6 h-6" />
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4"
+          onClick={handleCloseModal}
+        >
+          <div 
+            className="bg-white rounded-lg shadow-lg p-4 sm:p-6 max-w-md w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            style={{ backgroundColor: '#FFFFFF' }}
+          >
+            <div 
+              className="flex justify-between items-center mb-4 sticky top-0 bg-white pb-4 border-b"
+              style={{ borderColor: '#E5E5E5' }}
+            >
+              <h2 
+                className="text-lg sm:text-xl font-bold"
+                style={{ 
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-heading)'
+                }}
+              >
+                Order Details
+              </h2>
+              <button 
+                onClick={handleCloseModal} 
+                className="text-gray-500 hover:text-gray-700 transition p-1"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
-            <div className="space-y-3 bg-gray-50 p-4 rounded-lg mb-4">
-              <p><span className="font-medium text-gray-700">Order ID:</span> {editData.id}</p>
-              <p><span className="font-medium text-gray-700">Customer:</span> {editData.customer}</p>
-              <p><span className="font-medium text-gray-700">Restaurant:</span> {editData.restaurant}</p>
-              <p><span className="font-medium text-gray-700">Total:</span> Rs. {editData.total}</p>
-              <p><span className="font-medium text-gray-700">Status:</span> <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(editData.status)}`}>{editData.status}</span></p>
-              <p><span className="font-medium text-gray-700">Date:</span> {editData.date}</p>
+            <div 
+              className="space-y-3 p-4 rounded-lg mb-4"
+              style={{ backgroundColor: '#F9FAFB' }}
+            >
+              {(() => {
+                const statusColors = getStatusColor(editData.status)
+                return (
+                  <>
+                    <p>
+                      <span 
+                        className="font-medium"
+                        style={{ 
+                          color: 'var(--dark-heading)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        Order ID:
+                      </span>{' '}
+                      <span style={{ fontFamily: 'var(--font-body)', color: 'var(--text-dark)' }}>
+                        {editData.id}
+                      </span>
+                    </p>
+                    <p>
+                      <span 
+                        className="font-medium"
+                        style={{ 
+                          color: 'var(--dark-heading)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        Customer:
+                      </span>{' '}
+                      <span style={{ fontFamily: 'var(--font-body)', color: 'var(--text-dark)' }}>
+                        {editData.customer}
+                      </span>
+                    </p>
+                    <p>
+                      <span 
+                        className="font-medium"
+                        style={{ 
+                          color: 'var(--dark-heading)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        Restaurant:
+                      </span>{' '}
+                      <span style={{ fontFamily: 'var(--font-body)', color: 'var(--text-dark)' }}>
+                        {editData.restaurant}
+                      </span>
+                    </p>
+                    <p>
+                      <span 
+                        className="font-medium"
+                        style={{ 
+                          color: 'var(--dark-heading)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        Total:
+                      </span>{' '}
+                      <span style={{ fontFamily: 'var(--font-body)', color: 'var(--text-dark)' }}>
+                        Rs. {editData.total}
+                      </span>
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span 
+                        className="font-medium"
+                        style={{ 
+                          color: 'var(--dark-heading)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        Status:
+                      </span>
+                      <span 
+                        className="px-2 py-1 rounded text-xs font-medium"
+                        style={{ 
+                          backgroundColor: statusColors.bg,
+                          color: statusColors.text,
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        {editData.status}
+                      </span>
+                    </p>
+                    <p>
+                      <span 
+                        className="font-medium"
+                        style={{ 
+                          color: 'var(--dark-heading)',
+                          fontFamily: 'var(--font-body)'
+                        }}
+                      >
+                        Date:
+                      </span>{' '}
+                      <span style={{ fontFamily: 'var(--font-body)', color: 'var(--text-dark)' }}>
+                        {editData.date}
+                      </span>
+                    </p>
+                  </>
+                )
+              })()}
             </div>
-            <div className="flex gap-3">
-              <button onClick={handleCloseModal} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Close</button>
-              <button onClick={() => handleEdit(editData)} className="flex-1 px-4 py-2 bg-[#247C3F] text-white rounded-lg hover:bg-[#1a5a2f]">Edit</button>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <button 
+                onClick={handleCloseModal} 
+                className="flex-1 px-4 py-2 border rounded-lg transition-all active:scale-95"
+                style={{ 
+                  borderColor: '#D1D5DB',
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-body)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+              >
+                Close
+              </button>
+              <button 
+                onClick={() => handleEdit(editData)} 
+                className="flex-1 px-4 py-2 rounded-lg transition-all active:scale-95"
+                style={{ 
+                  backgroundColor: 'var(--primary-green)',
+                  color: 'var(--text-light)',
+                  fontFamily: 'var(--font-body)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1a5a2f'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--primary-green)'}
+              >
+                Edit
+              </button>
             </div>
           </div>
         </div>
@@ -212,39 +534,159 @@ export default function OrdersPage() {
 
       {/* Edit Modal */}
       {editingId && editData && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-gray-900">Edit Order</h2>
-              <button onClick={handleCloseModal} className="text-gray-500 hover:text-gray-700">
-                <X className="w-6 h-6" />
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4"
+          onClick={handleCloseModal}
+        >
+          <div 
+            className="bg-white rounded-lg shadow-lg p-4 sm:p-6 max-w-md w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            style={{ backgroundColor: '#FFFFFF' }}
+          >
+            <div 
+              className="flex justify-between items-center mb-4 sticky top-0 bg-white pb-4 border-b"
+              style={{ borderColor: '#E5E5E5' }}
+            >
+              <h2 
+                className="text-lg sm:text-xl font-bold"
+                style={{ 
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-heading)'
+                }}
+              >
+                Edit Order
+              </h2>
+              <button 
+                onClick={handleCloseModal} 
+                className="text-gray-500 hover:text-gray-700 transition p-1"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3 sm:space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Customer</label>
-                <input type="text" value={editData.customer} onChange={(e) => setEditData({...editData, customer: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} />
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-1"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Customer
+                </label>
+                <input 
+                  type="text" 
+                  value={editData.customer} 
+                  onChange={(e) => setEditData({...editData, customer: e.target.value})} 
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Restaurant</label>
-                <input type="text" value={editData.restaurant} onChange={(e) => setEditData({...editData, restaurant: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} />
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-1"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Restaurant
+                </label>
+                <input 
+                  type="text" 
+                  value={editData.restaurant} 
+                  onChange={(e) => setEditData({...editData, restaurant: e.target.value})} 
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Total (Rs.)</label>
-                <input type="number" value={editData.total} onChange={(e) => setEditData({...editData, total: parseInt(e.target.value)})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} />
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-1"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Total (Rs.)
+                </label>
+                <input 
+                  type="number" 
+                  value={editData.total} 
+                  onChange={(e) => setEditData({...editData, total: parseInt(e.target.value)})} 
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                <select value={editData.status} onChange={(e) => setEditData({...editData, status: e.target.value as "Delivered" | "In Progress" | "Cancelled"})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}}>
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-1"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Status
+                </label>
+                <select 
+                  value={editData.status} 
+                  onChange={(e) => setEditData({...editData, status: e.target.value as "Delivered" | "In Progress" | "Cancelled"})} 
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
+                >
                   <option value="In Progress">In Progress</option>
                   <option value="Delivered">Delivered</option>
                   <option value="Cancelled">Cancelled</option>
                 </select>
               </div>
             </div>
-            <div className="flex gap-3 mt-6">
-              <button onClick={handleCloseModal} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
-              <button onClick={handleSave} className="flex-1 px-4 py-2 bg-[#247C3F] text-white rounded-lg hover:bg-[#1a5a2f]">Save</button>
+            <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6">
+              <button 
+                onClick={handleCloseModal} 
+                className="flex-1 px-4 py-2 border rounded-lg transition-all active:scale-95"
+                style={{ 
+                  borderColor: '#D1D5DB',
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-body)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleSave} 
+                className="flex-1 px-4 py-2 rounded-lg transition-all active:scale-95"
+                style={{ 
+                  backgroundColor: 'var(--primary-green)',
+                  color: 'var(--text-light)',
+                  fontFamily: 'var(--font-body)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1a5a2f'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--primary-green)'}
+              >
+                Save
+              </button>
             </div>
           </div>
         </div>
@@ -252,39 +694,162 @@ export default function OrdersPage() {
 
       {/* Add Order Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-gray-900">Add Order</h2>
-              <button onClick={() => setShowAddModal(false)} className="text-gray-500 hover:text-gray-700">
-                <X className="w-6 h-6" />
+        <div 
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4"
+          onClick={() => setShowAddModal(false)}
+        >
+          <div 
+            className="bg-white rounded-lg shadow-lg p-4 sm:p-6 max-w-md w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            style={{ backgroundColor: '#FFFFFF' }}
+          >
+            <div 
+              className="flex justify-between items-center mb-4 sticky top-0 bg-white pb-4 border-b"
+              style={{ borderColor: '#E5E5E5' }}
+            >
+              <h2 
+                className="text-lg sm:text-xl font-bold"
+                style={{ 
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-heading)'
+                }}
+              >
+                Add Order
+              </h2>
+              <button 
+                onClick={() => setShowAddModal(false)} 
+                className="text-gray-500 hover:text-gray-700 transition p-1"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
-            <div className="space-y-3">
+            <div className="space-y-3 sm:space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Customer Name</label>
-                <input type="text" value={newOrder.customer} onChange={(e) => setNewOrder({...newOrder, customer: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} placeholder="Enter customer name" />
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-1"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Customer Name
+                </label>
+                <input 
+                  type="text" 
+                  value={newOrder.customer} 
+                  onChange={(e) => setNewOrder({...newOrder, customer: e.target.value})} 
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
+                  placeholder="Enter customer name" 
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Restaurant Name</label>
-                <input type="text" value={newOrder.restaurant} onChange={(e) => setNewOrder({...newOrder, restaurant: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} placeholder="Enter restaurant name" />
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-1"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Restaurant Name
+                </label>
+                <input 
+                  type="text" 
+                  value={newOrder.restaurant} 
+                  onChange={(e) => setNewOrder({...newOrder, restaurant: e.target.value})} 
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
+                  placeholder="Enter restaurant name" 
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Total Amount (Rs.)</label>
-                <input type="number" value={newOrder.total || ""} onChange={(e) => setNewOrder({...newOrder, total: parseInt(e.target.value) || 0})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} placeholder="Enter amount" />
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-1"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Total Amount (Rs.)
+                </label>
+                <input 
+                  type="number" 
+                  value={newOrder.total || ""} 
+                  onChange={(e) => setNewOrder({...newOrder, total: parseInt(e.target.value) || 0})} 
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
+                  placeholder="Enter amount" 
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                <select value={newOrder.status} onChange={(e) => setNewOrder({...newOrder, status: e.target.value as "Delivered" | "In Progress" | "Cancelled"})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}}>
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-1"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Status
+                </label>
+                <select 
+                  value={newOrder.status} 
+                  onChange={(e) => setNewOrder({...newOrder, status: e.target.value as "Delivered" | "In Progress" | "Cancelled"})} 
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
+                >
                   <option value="In Progress">In Progress</option>
                   <option value="Delivered">Delivered</option>
                   <option value="Cancelled">Cancelled</option>
                 </select>
               </div>
             </div>
-            <div className="flex gap-3 mt-6">
-              <button onClick={() => setShowAddModal(false)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
-              <button onClick={handleAddOrder} className="flex-1 px-4 py-2 bg-[#247C3F] text-white rounded-lg hover:bg-[#1a5a2f]">Add Order</button>
+            <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6">
+              <button 
+                onClick={() => setShowAddModal(false)} 
+                className="flex-1 px-4 py-2 border rounded-lg transition-all active:scale-95"
+                style={{ 
+                  borderColor: '#D1D5DB',
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-body)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+              >
+                Cancel
+              </button>
+              <button 
+                onClick={handleAddOrder} 
+                className="flex-1 px-4 py-2 rounded-lg transition-all active:scale-95"
+                style={{ 
+                  backgroundColor: 'var(--primary-green)',
+                  color: 'var(--text-light)',
+                  fontFamily: 'var(--font-body)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1a5a2f'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--primary-green)'}
+              >
+                Add Order
+              </button>
             </div>
           </div>
         </div>

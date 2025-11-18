@@ -81,8 +81,12 @@ export default function AddRestaurantPage() {
     }
     existing.push(newRestaurant)
     localStorage.setItem("restaurantsList", JSON.stringify(existing))
+    
+    // Trigger a custom event to notify other components
+    window.dispatchEvent(new Event("restaurantsUpdated"))
 
-    router.push("/admin/dashboard/food/restaurants")
+    // Navigate to the restaurants list page
+    router.push("/admin/dashboard/restaurant-management/restaurants")
   }
 
   const handleReset = () => {
@@ -104,28 +108,53 @@ export default function AddRestaurantPage() {
   }
 
   return (
-    <div className="p-6">
-      <div className="mb-6 flex items-center gap-3">
-        <button onClick={() => router.back()} className="p-2 hover:bg-gray-100 rounded-lg transition">
-          <ArrowLeft className="w-5 h-5 text-gray-600" />
+    <div>
+      <div className="mb-4 sm:mb-6 flex items-center gap-2 sm:gap-3">
+        <button 
+          onClick={() => router.back()} 
+          className="p-1.5 sm:p-2 hover:bg-gray-100 rounded-lg transition active:scale-95"
+        >
+          <ArrowLeft className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: 'var(--text-dark)' }} />
         </button>
         <PageHeader title="Add Restaurant" description="Add a new restaurant to the system" />
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-8 max-w-4xl space-y-8">
+      <form onSubmit={handleSubmit} className="mt-4 sm:mt-8 max-w-4xl space-y-4 sm:space-y-6 md:space-y-8">
         {/* Basic Information */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+        <div 
+          className="rounded-lg shadow-sm p-4 sm:p-6"
+          style={{ backgroundColor: '#FFFFFF' }}
+        >
+          <h2 
+            className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 flex items-center gap-2"
+            style={{ 
+              color: 'var(--dark-heading)',
+              fontFamily: 'var(--font-heading)'
+            }}
+          >
             <span>📝</span> Basic Information
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Language</label>
-              <div className="flex gap-4">
+              <label 
+                className="block text-xs sm:text-sm font-medium mb-2"
+                style={{ 
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-body)'
+                }}
+              >
+                Language
+              </label>
+              <div className="flex gap-2 sm:gap-4">
                 <button
                   type="button"
-                  className="px-4 py-2 border-b-2 border-[#247C3F] text-[#247C3F] font-medium"
+                  className="px-3 sm:px-4 py-2 border-b-2 font-medium transition-all"
+                  style={{ 
+                    borderColor: 'var(--primary-green)',
+                    color: 'var(--primary-green)',
+                    fontFamily: 'var(--font-body)'
+                  }}
                 >
                   English
                 </button>
@@ -133,8 +162,14 @@ export default function AddRestaurantPage() {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Name (English) <span className="text-red-600">*</span>
+              <label 
+                className="block text-xs sm:text-sm font-medium mb-2"
+                style={{ 
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-body)'
+                }}
+              >
+                Name (English) <span style={{ color: '#DC2626' }}>*</span>
               </label>
               <input
                 type="text"
@@ -142,63 +177,166 @@ export default function AddRestaurantPage() {
                 placeholder="Enter restaurant name"
                 value={formData.name}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]"
+                className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                style={{ 
+                  borderColor: '#E5E5E5',
+                  fontFamily: 'var(--font-body)'
+                }}
+                onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Long address</label>
+              <label 
+                className="block text-xs sm:text-sm font-medium mb-2"
+                style={{ 
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-body)'
+                }}
+              >
+                Long address
+              </label>
               <input
                 type="text"
                 name="longAddress"
                 placeholder="Enter full address"
                 value={formData.longAddress}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]"
+                className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                style={{ 
+                  borderColor: '#E5E5E5',
+                  fontFamily: 'var(--font-body)'
+                }}
+                onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Short address</label>
+              <label 
+                className="block text-xs sm:text-sm font-medium mb-2"
+                style={{ 
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-body)'
+                }}
+              >
+                Short address
+              </label>
               <input
                 type="text"
                 name="shortAddress"
                 placeholder="Enter short address"
                 value={formData.shortAddress}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]"
+                className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                style={{ 
+                  borderColor: '#E5E5E5',
+                  fontFamily: 'var(--font-body)'
+                }}
+                onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
               />
             </div>
           </div>
         </div>
 
         {/* Logo & Cover Image */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6">Store LOGO & Cover Image</h2>
+        <div 
+          className="rounded-lg shadow-sm p-4 sm:p-6"
+          style={{ backgroundColor: '#FFFFFF' }}
+        >
+          <h2 
+            className="text-base sm:text-lg font-semibold mb-4 sm:mb-6"
+            style={{ 
+              color: 'var(--dark-heading)',
+              fontFamily: 'var(--font-heading)'
+            }}
+          >
+            Store LOGO & Cover Image
+          </h2>
 
-          <div className="grid grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                Logo <span className="text-red-600">*</span>
+              <label 
+                className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3"
+                style={{ 
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-body)'
+                }}
+              >
+                Logo <span style={{ color: '#DC2626' }}>*</span>
               </label>
-              <div className="border-2 border-dashed border-[#247C3F] rounded-lg p-8 text-center cursor-pointer hover:bg-green-50 transition">
+              <div 
+                className="border-2 border-dashed rounded-lg p-4 sm:p-6 md:p-8 text-center cursor-pointer transition-all active:scale-95"
+                style={{ 
+                  borderColor: 'var(--primary-green)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F0FDF4'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+              >
                 <div className="flex flex-col items-center gap-2">
-                  <Upload className="w-8 h-8 text-[#247C3F]" />
-                  <p className="text-sm text-gray-500">Drag file here or</p>
-                  <p className="text-sm text-[#247C3F] font-medium">click to upload</p>
+                  <Upload className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: 'var(--primary-green)' }} />
+                  <p 
+                    className="text-xs sm:text-sm"
+                    style={{ 
+                      color: 'var(--text-dark)',
+                      fontFamily: 'var(--font-body)'
+                    }}
+                  >
+                    Drag file here or
+                  </p>
+                  <p 
+                    className="text-xs sm:text-sm font-medium"
+                    style={{ 
+                      color: 'var(--primary-green)',
+                      fontFamily: 'var(--font-body)'
+                    }}
+                  >
+                    click to upload
+                  </p>
                 </div>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-3">
-                COVER Image <span className="text-red-600">*</span>
+              <label 
+                className="block text-xs sm:text-sm font-medium mb-2 sm:mb-3"
+                style={{ 
+                  color: 'var(--dark-heading)',
+                  fontFamily: 'var(--font-body)'
+                }}
+              >
+                COVER Image <span style={{ color: '#DC2626' }}>*</span>
               </label>
-              <div className="border-2 border-dashed border-[#247C3F] rounded-lg p-8 text-center cursor-pointer hover:bg-green-50 transition">
+              <div 
+                className="border-2 border-dashed rounded-lg p-4 sm:p-6 md:p-8 text-center cursor-pointer transition-all active:scale-95"
+                style={{ 
+                  borderColor: 'var(--primary-green)'
+                }}
+                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F0FDF4'}
+                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+              >
                 <div className="flex flex-col items-center gap-2">
-                  <Upload className="w-8 h-8 text-[#247C3F]" />
-                  <p className="text-sm text-gray-500">Drag file here or</p>
-                  <p className="text-sm text-[#247C3F] font-medium">click to upload</p>
+                  <Upload className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: 'var(--primary-green)' }} />
+                  <p 
+                    className="text-xs sm:text-sm"
+                    style={{ 
+                      color: 'var(--text-dark)',
+                      fontFamily: 'var(--font-body)'
+                    }}
+                  >
+                    Drag file here or
+                  </p>
+                  <p 
+                    className="text-xs sm:text-sm font-medium"
+                    style={{ 
+                      color: 'var(--primary-green)',
+                      fontFamily: 'var(--font-body)'
+                    }}
+                  >
+                    click to upload
+                  </p>
                 </div>
               </div>
             </div>
@@ -206,16 +344,31 @@ export default function AddRestaurantPage() {
         </div>
 
         {/* Store Info */}
-        <div className="bg-white rounded-lg shadow p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-6 flex items-center gap-2">
+        <div 
+          className="rounded-lg shadow-sm p-4 sm:p-6"
+          style={{ backgroundColor: '#FFFFFF' }}
+        >
+          <h2 
+            className="text-base sm:text-lg font-semibold mb-4 sm:mb-6 flex items-center gap-2"
+            style={{ 
+              color: 'var(--dark-heading)',
+              fontFamily: 'var(--font-heading)'
+            }}
+          >
             <span>🏪</span> Store Info
           </h2>
 
-          <div className="space-y-4">
-            <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-3 sm:space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  VAT/Tax (%) <span className="text-red-600">*</span>
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-2"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  VAT/Tax (%) <span style={{ color: '#DC2626' }}>*</span>
                 </label>
                 <input
                   type="text"
@@ -223,13 +376,25 @@ export default function AddRestaurantPage() {
                   placeholder="Enter tax(%)"
                   value={formData.vatTax}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]"
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Location <span className="text-red-600">*</span>
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-2"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Location <span style={{ color: '#DC2626' }}>*</span>
                 </label>
                 <div className="flex gap-2">
                   <input
@@ -238,21 +403,52 @@ export default function AddRestaurantPage() {
                     placeholder="Enter a location"
                     value={formData.location}
                     onChange={handleInputChange}
-                    className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]"
+                    className="flex-1 px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                    style={{ 
+                      borderColor: '#E5E5E5',
+                      fontFamily: 'var(--font-body)'
+                    }}
+                    onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                    onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
                   />
-                  <button type="button" className="p-2 border border-gray-300 rounded-lg hover:bg-gray-50">
-                    <MapPin className="w-5 h-5 text-[#247C3F]" />
+                  <button 
+                    type="button" 
+                    className="p-2 border rounded-lg transition-all active:scale-95"
+                    style={{ 
+                      borderColor: '#E5E5E5'
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
+                    onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+                  >
+                    <MapPin className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: 'var(--primary-green)' }} />
                   </button>
                 </div>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Cuisine <span className="text-red-600">*</span>
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-2"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Cuisine <span style={{ color: '#DC2626' }}>*</span>
                 </label>
-                <select name="cuisine" value={formData.cuisine} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]">
+                <select 
+                  name="cuisine" 
+                  value={formData.cuisine} 
+                  onChange={handleInputChange} 
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
+                >
                   <option value="">Select</option>
                   <option value="Indian">Indian</option>
                   <option value="Nepali">Nepali</option>
@@ -262,10 +458,27 @@ export default function AddRestaurantPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  Zone <span className="text-red-600">*</span>
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-2"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Zone <span style={{ color: '#DC2626' }}>*</span>
                 </label>
-                <select name="zone" value={formData.zone} onChange={handleInputChange} className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]">
+                <select 
+                  name="zone" 
+                  value={formData.zone} 
+                  onChange={handleInputChange} 
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
+                >
                   <option value="">Select</option>
                   <option value="Kathmandu">Kathmandu</option>
                   <option value="Patan">Patan</option>
@@ -274,28 +487,56 @@ export default function AddRestaurantPage() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Latitude</label>
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-2"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Latitude
+                </label>
                 <input
                   type="text"
                   name="latitude"
                   placeholder="Enter latitude"
                   value={formData.latitude}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]"
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">Longitude</label>
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-2"
+                  style={{ 
+                    color: 'var(--dark-heading)',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                >
+                  Longitude
+                </label>
                 <input
                   type="text"
                   name="longitude"
                   placeholder="Enter longitude"
                   value={formData.longitude}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]"
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ 
+                    borderColor: '#E5E5E5',
+                    fontFamily: 'var(--font-body)'
+                  }}
+                  onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
+                  onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
                 />
               </div>
             </div>
@@ -303,9 +544,35 @@ export default function AddRestaurantPage() {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex justify-end gap-4 pb-6">
-          <Button type="button" variant="outline" onClick={handleReset} className="border-gray-300">Reset</Button>
-          <Button type="submit" className="bg-[#247C3F] hover:bg-[#1a5a2f] text-white">Submit</Button>
+        <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4 pb-4 sm:pb-6">
+          <Button 
+            type="button" 
+            variant="outline" 
+            onClick={handleReset} 
+            className="w-full sm:w-auto transition-all active:scale-95"
+            style={{ 
+              borderColor: '#D1D5DB',
+              color: 'var(--dark-heading)',
+              fontFamily: 'var(--font-body)'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
+          >
+            Reset
+          </Button>
+          <Button 
+            type="submit" 
+            className="w-full sm:w-auto transition-all active:scale-95"
+            style={{ 
+              backgroundColor: 'var(--primary-green)',
+              color: 'var(--text-light)',
+              fontFamily: 'var(--font-body)'
+            }}
+            onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1a5a2f'}
+            onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--primary-green)'}
+          >
+            Submit
+          </Button>
         </div>
       </form>
     </div>

@@ -23,7 +23,27 @@ export default function AdminDashboardPage() {
   }, [router])
 
   if (loading) {
-    return <div className="flex items-center justify-center h-screen">Loading...</div>
+    return (
+      <div className="flex items-center justify-center h-screen" style={{ backgroundColor: 'var(--light-background)' }}>
+        <div className="flex flex-col items-center gap-4">
+          <div 
+            className="w-12 h-12 border-4 rounded-full animate-spin"
+            style={{ 
+              borderColor: '#E5E7EB',
+              borderTopColor: 'var(--primary-green)'
+            }}
+          ></div>
+          <p 
+            style={{ 
+              color: 'var(--text-dark)',
+              fontFamily: 'var(--font-body)' 
+            }}
+          >
+            Loading...
+          </p>
+        </div>
+      </div>
+    )
   }
 
   if (!isAuthenticated) {
