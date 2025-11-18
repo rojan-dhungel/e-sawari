@@ -1,7 +1,8 @@
-'use client';
+"use client"
 
-import React, { useState } from 'react';
-import { Upload, Edit2, Check, X } from 'lucide-react';
+import { useState } from "react"
+import PageHeader from "@/components/admin/page-header"
+import { Upload, Edit2, Check, X } from "lucide-react"
 
 interface Document {
   id: number
@@ -29,325 +30,279 @@ interface FormData {
 
 export default function RiderDetailsPage() {
   const [documents] = useState<Document[]>([
-    { id: 1, name: 'Driving License', expiryDate: '', status: 'UPLOADED AND APPROVED', comment: '-' },
-    { id: 2, name: 'Bluebook Registration Page', expiryDate: '', status: 'UPLOADED AND APPROVED', comment: '-' },
-    { id: 3, name: 'Bluebook Owner Page', expiryDate: '', status: 'UPLOADED AND APPROVED', comment: '-' },
-    { id: 4, name: 'Bluebook Renewal Page', expiryDate: '', status: 'UPLOADED AND APPROVED', comment: '-' },
-  ]);
+    { id: 1, name: "Driving License", expiryDate: "", status: "UPLOADED AND APPROVED", comment: "-" },
+    { id: 2, name: "Bluebook Registration Page", expiryDate: "", status: "UPLOADED AND APPROVED", comment: "-" },
+    { id: 3, name: "Bluebook Owner Page", expiryDate: "", status: "UPLOADED AND APPROVED", comment: "-" },
+    { id: 4, name: "Bluebook Renewal Page", expiryDate: "", status: "UPLOADED AND APPROVED", comment: "-" },
+  ])
 
   const [formData, setFormData] = useState<FormData>({
-    area: '',
-    name: 'test1112',
-    address: '',
-    gender: 'Male',
-    isCompanyDriver: 'No',
-    mobile: '8908908999',
-    email: 'test1112@gmail.com',
-    transportType: 'Taxi',
-    vehicleType: 'Tuk Tuk',
-    carMake: 'test12',
-    carModel: 'test12',
-    carColor: 'red',
-    carNumber: 'tn1234'
-  });
+    area: "",
+    name: "test1112",
+    address: "",
+    gender: "Male",
+    isCompanyDriver: "No",
+    mobile: "8908908999",
+    email: "test1112@gmail.com",
+    transportType: "Taxi",
+    vehicleType: "Tuk Tuk",
+    carMake: "test12",
+    carModel: "test12",
+    carColor: "red",
+    carNumber: "tn1234",
+  })
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleUpdate = () => {
-    console.log('Updating rider details:', formData);
-    alert('Rider details updated successfully!');
-  };
+    alert("Rider details updated successfully!")
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50 p-8">
-      <div className="max-w-7xl mx-auto">
-        {/* Page Header */}
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold text-gray-900">Rider Details</h1>
-          <p className="text-gray-600 mt-1">Manage rider information and documents</p>
+    <div>
+      <div className="mb-4 sm:mb-6">
+        <PageHeader title="Rider Details" description="Manage rider information and documents" />
+      </div>
+
+      <div
+        className="rounded-lg shadow-sm overflow-hidden -mx-3 sm:mx-0 mb-6"
+        style={{ backgroundColor: "#FFFFFF" }}
+      >
+        <div className="px-4 sm:px-6 py-4 border-b" style={{ borderColor: "#E5E5E5" }}>
+          <h2
+            className="text-base sm:text-lg font-semibold"
+            style={{ color: "var(--dark-heading)", fontFamily: "var(--font-heading)" }}
+          >
+            Documents
+          </h2>
         </div>
-
-        {/* Documents Table */}
-        <div className="bg-white rounded-lg shadow-sm mb-8 overflow-hidden">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-lg font-semibold text-gray-900">Documents</h2>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
-                <tr>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">S.No</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Name</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Expiry Date</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Status</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Comment</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Action</th>
-                  <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Approval</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {documents.map((doc) => (
-                  <tr key={doc.id} className="hover:bg-gray-50">
-                    <td className="px-6 py-4 text-sm text-gray-600">{doc.id}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900 font-medium">{doc.name}</td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{doc.expiryDate || '-'}</td>
-                    <td className="px-6 py-4">
-                      <span className="text-sm font-medium text-green-600">
-                        {doc.status}
-                      </span>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{doc.comment}</td>
-                    <td className="px-6 py-4">
-                      <div className="flex gap-3">
-                        <button className="text-green-600 hover:text-green-700 transition" title="Upload">
-                          <Upload size={18} />
-                        </button>
-                        <button className="text-blue-600 hover:text-blue-700 transition" title="Edit">
-                          <Edit2 size={18} />
-                        </button>
-                      </div>
-                    </td>
-                    <td className="px-6 py-4">
-                      <div className="flex flex-col gap-2">
-                        <button className="flex items-center gap-1 text-sm text-green-600 hover:text-green-700 transition">
-                          <Check size={16} />
-                          <span>Approved</span>
-                        </button>
-                        <button className="flex items-center gap-1 text-sm text-red-600 hover:text-red-700 transition">
-                          <X size={16} />
-                          <span>Disapproved</span>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        {/* Rider Details Form */}
-        <div className="bg-white rounded-lg shadow-sm p-8">
-          <div className="mb-6">
-            <h2 className="text-lg font-semibold text-gray-900">Rider Information</h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Select Area */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Select Area <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="area"
-                value={formData.area}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              >
-                <option value="">Select an area</option>
-                <option value="area1">Area 1</option>
-                <option value="area2">Area 2</option>
-              </select>
-            </div>
-
-            {/* Empty cell for spacing */}
-            <div></div>
-
-            {/* Name */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              />
-            </div>
-
-            {/* Address */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Address <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="address"
-                value={formData.address}
-                onChange={handleInputChange}
-                placeholder="Enter Address"
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              />
-            </div>
-
-            {/* Gender */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Gender <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="gender"
-                value={formData.gender}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              >
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-
-            {/* Is Company Driver */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Is Company Driver <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="isCompanyDriver"
-                value={formData.isCompanyDriver}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              >
-                <option value="No">No</option>
-                <option value="Yes">Yes</option>
-              </select>
-            </div>
-
-            {/* Mobile */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Mobile <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="tel"
-                name="mobile"
-                value={formData.mobile}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              />
-            </div>
-
-            {/* Email */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Email <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              />
-            </div>
-
-            {/* Transport Type */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Transport Type <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="transportType"
-                value={formData.transportType}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              >
-                <option value="Taxi">Taxi</option>
-                <option value="Bus">Bus</option>
-                <option value="Bike">Bike</option>
-              </select>
-            </div>
-
-            {/* Vehicle Type */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Vehicle Type <span className="text-red-500">*</span>
-              </label>
-              <select
-                name="vehicleType"
-                value={formData.vehicleType}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              >
-                <option value="Tuk Tuk">Tuk Tuk</option>
-                <option value="Sedan">Sedan</option>
-                <option value="SUV">SUV</option>
-              </select>
-            </div>
-
-            {/* Car Make */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Car Make <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="carMake"
-                value={formData.carMake}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              />
-            </div>
-
-            {/* Car Model */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Car Model <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="carModel"
-                value={formData.carModel}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              />
-            </div>
-
-            {/* Car Color */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Car Color <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="carColor"
-                value={formData.carColor}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              />
-            </div>
-
-            {/* Car Number */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">
-                Car Number <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                name="carNumber"
-                value={formData.carNumber}
-                onChange={handleInputChange}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700 focus:border-transparent"
-              />
-            </div>
-          </div>
-
-          {/* Update Button */}
-          <div className="flex justify-end mt-8">
-            <button 
-              onClick={handleUpdate}
-              className="bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-lg font-medium transition-all"
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[760px]">
+            <thead
+              className="border-b"
+              style={{ backgroundColor: "#F9FAFB", borderColor: "#E5E5E5" }}
             >
-              Update
-            </button>
-          </div>
+              <tr>
+                {[
+                  "S.No",
+                  "Name",
+                  "Expiry Date",
+                  "Status",
+                  "Comment",
+                  "Action",
+                  "Approval",
+                ].map((header) => (
+                  <th
+                    key={header}
+                    className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold whitespace-nowrap"
+                    style={{
+                      color: "var(--dark-heading)",
+                      fontFamily: "var(--font-body)",
+                    }}
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y" style={{ borderColor: "#E5E5E5" }}>
+              {documents.map((doc, index) => (
+                <tr
+                  key={doc.id}
+                  className="transition-colors duration-200"
+                  style={{ backgroundColor: "#FFFFFF" }}
+                  onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#F9FAFB")}
+                  onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#FFFFFF")}
+                >
+                  <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm" style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}>
+                    {index + 1}
+                  </td>
+                  <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm font-medium" style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}>
+                    {doc.name}
+                  </td>
+                  <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm" style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}>
+                    {doc.expiryDate || "-"}
+                  </td>
+                  <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm font-medium" style={{ color: "#047857", fontFamily: "var(--font-body)" }}>
+                    {doc.status}
+                  </td>
+                  <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm" style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}>
+                    {doc.comment}
+                  </td>
+                  <td className="px-3 sm:px-4 md:px-6 py-3">
+                    <div className="flex gap-2 sm:gap-3">
+                      <button className="text-green-600 hover:text-green-700 transition" title="Upload">
+                        <Upload className="w-4 h-4" />
+                      </button>
+                      <button className="text-blue-600 hover:text-blue-700 transition" title="Edit">
+                        <Edit2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </td>
+                  <td className="px-3 sm:px-4 md:px-6 py-3">
+                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+                      <button className="flex items-center gap-1 text-xs sm:text-sm text-green-600 hover:text-green-700 transition">
+                        <Check className="w-4 h-4" />
+                        <span>Approved</span>
+                      </button>
+                      <button className="flex items-center gap-1 text-xs sm:text-sm text-red-600 hover:text-red-700 transition">
+                        <X className="w-4 h-4" />
+                        <span>Disapproved</span>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div
+        className="rounded-lg shadow-sm p-4 sm:p-6 md:p-8"
+        style={{ backgroundColor: "#FFFFFF" }}
+      >
+        <div className="mb-4 sm:mb-6">
+          <h2
+            className="text-base sm:text-lg font-semibold"
+            style={{ color: "var(--dark-heading)", fontFamily: "var(--font-heading)" }}
+          >
+            Rider Information
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          {[
+            {
+              label: "Select Area",
+              name: "area",
+              type: "select",
+              options: [
+                { value: "", label: "Select an area" },
+                { value: "area1", label: "Area 1" },
+                { value: "area2", label: "Area 2" },
+              ],
+            },
+            { label: "Name", name: "name", type: "text" },
+            { label: "Address", name: "address", type: "text", placeholder: "Enter address" },
+            {
+              label: "Gender",
+              name: "gender",
+              type: "select",
+              options: [
+                { value: "Male", label: "Male" },
+                { value: "Female", label: "Female" },
+                { value: "Other", label: "Other" },
+              ],
+            },
+            {
+              label: "Is Company Driver",
+              name: "isCompanyDriver",
+              type: "select",
+              options: [
+                { value: "No", label: "No" },
+                { value: "Yes", label: "Yes" },
+              ],
+            },
+            { label: "Mobile", name: "mobile", type: "tel" },
+            { label: "Email", name: "email", type: "email" },
+            {
+              label: "Transport Type",
+              name: "transportType",
+              type: "select",
+              options: [
+                { value: "Taxi", label: "Taxi" },
+                { value: "Bus", label: "Bus" },
+                { value: "Bike", label: "Bike" },
+              ],
+            },
+            {
+              label: "Vehicle Type",
+              name: "vehicleType",
+              type: "select",
+              options: [
+                { value: "Tuk Tuk", label: "Tuk Tuk" },
+                { value: "Sedan", label: "Sedan" },
+                { value: "SUV", label: "SUV" },
+              ],
+            },
+            { label: "Car Make", name: "carMake", type: "text" },
+            { label: "Car Model", name: "carModel", type: "text" },
+            { label: "Car Color", name: "carColor", type: "text" },
+            { label: "Car Number", name: "carNumber", type: "text" },
+          ].map((field) => (
+            <div key={field.name} className="flex flex-col">
+              <label
+                className="text-xs sm:text-sm font-medium mb-2"
+                style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}
+              >
+                {field.label} <span style={{ color: "#DC2626" }}>*</span>
+              </label>
+              {field.type === "select" ? (
+                <select
+                  name={field.name}
+                  value={formData[field.name as keyof FormData] as string}
+                  onChange={handleInputChange}
+                  className="w-full px-3 sm:px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ borderColor: "#E5E5E5", fontFamily: "var(--font-body)" }}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E5E5")}
+                >
+                  {field.options?.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type={field.type}
+                  name={field.name}
+                  value={formData[field.name as keyof FormData] as string}
+                  onChange={handleInputChange}
+                  placeholder={field.placeholder}
+                  className="w-full px-3 sm:px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ borderColor: "#E5E5E5", fontFamily: "var(--font-body)" }}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E5E5")}
+                />
+              )}
+            </div>
+          ))}
+        </div>
+
+        <div className="flex flex-col sm:flex-row justify-end gap-3 sm:gap-4 mt-6">
+          <button
+            className="px-4 sm:px-6 py-2 border rounded-lg transition-all active:scale-95"
+            style={{
+              borderColor: "#D1D5DB",
+              color: "var(--dark-heading)",
+              fontFamily: "var(--font-body)",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#F9FAFB")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+            onClick={() => setFormData((prev) => ({ ...prev }))}
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleUpdate}
+            className="px-4 sm:px-6 py-2 rounded-lg transition-all active:scale-95"
+            style={{
+              backgroundColor: "var(--primary-green)",
+              color: "var(--text-light)",
+              fontFamily: "var(--font-body)",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#1a5a2f")}
+            onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--primary-green)")}
+          >
+            Update
+          </button>
         </div>
       </div>
     </div>
-  );
+  )
 }

@@ -1,9 +1,9 @@
-'use client'
+"use client"
 
 import { useState, useEffect } from "react"
 import PageHeader from "@/components/admin/page-header"
 import { Button } from "@/components/ui/button"
-import { Plus, Edit2, Trash2, X } from 'lucide-react'
+import { Plus, Edit2, Trash2, X } from "lucide-react"
 
 interface PackageType {
   id: number
@@ -41,19 +41,23 @@ export default function PackageTypesPage() {
     }
   }, [packageTypes])
 
-  const filteredTypes = packageTypes.filter(p =>
-    p.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredTypes = packageTypes.filter((type) =>
+    type.name.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
-  const handleOpenAdd = () => {
-    setEditingId(null)
-    setFormData({ name: "", maxWeight: "", baseCharge: 0, description: "" })
-    setShowModal(true)
-  }
-
-  const handleEdit = (type: PackageType) => {
-    setEditingId(type.id)
-    setFormData({ name: type.name, maxWeight: type.maxWeight, baseCharge: type.baseCharge, description: type.description })
+  const openModal = (type?: PackageType) => {
+    if (type) {
+      setEditingId(type.id)
+      setFormData({
+        name: type.name,
+        maxWeight: type.maxWeight,
+        baseCharge: type.baseCharge,
+        description: type.description,
+      })
+    } else {
+      setEditingId(null)
+      setFormData({ name: "", maxWeight: "", baseCharge: 0, description: "" })
+    }
     setShowModal(true)
   }
 
@@ -64,116 +68,260 @@ export default function PackageTypesPage() {
     }
 
     if (editingId) {
-      setPackageTypes(packageTypes.map(t => t.id === editingId ? { id: t.id, ...formData } : t))
+      setPackageTypes((prev) =>
+        prev.map((type) => (type.id === editingId ? { ...type, ...formData } : type))
+      )
     } else {
-      setPackageTypes([...packageTypes, { id: Date.now(), ...formData }])
+      setPackageTypes((prev) => [...prev, { id: Date.now(), ...formData }])
     }
     setShowModal(false)
   }
 
   const handleDelete = (id: number) => {
     if (confirm("Are you sure you want to delete this package type?")) {
-      setPackageTypes(packageTypes.filter(t => t.id !== id))
+      setPackageTypes((prev) => prev.filter((type) => type.id !== id))
     }
   }
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
+    <div>
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <PageHeader title="Package Types" description="Manage parcel package categories" />
-        <Button className="bg-[#247C3F] hover:bg-[#1a5a2f]" onClick={handleOpenAdd}>
+        <Button
+          onClick={() => openModal()}
+          className="w-full sm:w-auto transition-all duration-200 hover:shadow-md active:scale-95"
+          style={{
+            backgroundColor: "var(--primary-green)",
+            color: "var(--text-light)",
+            fontFamily: "var(--font-body)",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#1a5a2f")}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--primary-green)")}
+        >
           <Plus className="w-4 h-4 mr-2" />
           Add Package Type
         </Button>
       </div>
 
-      {/* Search Bar */}
-      <div className="mb-6 bg-white rounded-lg p-4 flex gap-3">
+      <div
+        className="mb-4 sm:mb-6 rounded-lg p-3 sm:p-4 flex flex-col sm:flex-row gap-2 sm:gap-3"
+        style={{ backgroundColor: "#FFFFFF" }}
+      >
         <input
           type="text"
           placeholder="Search package types..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]"
-          style={{ borderColor: "#E5E5E5" }}
+          className="flex-1 px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+          style={{
+            borderColor: "#E5E5E5",
+            fontFamily: "var(--font-body)",
+          }}
+          onFocus={(e) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+          onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E5E5")}
         />
         <button
           onClick={() => setSearchTerm("")}
-          className="px-6 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition"
+          className="px-4 sm:px-6 py-2 border rounded-lg transition-all active:scale-95"
+          style={{
+            borderColor: "#D1D5DB",
+            color: "var(--dark-heading)",
+            fontFamily: "var(--font-body)",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#F9FAFB")}
+          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
         >
           Reset
         </button>
       </div>
 
-      {/* Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {filteredTypes.length > 0 ? (
           filteredTypes.map((type) => (
-            <div key={type.id} className="bg-white rounded-lg shadow hover:shadow-lg transition border border-gray-200 p-5">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">{type.name}</h3>
-              <div className="space-y-2 text-sm text-gray-600 mb-4 bg-gray-50 p-3 rounded">
-                <p><span className="font-medium text-gray-700">Max Weight:</span> {type.maxWeight}</p>
-                <p><span className="font-medium text-gray-700">Base Charge:</span> Rs. {type.baseCharge}</p>
+            <div
+              key={type.id}
+              className="rounded-lg border shadow-sm p-4 sm:p-5 flex flex-col gap-4"
+              style={{ borderColor: "#E5E5E5", backgroundColor: "#FFFFFF" }}
+            >
+              <div>
+                <h3
+                  className="text-lg font-semibold"
+                  style={{ color: "var(--dark-heading)", fontFamily: "var(--font-heading)" }}
+                >
+                  {type.name}
+                </h3>
+                <p
+                  className="text-xs uppercase tracking-wide mt-1"
+                  style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}
+                >
+                  {type.maxWeight}
+                </p>
               </div>
-              <p className="text-sm text-gray-600 mb-4">{type.description}</p>
+              <div
+                className="rounded-md p-3"
+                style={{ backgroundColor: "#F9FAFB" }}
+              >
+                <p className="text-xs text-gray-500" style={{ fontFamily: "var(--font-body)" }}>
+                  Base Charge
+                </p>
+                <p className="text-lg font-semibold" style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}>
+                  Rs {type.baseCharge}
+                </p>
+              </div>
+              <p className="text-sm" style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}>
+                {type.description}
+              </p>
               <div className="flex gap-2">
                 <button
-                  onClick={() => handleEdit(type)}
-                  className="flex-1 p-2 hover:bg-blue-50 rounded transition flex items-center justify-center gap-1 border border-blue-200"
+                  onClick={() => openModal(type)}
+                  className="flex-1 p-2.5 rounded-lg border flex items-center justify-center gap-1 text-xs sm:text-sm font-medium"
+                  style={{
+                    borderColor: "#BFDBFE",
+                    color: "#2563EB",
+                    fontFamily: "var(--font-body)",
+                  }}
                 >
-                  <Edit2 className="w-4 h-4 text-blue-600" />
-                  <span className="text-blue-600 text-sm font-medium">Edit</span>
+                  <Edit2 className="w-4 h-4" /> Edit
                 </button>
                 <button
                   onClick={() => handleDelete(type.id)}
-                  className="flex-1 p-2 hover:bg-red-50 rounded transition flex items-center justify-center gap-1 border border-red-200"
+                  className="flex-1 p-2.5 rounded-lg border flex items-center justify-center gap-1 text-xs sm:text-sm font-medium"
+                  style={{
+                    borderColor: "#FECACA",
+                    color: "#DC2626",
+                    fontFamily: "var(--font-body)",
+                  }}
                 >
-                  <Trash2 className="w-4 h-4 text-red-600" />
-                  <span className="text-red-600 text-sm font-medium">Delete</span>
+                  <Trash2 className="w-4 h-4" /> Delete
                 </button>
               </div>
             </div>
           ))
         ) : (
-          <div className="col-span-full text-center py-12 text-gray-500">
-            <p className="text-lg">No package types found</p>
+          <div className="col-span-full text-center py-12" style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}>
+            No package types found
           </div>
         )}
       </div>
 
-      {/* Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-gray-900">{editingId ? "Edit Package Type" : "Add Package Type"}</h2>
-              <button onClick={() => setShowModal(false)} className="text-gray-500 hover:text-gray-700">
-                <X className="w-6 h-6" />
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4"
+          onClick={() => setShowModal(false)}
+        >
+          <div
+            className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            style={{ backgroundColor: "#FFFFFF" }}
+          >
+            <div
+              className="border-b p-4 sm:p-6 flex justify-between items-center sticky top-0 bg-white"
+              style={{ borderColor: "#E5E5E5" }}
+            >
+              <h2
+                className="text-lg sm:text-xl font-bold"
+                style={{ color: "var(--dark-heading)", fontFamily: "var(--font-heading)" }}
+              >
+                {editingId ? "Edit Package Type" : "Add Package Type"}
+              </h2>
+              <button
+                onClick={() => setShowModal(false)}
+                className="text-gray-500 hover:text-gray-700 transition p-1"
+              >
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
-
-            <div className="space-y-4">
+            <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+              {[
+                { label: "Package Name", name: "name", placeholder: "e.g., Small Package" },
+                { label: "Max Weight", name: "maxWeight", placeholder: "e.g., 5 kg" },
+              ].map((field) => (
+                <div key={field.name}>
+                  <label
+                    className="block text-xs sm:text-sm font-medium mb-1"
+                    style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}
+                  >
+                    {field.label}
+                  </label>
+                  <input
+                    type="text"
+                    value={formData[field.name as "name" | "maxWeight"]}
+                    onChange={(e) => setFormData({ ...formData, [field.name]: e.target.value })}
+                    placeholder={field.placeholder}
+                    className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                    style={{ borderColor: "#E5E5E5", fontFamily: "var(--font-body)" }}
+                    onFocus={(e) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+                    onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E5E5")}
+                  />
+                </div>
+              ))}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Package Name</label>
-                <input type="text" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} placeholder="e.g., Small Package" />
+                <label
+                  className="block text-xs sm:text-sm font-medium mb-1"
+                  style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}
+                >
+                  Base Charge (Rs.)
+                </label>
+                <input
+                  type="number"
+                  value={formData.baseCharge || ""}
+                  onChange={(e) => setFormData({ ...formData, baseCharge: parseInt(e.target.value) || 0 })}
+                  placeholder="e.g., 100"
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ borderColor: "#E5E5E5", fontFamily: "var(--font-body)" }}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E5E5")}
+                />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Max Weight</label>
-                <input type="text" value={formData.maxWeight} onChange={(e) => setFormData({...formData, maxWeight: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} placeholder="e.g., 5 kg" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Base Charge (Rs.)</label>
-                <input type="number" value={formData.baseCharge || ""} onChange={(e) => setFormData({...formData, baseCharge: parseInt(e.target.value) || 0})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} placeholder="e.g., 100" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Description</label>
-                <textarea value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} placeholder="Enter description" rows={3} />
+                <label
+                  className="block text-xs sm:text-sm font-medium mb-1"
+                  style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}
+                >
+                  Description
+                </label>
+                <textarea
+                  value={formData.description}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  placeholder="Enter description"
+                  rows={3}
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ borderColor: "#E5E5E5", fontFamily: "var(--font-body)" }}
+                  onFocus={(e) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+                  onBlur={(e) => (e.currentTarget.style.borderColor = "#E5E5E5")}
+                />
               </div>
             </div>
-
-            <div className="flex gap-3 mt-6">
-              <button onClick={() => setShowModal(false)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
-              <button onClick={handleSave} className="flex-1 px-4 py-2 bg-[#247C3F] text-white rounded-lg hover:bg-[#1a5a2f]">{editingId ? "Update" : "Add"}</button>
+            <div
+              className="border-t p-4 sm:p-6 flex flex-col sm:flex-row gap-3"
+              style={{ borderColor: "#E5E5E5" }}
+            >
+              <button
+                onClick={() => setShowModal(false)}
+                className="flex-1 px-4 sm:px-6 py-2 border rounded-lg transition-all active:scale-95"
+                style={{
+                  borderColor: "#D1D5DB",
+                  color: "var(--dark-heading)",
+                  fontFamily: "var(--font-body)",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#F9FAFB")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "transparent")}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSave}
+                className="flex-1 px-4 sm:px-6 py-2 rounded-lg transition-all active:scale-95"
+                style={{
+                  backgroundColor: "var(--primary-green)",
+                  color: "var(--text-light)",
+                  fontFamily: "var(--font-body)",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#1a5a2f")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--primary-green)")}
+              >
+                {editingId ? "Update" : "Add"}
+              </button>
             </div>
           </div>
         </div>

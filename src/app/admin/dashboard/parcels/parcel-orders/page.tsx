@@ -1,8 +1,8 @@
-'use client'
+"use client"
 
 import { useState, useEffect } from "react"
 import PageHeader from "@/components/admin/page-header"
-import { Eye, Edit2, Trash2, X, Plus } from 'lucide-react'
+import { Eye, Edit2, Trash2, X, Plus } from "lucide-react"
 
 interface ParcelOrder {
   id: string
@@ -13,6 +13,12 @@ interface ParcelOrder {
   date: string
 }
 
+const STATUS_STYLES = {
+  Delivered: { bg: "#D1FAE5", text: "#065F46" },
+  "In Transit": { bg: "#DBEAFE", text: "#1D4ED8" },
+  Pending: { bg: "#FEF3C7", text: "#92400E" },
+}
+
 export default function ParcelOrdersPage() {
   const [parcelOrders, setParcelOrders] = useState<ParcelOrder[]>([])
   const [searchTerm, setSearchTerm] = useState("")
@@ -20,16 +26,11 @@ export default function ParcelOrdersPage() {
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editData, setEditData] = useState<ParcelOrder | null>(null)
   const [showAddModal, setShowAddModal] = useState(false)
-  const [newParcel, setNewParcel] = useState<{
-    sender: string
-    receiver: string
-    packageType: string
-    status: "Delivered" | "In Transit" | "Pending"
-  }>({
+  const [newParcel, setNewParcel] = useState({
     sender: "",
     receiver: "",
     packageType: "",
-    status: "Pending"
+    status: "Pending" as ParcelOrder["status"],
   })
 
   useEffect(() => {
@@ -52,36 +53,27 @@ export default function ParcelOrdersPage() {
     }
   }, [parcelOrders])
 
-  const filteredOrders = parcelOrders.filter(order =>
-    order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    order.sender.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredOrders = parcelOrders.filter(
+    (order) =>
+      order.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      order.sender.toLowerCase().includes(searchTerm.toLowerCase())
   )
 
-  const getStatusColor = (status: string) => {
-    switch (status) {
-      case "Delivered": return "bg-green-100 text-green-800"
-      case "In Transit": return "bg-blue-100 text-blue-800"
-      case "Pending": return "bg-yellow-100 text-yellow-800"
-      default: return "bg-gray-100 text-gray-800"
-    }
-  }
-
-  const handleView = (order: ParcelOrder) => {
+  const openView = (order: ParcelOrder) => {
     setViewingId(order.id)
     setEditData(order)
   }
 
-  const handleEdit = (order: ParcelOrder) => {
+  const openEdit = (order: ParcelOrder) => {
     setEditingId(order.id)
     setEditData(order)
     setViewingId(null)
   }
 
-  const handleSave = () => {
+  const handleSaveEdit = () => {
     if (!editData) return
-    setParcelOrders(parcelOrders.map(o => o.id === editingId ? editData : o))
-    setEditingId(null)
-    setEditData(null)
+    setParcelOrders((prev) => prev.map((order) => (order.id === editingId ? editData : order)))
+    closeModals()
   }
 
   const handleAddParcel = () => {
@@ -89,212 +81,446 @@ export default function ParcelOrdersPage() {
       alert("Please fill all fields")
       return
     }
+
     const parcel: ParcelOrder = {
       id: `PARCEL${Date.now()}`,
       sender: newParcel.sender,
       receiver: newParcel.receiver,
       packageType: newParcel.packageType,
       status: newParcel.status,
-      date: new Date().toISOString().split('T')[0]
+      date: new Date().toISOString().split("T")[0],
     }
-    setParcelOrders([...parcelOrders, parcel])
+
+    setParcelOrders((prev) => [...prev, parcel])
     setShowAddModal(false)
     setNewParcel({ sender: "", receiver: "", packageType: "", status: "Pending" })
   }
 
   const handleDelete = (id: string) => {
     if (confirm("Are you sure you want to delete this parcel order?")) {
-      setParcelOrders(parcelOrders.filter(o => o.id !== id))
+      setParcelOrders((prev) => prev.filter((order) => order.id !== id))
     }
   }
 
-  const handleCloseModal = () => {
+  const closeModals = () => {
     setViewingId(null)
     setEditingId(null)
     setEditData(null)
   }
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
+    <div>
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <PageHeader title="Parcel Orders" description="Manage all parcel deliveries" />
         <button
           onClick={() => setShowAddModal(true)}
-          className="px-4 py-2 bg-[#247C3F] text-white rounded-lg hover:bg-[#1a5a2f] transition flex items-center gap-2"
+          className="w-full sm:w-auto px-4 sm:px-6 py-2 rounded-lg transition-all duration-200 hover:shadow-md active:scale-95 flex items-center justify-center"
+          style={{
+            backgroundColor: "var(--primary-green)",
+            color: "var(--text-light)",
+            fontFamily: "var(--font-body)",
+          }}
+          onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#1a5a2f")}
+          onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "var(--primary-green)")}
         >
-          <Plus className="w-4 h-4" />
+          <Plus className="w-4 h-4 mr-2" />
           Add Parcel
         </button>
       </div>
 
-      {/* Search Bar */}
-      <div className="mb-6 bg-white rounded-lg p-4 flex gap-3">
+      <div
+        className="mb-4 sm:mb-6 rounded-lg p-3 sm:p-4 flex flex-col sm:flex-row gap-2 sm:gap-3"
+        style={{ backgroundColor: "#FFFFFF" }}
+      >
         <input
           type="text"
           placeholder="Search by Parcel ID or Sender name..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]"
-          style={{ borderColor: "#E5E5E5" }}
+          className="flex-1 px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+          style={{
+            borderColor: "#E5E5E5",
+            fontFamily: "var(--font-body)",
+          }}
+          onFocus={(e: React.FocusEvent<HTMLInputElement>) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+          onBlur={(e: React.FocusEvent<HTMLInputElement>) => (e.currentTarget.style.borderColor = "#E5E5E5")}
         />
-        <button onClick={() => setSearchTerm("")} className="px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Reset</button>
+        <button
+          onClick={() => setSearchTerm("")}
+          className="px-4 sm:px-6 py-2 border rounded-lg transition-all active:scale-95"
+          style={{
+            borderColor: "#D1D5DB",
+            color: "var(--dark-heading)",
+            fontFamily: "var(--font-body)",
+          }}
+          onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#F9FAFB")}
+          onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "transparent")}
+        >
+          Reset
+        </button>
       </div>
 
-      {/* Table */}
-      <div className="bg-white rounded-lg shadow overflow-x-auto">
-        <table className="w-full">
-          <thead className="bg-gray-50 border-b">
-            <tr>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Parcel ID</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Sender</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Receiver</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Type</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Status</th>
-              <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">Date</th>
-              <th className="px-6 py-3 text-center text-sm font-semibold text-gray-700">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredOrders.length > 0 ? (
-              filteredOrders.map((order) => (
-                <tr key={order.id} className="border-b hover:bg-gray-50 transition">
-                  <td className="px-6 py-3 text-sm font-medium text-gray-900">{order.id}</td>
-                  <td className="px-6 py-3 text-sm text-gray-600">{order.sender}</td>
-                  <td className="px-6 py-3 text-sm text-gray-600">{order.receiver}</td>
-                  <td className="px-6 py-3 text-sm text-gray-600">{order.packageType}</td>
-                  <td className="px-6 py-3 text-sm">
-                    <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(order.status)}`}>
-                      {order.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-3 text-sm text-gray-600">{order.date}</td>
-                  <td className="px-6 py-3 text-center">
-                    <div className="flex justify-center gap-2">
-                      <button onClick={() => handleView(order)} className="p-2 hover:bg-gray-100 rounded transition" title="View">
-                        <Eye className="w-4 h-4 text-gray-600" />
-                      </button>
-                      <button onClick={() => handleEdit(order)} className="p-2 hover:bg-blue-100 rounded transition" title="Edit">
-                        <Edit2 className="w-4 h-4 text-blue-600" />
-                      </button>
-                      <button onClick={() => handleDelete(order.id)} className="p-2 hover:bg-red-100 rounded transition" title="Delete">
-                        <Trash2 className="w-4 h-4 text-red-600" />
-                      </button>
-                    </div>
+      <div
+        className="rounded-lg shadow-sm overflow-hidden -mx-3 sm:mx-0"
+        style={{ backgroundColor: "#FFFFFF" }}
+      >
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[760px]">
+            <thead
+              className="border-b"
+              style={{ backgroundColor: "#F9FAFB", borderColor: "#E5E5E5" }}
+            >
+              <tr>
+                {[
+                  "Parcel ID",
+                  "Sender",
+                  "Receiver",
+                  "Type",
+                  "Status",
+                  "Date",
+                  "Actions",
+                ].map((header) => (
+                  <th
+                    key={header}
+                    className={`px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-xs sm:text-sm font-semibold whitespace-nowrap ${
+                      header === "Actions" ? "text-center" : "text-left"
+                    }`}
+                    style={{
+                      color: "var(--dark-heading)",
+                      fontFamily: "var(--font-body)",
+                    }}
+                  >
+                    {header}
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="divide-y" style={{ borderColor: "#E5E5E5" }}>
+              {filteredOrders.length === 0 ? (
+                <tr>
+                  <td
+                    colSpan={7}
+                    className="px-3 sm:px-4 md:px-6 py-8 sm:py-12 text-center text-xs sm:text-sm"
+                    style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}
+                  >
+                    No parcel orders found
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan={7} className="px-6 py-8 text-center text-gray-500">
-                  No parcel orders found
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              ) : (
+                filteredOrders.map((order) => (
+                  <tr
+                    key={order.id}
+                    className="transition-colors duration-200"
+                    style={{ backgroundColor: "#FFFFFF" }}
+                    onMouseEnter={(e: React.MouseEvent<HTMLTableRowElement>) => (e.currentTarget.style.backgroundColor = "#F9FAFB")}
+                    onMouseLeave={(e: React.MouseEvent<HTMLTableRowElement>) => (e.currentTarget.style.backgroundColor = "#FFFFFF")}
+                  >
+                    <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm font-medium" style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}>
+                      {order.id}
+                    </td>
+                    <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm" style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}>
+                      {order.sender}
+                    </td>
+                    <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm" style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}>
+                      {order.receiver}
+                    </td>
+                    <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm" style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}>
+                      {order.packageType}
+                    </td>
+                    <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm">
+                      <span
+                        className="px-2 py-1 rounded text-xs font-medium"
+                        style={{
+                          backgroundColor: STATUS_STYLES[order.status].bg,
+                          color: STATUS_STYLES[order.status].text,
+                          fontFamily: "var(--font-body)",
+                        }}
+                      >
+                        {order.status}
+                      </span>
+                    </td>
+                    <td className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm" style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}>
+                      {order.date}
+                    </td>
+                    <td className="px-3 sm:px-4 md:px-6 py-3 text-center">
+                      <div className="flex justify-center gap-1 sm:gap-2">
+                        <button
+                          onClick={() => openView(order)}
+                          className="p-1.5 rounded-lg transition active:scale-95"
+                          style={{ backgroundColor: "#E5E7EB" }}
+                          onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#D1D5DB")}
+                          onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#E5E7EB")}
+                          title="View"
+                        >
+                          <Eye className="w-3.5 h-3.5 sm:w-4 sm:h-4" style={{ color: "var(--text-dark)" }} />
+                        </button>
+                        <button
+                          onClick={() => openEdit(order)}
+                          className="p-1.5 rounded-lg transition active:scale-95"
+                          style={{ backgroundColor: "#DBEAFE" }}
+                          onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#BFDBFE")}
+                          onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#DBEAFE")}
+                          title="Edit"
+                        >
+                          <Edit2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" style={{ color: "#2563EB" }} />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(order.id)}
+                          className="p-1.5 rounded-lg transition active:scale-95"
+                          style={{ backgroundColor: "#FEE2E2" }}
+                          onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#FECACA")}
+                          onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#FEE2E2")}
+                          title="Delete"
+                        >
+                          <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" style={{ color: "#DC2626" }} />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      {/* View Modal */}
       {viewingId && !editingId && editData && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-gray-900">Parcel Details</h2>
-              <button onClick={handleCloseModal} className="text-gray-500 hover:text-gray-700">
-                <X className="w-6 h-6" />
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4"
+          onClick={closeModals}
+        >
+          <div
+            className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            style={{ backgroundColor: "#FFFFFF" }}
+          >
+            <div
+              className="border-b p-4 sm:p-6 flex justify-between items-center sticky top-0 bg-white"
+              style={{ borderColor: "#E5E5E5" }}
+            >
+              <h2
+                className="text-lg sm:text-xl font-bold"
+                style={{ color: "var(--dark-heading)", fontFamily: "var(--font-heading)" }}
+              >
+                Parcel Details
+              </h2>
+              <button onClick={closeModals} className="text-gray-500 hover:text-gray-700 transition p-1">
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
-            <div className="space-y-3 bg-gray-50 p-4 rounded-lg mb-4">
-              <p><span className="font-medium text-gray-700">Parcel ID:</span> {editData.id}</p>
-              <p><span className="font-medium text-gray-700">Sender:</span> {editData.sender}</p>
-              <p><span className="font-medium text-gray-700">Receiver:</span> {editData.receiver}</p>
-              <p><span className="font-medium text-gray-700">Type:</span> {editData.packageType}</p>
-              <p><span className="font-medium text-gray-700">Status:</span> <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(editData.status)}`}>{editData.status}</span></p>
-              <p><span className="font-medium text-gray-700">Date:</span> {editData.date}</p>
+            <div className="p-4 sm:p-6 space-y-3">
+              {[
+                { label: "Parcel ID", value: editData.id },
+                { label: "Sender", value: editData.sender },
+                { label: "Receiver", value: editData.receiver },
+                { label: "Type", value: editData.packageType },
+                { label: "Status", value: editData.status },
+                { label: "Date", value: editData.date },
+              ].map((item) => (
+                <div key={item.label}>
+                  <p className="text-xs uppercase tracking-wide" style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}>
+                    {item.label}
+                  </p>
+                  <p className="text-base sm:text-lg font-semibold mt-1" style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}>
+                    {item.label === "Status" ? (
+                      <span
+                        className="px-2 py-1 rounded text-xs font-medium"
+                        style={{
+                          backgroundColor: STATUS_STYLES[editData.status].bg,
+                          color: STATUS_STYLES[editData.status].text,
+                        }}
+                      >
+                        {item.value}
+                      </span>
+                    ) : (
+                      item.value
+                    )}
+                  </p>
+                </div>
+              ))}
             </div>
-            <div className="flex gap-3">
-              <button onClick={handleCloseModal} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Close</button>
-              <button onClick={() => handleEdit(editData)} className="flex-1 px-4 py-2 bg-[#247C3F] text-white rounded-lg hover:bg-[#1a5a2f]">Edit</button>
+            <div className="border-t p-4 sm:p-6 flex gap-3" style={{ borderColor: "#E5E5E5" }}>
+              <button
+                onClick={closeModals}
+                className="flex-1 px-4 sm:px-6 py-2 border rounded-lg transition-all active:scale-95"
+                style={{ borderColor: "#D1D5DB", color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}
+                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#F9FAFB")}
+                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "transparent")}
+              >
+                Close
+              </button>
+              <button
+                onClick={() => openEdit(editData)}
+                className="flex-1 px-4 sm:px-6 py-2 rounded-lg transition-all active:scale-95"
+                style={{ backgroundColor: "var(--primary-green)", color: "var(--text-light)", fontFamily: "var(--font-body)" }}
+                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#1a5a2f")}
+                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "var(--primary-green)")}
+              >
+                Edit
+              </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Edit Modal */}
       {editingId && editData && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-gray-900">Edit Parcel Order</h2>
-              <button onClick={handleCloseModal} className="text-gray-500 hover:text-gray-700">
-                <X className="w-6 h-6" />
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4"
+          onClick={closeModals}
+        >
+          <div
+            className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            style={{ backgroundColor: "#FFFFFF" }}
+          >
+            <div className="border-b p-4 sm:p-6 flex justify-between items-center sticky top-0 bg-white" style={{ borderColor: "#E5E5E5" }}>
+              <h2 className="text-lg sm:text-xl font-bold" style={{ color: "var(--dark-heading)", fontFamily: "var(--font-heading)" }}>
+                Edit Parcel Order
+              </h2>
+              <button onClick={closeModals} className="text-gray-500 hover:text-gray-700 transition p-1">
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
-            <div className="space-y-3">
+            <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+              {[
+                { label: "Sender", name: "sender" },
+                { label: "Receiver", name: "receiver" },
+                { label: "Package Type", name: "packageType" },
+              ].map((field) => (
+                <div key={field.name}>
+                  <label className="block text-xs sm:text-sm font-medium mb-1" style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}>
+                    {field.label}
+                  </label>
+                  <input
+                    type="text"
+                    value={editData[field.name as keyof ParcelOrder]}
+                    onChange={(e) => setEditData({ ...editData, [field.name]: e.target.value } as ParcelOrder)}
+                    className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                    style={{ borderColor: "#E5E5E5", fontFamily: "var(--font-body)" }}
+                    onFocus={(e: React.FocusEvent<HTMLInputElement>) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+                    onBlur={(e: React.FocusEvent<HTMLInputElement>) => (e.currentTarget.style.borderColor = "#E5E5E5")}
+                  />
+                </div>
+              ))}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Sender</label>
-                <input type="text" value={editData.sender} onChange={(e) => setEditData({...editData, sender: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Receiver</label>
-                <input type="text" value={editData.receiver} onChange={(e) => setEditData({...editData, receiver: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Package Type</label>
-                <input type="text" value={editData.packageType} onChange={(e) => setEditData({...editData, packageType: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                <select value={editData.status} onChange={(e) => setEditData({...editData, status: e.target.value as "Delivered" | "In Transit" | "Pending"})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}}>
+                <label className="block text-xs sm:text-sm font-medium mb-1" style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}>
+                  Status
+                </label>
+                <select
+                  value={editData.status}
+                  onChange={(e) => setEditData({ ...editData, status: e.target.value as ParcelOrder["status"] })}
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ borderColor: "#E5E5E5", fontFamily: "var(--font-body)" }}
+                  onFocus={(e: React.FocusEvent<HTMLSelectElement>) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+                  onBlur={(e: React.FocusEvent<HTMLSelectElement>) => (e.currentTarget.style.borderColor = "#E5E5E5")}
+                >
                   <option value="Pending">Pending</option>
                   <option value="In Transit">In Transit</option>
                   <option value="Delivered">Delivered</option>
                 </select>
               </div>
             </div>
-            <div className="flex gap-3 mt-6">
-              <button onClick={handleCloseModal} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
-              <button onClick={handleSave} className="flex-1 px-4 py-2 bg-[#247C3F] text-white rounded-lg hover:bg-[#1a5a2f]">Save</button>
+            <div className="border-t p-4 sm:p-6 flex gap-3" style={{ borderColor: "#E5E5E5" }}>
+              <button
+                onClick={closeModals}
+                className="flex-1 px-4 sm:px-6 py-2 border rounded-lg transition-all active:scale-95"
+                style={{ borderColor: "#D1D5DB", color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}
+                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#F9FAFB")}
+                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "transparent")}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleSaveEdit}
+                className="flex-1 px-4 sm:px-6 py-2 rounded-lg transition-all active:scale-95"
+                style={{ backgroundColor: "var(--primary-green)", color: "var(--text-light)", fontFamily: "var(--font-body)" }}
+                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#1a5a2f")}
+                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "var(--primary-green)")}
+              >
+                Save
+              </button>
             </div>
           </div>
         </div>
       )}
 
-      {/* Add Parcel Modal */}
       {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-lg shadow-lg p-6 max-w-md w-full">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-bold text-gray-900">Add Parcel Order</h2>
-              <button onClick={() => setShowAddModal(false)} className="text-gray-500 hover:text-gray-700">
-                <X className="w-6 h-6" />
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-3 sm:p-4"
+          onClick={() => setShowAddModal(false)}
+        >
+          <div
+            className="bg-white rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+            style={{ backgroundColor: "#FFFFFF" }}
+          >
+            <div className="border-b p-4 sm:p-6 flex justify-between items-center sticky top-0 bg-white" style={{ borderColor: "#E5E5E5" }}>
+              <h2 className="text-lg sm:text-xl font-bold" style={{ color: "var(--dark-heading)", fontFamily: "var(--font-heading)" }}>
+                Add Parcel Order
+              </h2>
+              <button onClick={() => setShowAddModal(false)} className="text-gray-500 hover:text-gray-700 transition p-1">
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
-            <div className="space-y-3">
+            <div className="p-4 sm:p-6 space-y-3 sm:space-y-4">
+              {[
+                { label: "Sender Name", name: "sender" },
+                { label: "Receiver Name", name: "receiver" },
+                { label: "Package Type", name: "packageType" },
+              ].map((field) => (
+                <div key={field.name}>
+                  <label className="block text-xs sm:text-sm font-medium mb-1" style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}>
+                    {field.label}
+                  </label>
+                  <input
+                    type="text"
+                    value={newParcel[field.name as keyof typeof newParcel]}
+                    onChange={(e) => setNewParcel({ ...newParcel, [field.name]: e.target.value })}
+                    className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                    style={{ borderColor: "#E5E5E5", fontFamily: "var(--font-body)" }}
+                    placeholder={`Enter ${field.name}`}
+                    onFocus={(e: React.FocusEvent<HTMLInputElement>) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+                    onBlur={(e: React.FocusEvent<HTMLInputElement>) => (e.currentTarget.style.borderColor = "#E5E5E5")}
+                  />
+                </div>
+              ))}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Sender Name</label>
-                <input type="text" value={newParcel.sender} onChange={(e) => setNewParcel({...newParcel, sender: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} placeholder="Enter sender name" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Receiver Name</label>
-                <input type="text" value={newParcel.receiver} onChange={(e) => setNewParcel({...newParcel, receiver: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} placeholder="Enter receiver name" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Package Type</label>
-                <input type="text" value={newParcel.packageType} onChange={(e) => setNewParcel({...newParcel, packageType: e.target.value})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}} placeholder="e.g., Small Package" />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">Status</label>
-                <select value={newParcel.status} onChange={(e) => setNewParcel({...newParcel, status: e.target.value as "Delivered" | "In Transit" | "Pending"})} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#247C3F]" style={{borderColor: "#E5E5E5"}}>
+                <label className="block text-xs sm:text-sm font-medium mb-1" style={{ color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}>
+                  Status
+                </label>
+                <select
+                  value={newParcel.status}
+                  onChange={(e) => setNewParcel({ ...newParcel, status: e.target.value as ParcelOrder["status"] })}
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
+                  style={{ borderColor: "#E5E5E5", fontFamily: "var(--font-body)" }}
+                  onFocus={(e: React.FocusEvent<HTMLSelectElement>) => (e.currentTarget.style.borderColor = "var(--primary-green)")}
+                  onBlur={(e: React.FocusEvent<HTMLSelectElement>) => (e.currentTarget.style.borderColor = "#E5E5E5")}
+                >
                   <option value="Pending">Pending</option>
                   <option value="In Transit">In Transit</option>
                   <option value="Delivered">Delivered</option>
                 </select>
               </div>
             </div>
-            <div className="flex gap-3 mt-6">
-              <button onClick={() => setShowAddModal(false)} className="flex-1 px-4 py-2 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-50">Cancel</button>
-              <button onClick={handleAddParcel} className="flex-1 px-4 py-2 bg-[#247C3F] text-white rounded-lg hover:bg-[#1a5a2f]">Add Parcel</button>
+            <div className="border-t p-4 sm:p-6 flex gap-3" style={{ borderColor: "#E5E5E5" }}>
+              <button
+                onClick={() => setShowAddModal(false)}
+                className="flex-1 px-4 sm:px-6 py-2 border rounded-lg transition-all active:scale-95"
+                style={{ borderColor: "#D1D5DB", color: "var(--dark-heading)", fontFamily: "var(--font-body)" }}
+                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#F9FAFB")}
+                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "transparent")}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleAddParcel}
+                className="flex-1 px-4 sm:px-6 py-2 rounded-lg transition-all active:scale-95"
+                style={{ backgroundColor: "var(--primary-green)", color: "var(--text-light)", fontFamily: "var(--font-body)" }}
+                onMouseEnter={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "#1a5a2f")}
+                onMouseLeave={(e: React.MouseEvent<HTMLButtonElement>) => (e.currentTarget.style.backgroundColor = "var(--primary-green)")}
+              >
+                Add Parcel
+              </button>
             </div>
           </div>
         </div>
