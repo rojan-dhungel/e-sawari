@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import PageHeader from "@/components/admin/page-header"
-import { X } from "lucide-react"
+import { X } from 'lucide-react'
 
 export default function CancelledRidesPage() {
   const [cancelledRides] = useState([
@@ -207,8 +207,8 @@ export default function CancelledRidesPage() {
                       {ride.cancelledBy}
                     </td>
                     <td
-                      className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm max-w-[220px]"
-                      style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}
+                      className="px-3 sm:px-4 md:px-6 py-3 text-xs sm:text-sm max-w-[220px] font-medium"
+                      style={{ color: "#DC2626", fontFamily: "var(--font-body)" }}
                     >
                       <span className="line-clamp-2 sm:line-clamp-none">{ride.reason}</span>
                     </td>
@@ -295,8 +295,8 @@ export default function CancelledRidesPage() {
                   Cancellation Reason
                 </p>
                 <p
-                  className="text-sm sm:text-base mt-1"
-                  style={{ color: "var(--text-dark)", fontFamily: "var(--font-body)" }}
+                  className="text-sm sm:text-base mt-1 font-medium"
+                  style={{ color: "#DC2626", fontFamily: "var(--font-body)" }}
                 >
                   {selectedRide.reason}
                 </p>

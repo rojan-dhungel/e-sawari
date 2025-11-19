@@ -1,22 +1,24 @@
 'use client'
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import PageHeader from "@/components/admin/page-header"
 import { Button } from "@/components/ui/button"
-import { Plus, Edit2, Trash2, X } from 'lucide-react'
+import { Plus, Edit2, Trash2, X, Upload } from 'lucide-react'
 
 interface VehicleType {
   id: number
   name: string
   capacity: number
   baseFare: number
+  photoUrl?: string
 }
 
 export default function VehicleTypesPage() {
   const [vehicleTypes, setVehicleTypes] = useState<VehicleType[]>([])
   const [showModal, setShowModal] = useState(false)
   const [editingId, setEditingId] = useState<number | null>(null)
-  const [formData, setFormData] = useState({ name: "", capacity: 0, baseFare: 0 })
+  const [formData, setFormData] = useState({ name: "", capacity: 0, baseFare: 0, photoUrl: "" })
   const [searchTerm, setSearchTerm] = useState("")
 
   useEffect(() => {
@@ -46,14 +48,25 @@ export default function VehicleTypesPage() {
 
   const handleOpenAdd = () => {
     setEditingId(null)
-    setFormData({ name: "", capacity: 0, baseFare: 0 })
+    setFormData({ name: "", capacity: 0, baseFare: 0, photoUrl: "" })
     setShowModal(true)
   }
 
   const handleEdit = (type: VehicleType) => {
     setEditingId(type.id)
-    setFormData({ name: type.name, capacity: type.capacity, baseFare: type.baseFare })
+    setFormData({ name: type.name, capacity: type.capacity, baseFare: type.baseFare, photoUrl: type.photoUrl || "" })
     setShowModal(true)
+  }
+
+  const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
+    if (file) {
+      const reader = new FileReader()
+      reader.onloadend = () => {
+        setFormData({ ...formData, photoUrl: reader.result as string })
+      }
+      reader.readAsDataURL(file)
+    }
   }
 
   const handleSave = () => {
@@ -81,15 +94,8 @@ export default function VehicleTypesPage() {
       <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <PageHeader title="Vehicle Types" description="Manage vehicle categories and pricing" />
         <Button 
-          className="transition-all duration-200 hover:shadow-md active:scale-95 w-full sm:w-auto"
+          className="admin-button-primary transition-all duration-200 hover:shadow-md active:scale-95 w-full sm:w-auto text-sm sm:text-base"
           onClick={handleOpenAdd}
-          style={{ 
-            backgroundColor: 'var(--primary-green)',
-            color: 'var(--text-light)',
-            fontFamily: 'var(--font-body)'
-          }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1a5a2f'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--primary-green)'}
         >
           <Plus className="w-4 h-4 mr-2" />
           Add Vehicle Type
@@ -98,32 +104,24 @@ export default function VehicleTypesPage() {
 
       {/* Search Bar */}
       <div 
-        className="mb-4 sm:mb-6 rounded-lg p-3 sm:p-4 flex flex-col sm:flex-row gap-2 sm:gap-3"
-        style={{ backgroundColor: '#FFFFFF' }}
+        className="mb-4 sm:mb-6 admin-card rounded-lg p-3 sm:p-4 flex flex-col sm:flex-row gap-2 sm:gap-3"
       >
         <input
           type="text"
           placeholder="Search vehicle types..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
-          style={{ 
-            borderColor: '#E5E5E5',
-            fontFamily: 'var(--font-body)'
-          }}
+          className="flex-1 px-3 sm:px-4 py-2 border rounded-lg admin-input focus:outline-none focus:ring-2 text-sm"
           onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
           onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
         />
         <button
           onClick={() => setSearchTerm("")}
-          className="px-4 sm:px-6 py-2 border rounded-lg transition-all active:scale-95"
+          className="px-4 sm:px-6 py-2 border rounded-lg transition-all active:scale-95 text-xs sm:text-sm hover:bg-gray-50"
           style={{ 
             borderColor: '#D1D5DB',
-            color: 'var(--dark-heading)',
-            fontFamily: 'var(--font-body)'
+            color: 'var(--dark-heading)'
           }}
-          onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
-          onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
         >
           Reset
         </button>
@@ -135,18 +133,20 @@ export default function VehicleTypesPage() {
           filteredVehicles.map((type) => (
             <div 
               key={type.id} 
-              className="rounded-lg shadow-sm hover:shadow-md transition border p-4 sm:p-5"
-              style={{ 
-                backgroundColor: '#FFFFFF',
-                borderColor: '#E5E5E5'
-              }}
+              className="admin-card rounded-lg shadow-sm hover:shadow-md transition border p-4 sm:p-5"
             >
+              {type.photoUrl && (
+                <div className="mb-4 rounded overflow-hidden bg-gray-100 h-32 relative">
+                  <Image 
+                    src={type.photoUrl || "/placeholder.svg"} 
+                    alt={type.name}
+                    fill
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              )}
               <h3 
-                className="text-base sm:text-lg font-semibold mb-3"
-                style={{ 
-                  color: 'var(--dark-heading)',
-                  fontFamily: 'var(--font-heading)'
-                }}
+                className="text-base sm:text-lg font-semibold mb-3 admin-header"
               >
                 {type.name}
               </h3>
@@ -156,35 +156,21 @@ export default function VehicleTypesPage() {
               >
                 <p>
                   <span 
-                    className="font-medium"
-                    style={{ 
-                      color: 'var(--dark-heading)',
-                      fontFamily: 'var(--font-body)'
-                    }}
+                    className="font-medium admin-header"
                   >
                     Capacity:
                   </span>{' '}
-                  <span style={{ 
-                    color: 'var(--text-dark)',
-                    fontFamily: 'var(--font-body)'
-                  }}>
+                  <span className="text-paragraph">
                     {type.capacity} passengers
                   </span>
                 </p>
                 <p>
                   <span 
-                    className="font-medium"
-                    style={{ 
-                      color: 'var(--dark-heading)',
-                      fontFamily: 'var(--font-body)'
-                    }}
+                    className="font-medium admin-header"
                   >
                     Base Fare:
                   </span>{' '}
-                  <span style={{ 
-                    color: 'var(--text-dark)',
-                    fontFamily: 'var(--font-body)'
-                  }}>
+                  <span className="text-paragraph">
                     Rs. {type.baseFare}
                   </span>
                 </p>
@@ -192,7 +178,7 @@ export default function VehicleTypesPage() {
               <div className="flex gap-2">
                 <button
                   onClick={() => handleEdit(type)}
-                  className="flex-1 p-2 rounded transition flex items-center justify-center gap-1 border active:scale-95"
+                  className="flex-1 p-2 rounded transition flex items-center justify-center gap-1 border active:scale-95 text-xs sm:text-sm hover:bg-blue-50"
                   style={{ 
                     borderColor: '#BFDBFE',
                     backgroundColor: '#DBEAFE'
@@ -201,19 +187,13 @@ export default function VehicleTypesPage() {
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#DBEAFE'}
                 >
                   <Edit2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" style={{ color: '#2563EB' }} />
-                  <span 
-                    className="text-xs sm:text-sm font-medium"
-                    style={{ 
-                      color: '#2563EB',
-                      fontFamily: 'var(--font-body)'
-                    }}
-                  >
+                  <span style={{ color: '#2563EB' }}>
                     Edit
                   </span>
                 </button>
                 <button
                   onClick={() => handleDelete(type.id)}
-                  className="flex-1 p-2 rounded transition flex items-center justify-center gap-1 border active:scale-95"
+                  className="flex-1 p-2 rounded transition flex items-center justify-center gap-1 border active:scale-95 text-xs sm:text-sm hover:bg-red-50"
                   style={{ 
                     borderColor: '#FECACA',
                     backgroundColor: '#FEE2E2'
@@ -222,13 +202,7 @@ export default function VehicleTypesPage() {
                   onMouseLeave={(e) => e.currentTarget.style.backgroundColor = '#FEE2E2'}
                 >
                   <Trash2 className="w-3.5 h-3.5 sm:w-4 sm:h-4" style={{ color: '#DC2626' }} />
-                  <span 
-                    className="text-xs sm:text-sm font-medium"
-                    style={{ 
-                      color: '#DC2626',
-                      fontFamily: 'var(--font-body)'
-                    }}
-                  >
+                  <span style={{ color: '#DC2626' }}>
                     Delete
                   </span>
                 </button>
@@ -237,13 +211,9 @@ export default function VehicleTypesPage() {
           ))
         ) : (
           <div 
-            className="col-span-full text-center py-8 sm:py-12"
-            style={{ 
-              color: 'var(--text-dark)',
-              fontFamily: 'var(--font-body)'
-            }}
+            className="col-span-full text-center py-8 sm:py-12 text-paragraph text-sm sm:text-base"
           >
-            <p className="text-base sm:text-lg">No vehicle types found</p>
+            <p>No vehicle types found</p>
           </div>
         )}
       </div>
@@ -255,20 +225,15 @@ export default function VehicleTypesPage() {
           onClick={() => setShowModal(false)}
         >
           <div 
-            className="bg-white rounded-lg shadow-lg p-4 sm:p-6 max-w-md w-full max-h-[90vh] overflow-y-auto"
+            className="admin-card rounded-lg shadow-lg p-4 sm:p-6 max-w-md w-full max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
-            style={{ backgroundColor: '#FFFFFF' }}
           >
             <div 
               className="flex justify-between items-center mb-4 sticky top-0 bg-white pb-4 border-b"
               style={{ borderColor: '#E5E5E5' }}
             >
               <h2 
-                className="text-lg sm:text-xl font-bold"
-                style={{ 
-                  color: 'var(--dark-heading)',
-                  fontFamily: 'var(--font-heading)'
-                }}
+                className="text-lg sm:text-xl font-bold admin-header"
               >
                 {editingId ? "Edit Vehicle Type" : "Add Vehicle Type"}
               </h2>
@@ -283,11 +248,40 @@ export default function VehicleTypesPage() {
             <div className="space-y-3 sm:space-y-4">
               <div>
                 <label 
-                  className="block text-xs sm:text-sm font-medium mb-1"
-                  style={{ 
-                    color: 'var(--dark-heading)',
-                    fontFamily: 'var(--font-body)'
-                  }}
+                  className="block text-xs sm:text-sm font-medium mb-2 admin-header"
+                >
+                  Vehicle Photo
+                </label>
+                <div className="mb-3">
+                  {formData.photoUrl && (
+                    <div className="mb-2 rounded overflow-hidden bg-gray-100 h-24 relative">
+                      <Image 
+                        src={formData.photoUrl || "/placeholder.svg"} 
+                        alt="Vehicle preview"
+                        fill
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
+                  <label className="flex items-center justify-center gap-2 px-4 py-2 border-2 border-dashed rounded-lg cursor-pointer transition-colors hover:border-primary-green"
+                    style={{ borderColor: '#BFDBFE' }}
+                  >
+                    <Upload className="w-4 h-4" style={{ color: '#2563EB' }} />
+                    <span className="text-xs sm:text-sm" style={{ color: '#2563EB' }}>
+                      Upload Photo
+                    </span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handlePhotoUpload}
+                      className="hidden"
+                    />
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label 
+                  className="block text-xs sm:text-sm font-medium mb-1 admin-header"
                 >
                   Vehicle Name
                 </label>
@@ -295,11 +289,7 @@ export default function VehicleTypesPage() {
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
-                  style={{
-                    borderColor: '#E5E5E5',
-                    fontFamily: 'var(--font-body)'
-                  }}
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg admin-input focus:outline-none focus:ring-2 text-sm"
                   onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
                   onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
                   placeholder="e.g., Sedan"
@@ -307,11 +297,7 @@ export default function VehicleTypesPage() {
               </div>
               <div>
                 <label 
-                  className="block text-xs sm:text-sm font-medium mb-1"
-                  style={{ 
-                    color: 'var(--dark-heading)',
-                    fontFamily: 'var(--font-body)'
-                  }}
+                  className="block text-xs sm:text-sm font-medium mb-1 admin-header"
                 >
                   Passenger Capacity
                 </label>
@@ -319,11 +305,7 @@ export default function VehicleTypesPage() {
                   type="number"
                   value={formData.capacity || ""}
                   onChange={(e) => setFormData({...formData, capacity: parseInt(e.target.value) || 0})}
-                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
-                  style={{
-                    borderColor: '#E5E5E5',
-                    fontFamily: 'var(--font-body)'
-                  }}
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg admin-input focus:outline-none focus:ring-2 text-sm"
                   onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
                   onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
                   placeholder="e.g., 4"
@@ -331,11 +313,7 @@ export default function VehicleTypesPage() {
               </div>
               <div>
                 <label 
-                  className="block text-xs sm:text-sm font-medium mb-1"
-                  style={{ 
-                    color: 'var(--dark-heading)',
-                    fontFamily: 'var(--font-body)'
-                  }}
+                  className="block text-xs sm:text-sm font-medium mb-1 admin-header"
                 >
                   Base Fare (Rs.)
                 </label>
@@ -343,11 +321,7 @@ export default function VehicleTypesPage() {
                   type="number"
                   value={formData.baseFare || ""}
                   onChange={(e) => setFormData({...formData, baseFare: parseInt(e.target.value) || 0})}
-                  className="w-full px-3 sm:px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 transition-all"
-                  style={{
-                    borderColor: '#E5E5E5',
-                    fontFamily: 'var(--font-body)'
-                  }}
+                  className="w-full px-3 sm:px-4 py-2 border rounded-lg admin-input focus:outline-none focus:ring-2 text-sm"
                   onFocus={(e) => e.currentTarget.style.borderColor = 'var(--primary-green)'}
                   onBlur={(e) => e.currentTarget.style.borderColor = '#E5E5E5'}
                   placeholder="e.g., 150"
@@ -358,27 +332,17 @@ export default function VehicleTypesPage() {
             <div className="flex flex-col sm:flex-row gap-3 mt-4 sm:mt-6">
               <button 
                 onClick={() => setShowModal(false)} 
-                className="flex-1 px-4 py-2 border rounded-lg transition-all active:scale-95"
+                className="flex-1 px-4 py-2 border rounded-lg transition-all active:scale-95 text-xs sm:text-sm hover:bg-gray-50"
                 style={{ 
                   borderColor: '#D1D5DB',
-                  color: 'var(--dark-heading)',
-                  fontFamily: 'var(--font-body)'
+                  color: 'var(--dark-heading)'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#F9FAFB'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'transparent'}
               >
                 Cancel
               </button>
               <button 
                 onClick={handleSave} 
-                className="flex-1 px-4 py-2 rounded-lg transition-all active:scale-95"
-                style={{ 
-                  backgroundColor: 'var(--primary-green)',
-                  color: 'var(--text-light)',
-                  fontFamily: 'var(--font-body)'
-                }}
-                onMouseEnter={(e) => e.currentTarget.style.backgroundColor = '#1a5a2f'}
-                onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--primary-green)'}
+                className="admin-button-primary flex-1 px-4 py-2 rounded-lg transition-all active:scale-95 text-xs sm:text-sm"
               >
                 {editingId ? "Update" : "Add"}
               </button>

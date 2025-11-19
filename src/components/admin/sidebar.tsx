@@ -24,7 +24,9 @@ const MENU_ITEMS: MenuItem[] = [
     id: "administration",
     label: "Administration",
     icon: Settings,
-    children: [{ id: "admin-users", label: "Admin Users", href: "/admin/dashboard/administration/admin-users" }],
+    children: [
+      { id: "admin-users", label: "Admin Users", href: "/admin/dashboard/administration/admin-users" },
+    ],
   },
   {
     id: "fleet",
@@ -39,6 +41,7 @@ const MENU_ITEMS: MenuItem[] = [
     children: [
       { id: "drivers", label: "Drivers", href: "/admin/dashboard/users/drivers" },
       { id: "customers", label: "Customers", href: "/admin/dashboard/users/customers" },
+      { id: "riders", label: "Riders", href: "/admin/dashboard/users/riders" },
     ],
   },
   {
