@@ -1,9 +1,7 @@
 "use client"
 
-import { Play, Download, ArrowRight } from "lucide-react"
+import { Play } from "lucide-react"
 import { motion } from "framer-motion"
-import { useState } from "react"
-import Image from "next/image"
 
 export default function HowItWorksHeroSection() {
   return (
@@ -37,7 +35,7 @@ export default function HowItWorksHeroSection() {
           transition={{ delay: 0.2 }}
           className="text-lg md:text-xl text-paragraph/60 max-w-xl mx-auto mb-12 font-light tracking-tight leading-relaxed"
         >
-          Whether you're riding, ordering, or driving—discover how to get the most out of Nepal's first super app.
+          Whether you&apos;re riding, ordering, or driving—discover how to get the most out of Nepal&apos;s first super app.
         </motion.p>
 
         {/* Buttons */}
