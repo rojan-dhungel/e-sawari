@@ -52,7 +52,7 @@ const TestimonialsSection = () => {
   const goToSlide = (index: number) => setCurrentIndex(index);
 
   return (
-    <section className="relative px-4 py-16 md:px-8 bg-roads font-body overflow-hidden">
+    <section className="relative px-4 py-16 md:px-8 bg-transparent font-body overflow-hidden">
       {/* Decorative Background Elements */}
       <div className="absolute top-20 left-10 w-72 h-72 bg-primary-green/5 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-green/5 rounded-full blur-3xl pointer-events-none"></div>

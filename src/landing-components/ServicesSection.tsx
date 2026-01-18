@@ -66,8 +66,8 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="px-4 py-24 md:px-8 bg-roads overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative px-4 py-24 md:px-8 overflow-hidden bg-transparent">
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Section Heading */}
         <div className="text-center space-y-4 mb-20 relative">
           <motion.div

@@ -8,11 +8,13 @@ import TestimonialsSection from '@/landing-components/TestimonialsSection'
 import DealsSection from '@/landing-components/DealsSection'
 import NewsletterSection from '@/landing-components/NewsletterSection'
 import DriverSection from '@/landing-components/DriverSection'
+import RoadPattern from '@/ui/RoadPattern'
 
 
 const Home = () => {
   return (
     <>
+      <RoadPattern />
       <HeroSection />
       <TestimonialsSection />
       <ServicesSection />

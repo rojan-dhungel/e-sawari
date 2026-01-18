@@ -41,7 +41,7 @@ const DealsSection: React.FC = () => {
   };
 
   return (
-    <section className="relative px-4 py-20 md:px-8 bg-roads font-body overflow-hidden">
+    <section className="relative px-4 py-20 md:px-8 bg-transparent font-body overflow-hidden">
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center space-y-4 mb-14">

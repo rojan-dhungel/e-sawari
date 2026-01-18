@@ -25,7 +25,7 @@ const StayTunedPage: React.FC = () => {
 
       {/* Description */}
       <p className="text-lg md:text-xl text-center text-[var(--dark-heading)] mb-8 max-w-lg">
-        We’re working on something exciting! This page is coming soon.
+        We`re working on something exciting! This page is coming soon.
       </p>
 
       {/* Return to Home Button */}

@@ -28,12 +28,16 @@ const appFeatures = [
   }
 ];
 
+
+// ... (other imports)
+
+
 const RideHailingPreview = () => {
   const [activeFeature, setActiveFeature] = useState(appFeatures[0]);
 
   return (
-    <section className="py-24 px-4 md:px-8 bg-roads overflow-hidden">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative py-24 px-4 md:px-8 overflow-hidden bg-transparent">
+      <div className="relative z-10 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-24 items-center">
           
           {/* Left Side: Content */}
