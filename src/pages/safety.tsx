@@ -7,7 +7,7 @@ import { SafetyFeaturesSection } from '@/safety-components/SafetyFeaturesSection
 
 const safety = () => {
   return (
-     <main className="min-h-screen bg-background pt-28">
+     <main className="min-h-screen bg-background">
 
       <HeroSection/>
       <SafetyFeaturesSection/>

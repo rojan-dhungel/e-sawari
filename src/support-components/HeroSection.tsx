@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 
 export function HeroSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-primary-green/5 via-white to-white py-24 lg:py-32">
+    <section className="relative overflow-hidden bg-gradient-to-b from-primary-green/5 via-white to-white pt-32 pb-24 lg:pt-40 lg:pb-32">
       {/* Background Blobs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary-green/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 -z-0" />
       <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-100/50 rounded-full blur-[80px] translate-y-1/3 -translate-x-1/3 -z-0" />
