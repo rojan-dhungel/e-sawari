@@ -24,9 +24,10 @@ const contactMethods = [
     icon: MapPin,
     title: "Visit Our Office",
     description: "Meet us in person at our headquarters.",
-    contact: "Kathmandu, Nepal",
+    contact: "eSawari Nepal, Singhdurbar",
     action: "Get Directions",
     available: "Mon-Fri, 9 AM - 6 PM",
+    link: "https://www.google.com/maps/place/eSawari+Nepal/@27.6990769,85.320757,111m/data=!3m1!1e3!4m14!1m7!3m6!1s0x39eb19a5a17cf095:0xae7d89f50454f655!2sSinghdurbar!8m2!3d27.6980976!4d85.3234992!16zL20vMGd3Mjcz!3m5!1s0x39eb1905e8b2172f:0x42faacc47e0eb3d!8m2!3d27.6990769!4d85.320757!16s%2Fg%2F11xtcn6gj8?entry=ttu&g_ep=EgoyMDI2MDExMy4wIKXMDSoKLDEwMDc5MjA2OUgBUAM%3D"
   },
 ]
 
@@ -73,15 +74,28 @@ export function ContactSection() {
                 <span>{method.available}</span>
               </div>
 
-              <motion.button
-                whileHover={{ x: 4 }}
-                className="text-primary-green font-medium flex items-center justify-center gap-1 hover:underline transition-all"
-              >
-                {method.action} <ArrowRight className="w-4 h-4" />
-              </motion.button>
+              {method.link ? (
+                <motion.a
+                  href={method.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ x: 4 }}
+                  className="text-primary-green font-medium flex items-center justify-center gap-1 hover:underline transition-all"
+                >
+                  {method.action} <ArrowRight className="w-4 h-4" />
+                </motion.a>
+              ) : (
+                <motion.button
+                  whileHover={{ x: 4 }}
+                  className="text-primary-green font-medium flex items-center justify-center gap-1 hover:underline transition-all"
+                >
+                  {method.action} <ArrowRight className="w-4 h-4" />
+                </motion.button>
+              )}
             </motion.div>
           ))}
         </div>
+
 
 
         
