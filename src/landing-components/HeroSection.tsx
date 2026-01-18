@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Star, ArrowRight, ShieldCheck } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
 const HeroSection = () => {

@@ -139,7 +139,6 @@ interface ServiceCardProps {
   description: string;
   bgColor: string;
   iconColor: string;
-  accentColor: string;
   comingSoon?: boolean;
   index: number;
 }
@@ -150,7 +149,6 @@ const ServiceCard = ({
   description,
   bgColor,
   iconColor,
-  accentColor,
   comingSoon = false,
   index,
 }: ServiceCardProps) => {

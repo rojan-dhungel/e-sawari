@@ -150,7 +150,6 @@ export default function PartnerStepsSection() {
   const [activeService, setActiveService] = useState<ServiceKey>("ride");
 
   const steps = services[activeService];
-  const currentService = serviceButtons.find((s) => s.key === activeService);
 
   return (
     <section

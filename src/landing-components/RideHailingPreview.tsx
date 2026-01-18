@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Smartphone, MapPin, Search, Calendar, ChevronRight, Play, Star } from 'lucide-react';
+import { MapPin, Search, Calendar, ChevronRight } from 'lucide-react';
 
 const appFeatures = [
   {

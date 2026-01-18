@@ -1,8 +1,8 @@
 "use client"
-import { Car, Utensils, Info } from "lucide-react"
+import { Car, Utensils, Info, LucideIcon } from "lucide-react"
 import { useState } from "react"
 
-const categories: { id: 'ride' | 'delivery' | 'general'; label: string; icon: any }[] = [
+const categories: { id: 'ride' | 'delivery' | 'general'; label: string; icon: LucideIcon }[] = [
   { id: 'ride', label: 'For Riders', icon: Car },
   { id: 'delivery', label: 'Food & Parcel', icon: Utensils },
   { id: 'general', label: 'General', icon: Info },

@@ -119,7 +119,6 @@ export default function RiderStepsSection() {
   const [activeService, setActiveService] = useState<string>("ride");
 
   const steps = services[activeService];
-  const currentService = serviceButtons.find((s) => s.key === activeService);
 
   return (
     <section
