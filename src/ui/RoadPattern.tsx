@@ -1,7 +1,6 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const RoadPattern = () => {
     // Reduced to 3 distinct, cleaner paths for a minimalistic look
@@ -18,6 +17,14 @@ const RoadPattern = () => {
 
     return (
         <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
+            {/* Define keyframes for movement */}
+            <style jsx global>{`
+                @keyframes moveAlongPath {
+                    from { offset-distance: 0%; }
+                    to { offset-distance: 100%; }
+                }
+            `}</style>
+
             <svg
                 width="100%"
                 height="100%"
@@ -85,20 +92,22 @@ const Vehicle = ({ path, type, delay, duration }: VehicleProps) => {
     const opacity = isCar ? 0.25 : 0.35; 
 
     return (
-        <motion.g
-            initial={{ offsetDistance: "0%" }}
-            animate={{ offsetDistance: "100%" }}
-            transition={{
-                duration: duration,
-                repeat: Infinity,
-                ease: "linear",
-                delay: delay
-            }}
-            style={{
-                offsetPath: `path('${path}')`,
-                offsetRotate: "auto",
-            }}
-        >
+        <g style={{
+            offsetPath: `path('${path}')`,
+            offsetRotate: "auto",
+            animation: `moveAlongPath ${duration}s linear infinite`,
+            animationDelay: `${delay}s`,
+            opacity: 0 // Hidden initially until animation starts (optional, but handled by keyframes usually)
+        }}>
+           {/* Note: In Safari/Some browsers, offset-path needs the element to be visible/block-ish. 
+             SVG G elements support it. */}
+             {/* To avoid flash of unstyled content or initial position issue: */}
+             <style jsx>{`
+                g {
+                    animation-fill-mode: both;
+                }
+             `}</style>
+
             <rect 
                 x={-width / 2} 
                 y={-height / 2} 
@@ -108,7 +117,7 @@ const Vehicle = ({ path, type, delay, duration }: VehicleProps) => {
                 fill={color} 
                 fillOpacity={opacity}
             />
-        </motion.g>
+        </g>
     );
 };
 
