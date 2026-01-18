@@ -27,7 +27,7 @@ const DriverSection = () => {
   ]
 
   return (
-    <section className="relative px-4 py-20 overflow-hidden bg-roads">
+    <section className="relative px-4 py-20 overflow-hidden bg-transparent">
       {/* Decorative background */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-green-100/30 to-transparent rounded-full blur-3xl -z-0" />
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-emerald-100/20 to-transparent rounded-full blur-3xl -z-0" />

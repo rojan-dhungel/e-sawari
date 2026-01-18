@@ -1,65 +1,81 @@
-import { Shield, MapPin, Phone, UserCheck, Camera, Star } from "lucide-react"
+"use client"
+import { Shield, MapPin, Phone, UserCheck, Camera, Star, ArrowRight } from "lucide-react"
 
 const features = [
   {
     icon: UserCheck,
     title: "Driver Verification",
-    description:
-      "All drivers undergo thorough background checks and document verification before joining our platform.",
+    description: "Multi-step background checks, document verification, and in-person interviews for every partner.",
+    colSpan: "lg:col-span-2",
   },
   {
     icon: MapPin,
-    title: "Real-time Tracking",
-    description: "Track your ride, delivery, or service in real-time with GPS monitoring and live location sharing.",
+    title: "Real-time GPS Tracking",
+    description: "Share your live location with friends and family instantly.",
+    colSpan: "lg:col-span-1",
   },
   {
     icon: Phone,
-    title: "Emergency Button",
-    description: "One-tap emergency button connects you instantly to our safety team and local authorities.",
+    title: "SOS Emergency Button",
+    description: "Direct line to local authorities and our 24/7 dedicated safety response team.",
+    colSpan: "lg:col-span-1",
   },
   {
     icon: Camera,
-    title: "Trip Recording",
-    description: "All trips are recorded with driver photos, vehicle details, and route information for your safety.",
+    title: "Ride Monitoring",
+    description: "AI-powered anomaly detection for unexpected stops or route changes.",
+    colSpan: "lg:col-span-2",
   },
   {
     icon: Star,
-    title: "Rating System",
-    description: "Two-way rating system helps maintain service quality and identifies trusted service providers.",
+    title: "Two-Way Ratings",
+    description: "Maintaining a respectful community through mutual accountability.",
+    colSpan: "lg:col-span-1",
   },
   {
     icon: Shield,
-    title: "Insurance Coverage",
-    description: "Comprehensive insurance coverage for all rides and deliveries to protect you and your belongings.",
+    title: "Insured Rides",
+    description: "Every trip is insured to protect you and your belongings.",
+    colSpan: "lg:col-span-2",
   },
 ]
 
 export function SafetyFeaturesSection() {
   return (
-    <section className="py-20 bg-light">
+    <section className="py-24 bg-light">
       <div className="container mx-auto px-4">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-dark-heading mb-4">
+        <div className="text-center mb-16 max-w-3xl mx-auto">
+           <span className="text-primary-green font-bold tracking-wider uppercase text-sm mb-3 block">Technology</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-dark-heading mb-6 tracking-tight">
             Advanced Safety Features
           </h2>
-          <p className="text-xl text-paragraph max-w-3xl mx-auto">
-            We&apos;ve built multiple layers of safety into every aspect of our platform to protect you at every step.
+          <p className="text-xl text-paragraph leading-relaxed">
+            We&apos;ve built multiple layers of protection into the Sawari app, so you can travel with complete peace of mind.
           </p>
         </div>
 
-        {/* Features grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Features Bento Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl p-8 text-center shadow-lg hover:shadow-xl transition-shadow"
+              className={`${feature.colSpan} group relative bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary-green/30 hover:-translate-y-1 overflow-hidden`}
             >
-              <div className="bg-primary-green/10 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6">
-                <feature.icon className="h-8 w-8 text-primary-green" />
+              {/* Hover Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              
+              <div className="relative z-10 flex flex-col h-full">
+                <div className="flex justify-between items-start mb-6">
+                    <div className="w-14 h-14 rounded-2xl bg-gray-50 group-hover:bg-white flex items-center justify-center transition-colors shadow-sm group-hover:scale-110 duration-300">
+                        <feature.icon className="h-7 w-7 text-primary-green" />
+                    </div>
+                    <ArrowRight className="h-5 w-5 text-gray-300 group-hover:text-primary-green transform -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                </div>
+                
+                <h3 className="text-2xl font-bold text-dark-heading mb-3">{feature.title}</h3>
+                <p className="text-gray-500 font-medium leading-relaxed">{feature.description}</p>
               </div>
-              <h3 className="text-xl font-semibold text-dark-heading mb-4">{feature.title}</h3>
-              <p className="text-paragraph leading-relaxed">{feature.description}</p>
             </div>
           ))}
         </div>
@@ -67,3 +83,4 @@ export function SafetyFeaturesSection() {
     </section>
   )
 }
+
