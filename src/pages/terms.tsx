@@ -3,7 +3,7 @@ import React from 'react'
 
 const terms = () => {
   return (
-    <main className="pt-28">
+    <main>
       <TermsAndConditions />
     </main>
   )

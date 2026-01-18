@@ -3,7 +3,7 @@ import PrivacyPolicy from '@/Documents/PrivacyPolicy'
 
 const PrivacyPolicyPage = () => {
   return (
-    <main className="pt-28">
+    <main>
       <PrivacyPolicy />
     </main>
   )

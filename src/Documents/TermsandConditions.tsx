@@ -6,7 +6,7 @@ import { HelpCircle } from "lucide-react";
 
 const TermsAndConditions: React.FC = () => {
   return (
-    <main className="bg-[var(--light-background)] text-[var(--dark-heading)] min-h-screen py-16 px-6 md:px-20 lg:px-32">
+    <main className="bg-[var(--light-background)] text-[var(--dark-heading)] min-h-screen pt-32 pb-16 px-6 md:px-20 lg:px-32 lg:pt-40">
       <h1 className="text-4xl md:text-5xl font-semibold mb-8 text-[var(--primary-green)]">
         Terms and Conditions
       </h1>

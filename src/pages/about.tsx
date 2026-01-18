@@ -12,7 +12,7 @@ import NewsletterSection from '@/landing-components/NewsletterSection';
 
 const About = () => {
   return (
-    <>
+    <main>
       <HeroSection />
       {/* <StoryTimeline /> */}
       <MissionVision />
@@ -21,7 +21,7 @@ const About = () => {
       <TeamSection />
       <CTASection />
       <NewsletterSection />
-    </>
+    </main>
   );
 };
 

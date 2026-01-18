@@ -40,7 +40,7 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="relative w-full min-h-screen pt-28 overflow-hidden bg-roads">
+      <section className="relative w-full min-h-screen pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden bg-roads">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Column: Tech Content */}
