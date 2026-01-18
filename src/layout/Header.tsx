@@ -10,8 +10,8 @@ const Header: React.FC = () => {
   const router = useRouter();
   const isHomePage = router.pathname === '/';
   const [showHeader, setShowHeader] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const [showQR, setShowQR] = useState(false);
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 

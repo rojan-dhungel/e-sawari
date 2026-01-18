@@ -1,8 +1,8 @@
 "use client"
-import { Users, Car, Package, Utensils, Info } from "lucide-react"
+import { Car, Utensils, Info } from "lucide-react"
 import { useState } from "react"
 
-const categories = [
+const categories: { id: 'ride' | 'delivery' | 'general'; label: string; icon: any }[] = [
   { id: 'ride', label: 'For Riders', icon: Car },
   { id: 'delivery', label: 'Food & Parcel', icon: Utensils },
   { id: 'general', label: 'General', icon: Info },
@@ -48,7 +48,7 @@ export function GuidelinesSection() {
             {categories.map((cat) => (
                 <button
                     key={cat.id}
-                    onClick={() => setActiveTab(cat.id as any)}
+                    onClick={() => setActiveTab(cat.id)}
                     className={`flex items-center gap-2 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 ${
                         activeTab === cat.id 
                         ? 'bg-primary-green text-white shadow-lg scale-105' 

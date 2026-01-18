@@ -43,7 +43,7 @@ export function HeroSection() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-5xl md:text-7xl font-bold font-heading text-dark-heading mb-8 tracking-tight leading-tight"
           >
-            We're Here to <br/>
+            We&apos;re Here to <br/>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-green to-emerald-600">Help You</span>
           </motion.h1>
 

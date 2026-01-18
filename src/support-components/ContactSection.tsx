@@ -1,6 +1,6 @@
 "use client"
 
-import { Phone, Mail, MessageSquare, MapPin, Clock, ArrowRight } from "lucide-react"
+import { Phone, Mail, MapPin, Clock, ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 
 const contactMethods = [

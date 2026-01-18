@@ -4,12 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import Image from 'next/image';
 
-const avatars = [
-  '/Images/Avatars/gamer.png',
-  '/Images/Avatars/woman.png',
-  '/Images/Avatars/man.png',
-];
-
 const testimonials = [
   {
     name: 'Rajesh Hamal',
