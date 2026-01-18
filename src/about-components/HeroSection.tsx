@@ -40,7 +40,7 @@ const HeroSection = () => {
 
   return (
     <>
-      <section className="relative w-full min-h-screen pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden bg-roads">
+      <section className="relative w-full min-h-screen pt-24 pb-24 lg:pt-32 lg:pb-32 overflow-hidden bg-roads">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Column: Tech Content */}
@@ -139,7 +139,7 @@ const HeroSection = () => {
               <motion.div
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -left-12 top-1/4 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 hidden md:block"
+                className="absolute -left-4 top-1/4 bg-white p-4 rounded-2xl shadow-xl border border-gray-100 hidden md:block"
               >
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 bg-primary-green/10 rounded-full flex items-center justify-center">
