@@ -3,28 +3,31 @@
 import React from 'react';
 
 const RoadPattern = () => {
-    // Reduced to 3 distinct, cleaner paths for a minimalistic look
+    // Winding, looping paths - refined to be less cartoonish
     const paths = [
-        // 1. Gentle Main Highway (TopLeft to BottomRight)
-        "M-100 200 C 500 200 700 900 1100 900", 
+        // 1. Large Figure-8-ish Loop (Central)
+        "M 500 100 C 800 100 800 400 500 400 C 200 400 200 700 500 700 C 800 700 900 900 900 1100",
+
+        // 2. Wide Meandering Snake (Left to Right)
+        "M -100 300 C 200 300 200 100 500 100 C 800 100 800 600 1100 600",
+
+        // 3. Bottom Loop (Enters left, loops, exits bottom)
+        "M -100 800 C 300 800 400 500 200 500 C 0 500 100 900 500 1100",
         
-        // 2. Vertical S-Curve (Connects top to bottom)
-        "M 200 -100 C 200 500 800 500 800 1100", 
-        
-        // 3. Wide Arch/Loop (Spans horizontally)
-        "M 0 600 Q 500 100 1000 600",
+        // 4. Top Right Corner Curve
+        "M 800 -100 Q 800 300 1100 300"
     ];
 
     return (
         <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-            {/* Define keyframes for movement */}
+             {/* Define keyframes for movement */}
             <style jsx global>{`
                 @keyframes moveAlongPath {
                     from { offset-distance: 0%; }
                     to { offset-distance: 100%; }
                 }
             `}</style>
-
+            
             <svg
                 width="100%"
                 height="100%"
@@ -32,38 +35,39 @@ const RoadPattern = () => {
                 preserveAspectRatio="xMidYMid slice"
                 xmlns="http://www.w3.org/2000/svg"
             >
-                {/* 1. Render Roads (Background Layer) */}
+                {/* 1. Render Roads (Background Layer) - More subtle */}
                 {paths.map((d, i) => (
                     <React.Fragment key={`road-${i}`}>
-                        {/* Road Base - Very Subtle Gray */}
+                        {/* Road Base - Wider but more transparent */}
                         <path 
                             d={d}
                             fill="none" 
                             stroke="#e2e8f0" // slate-200
                             strokeLinecap="round" 
-                            strokeOpacity="0.5" 
-                            strokeWidth="24"
+                            strokeLinejoin="round"
+                            strokeOpacity="0.4" // Reduced from 0.6
+                            strokeWidth="45"
                         />
-                        {/* Lane Markings - Dashed */}
+                        {/* Lane Markings - Very subtle */}
                         <path 
                             d={d}
                             fill="none" 
                             stroke="#cbd5e1" // slate-300
                             strokeLinecap="round" 
-                            strokeOpacity="0.4" 
+                            strokeLinejoin="round"
+                            strokeOpacity="0.3" // Reduced from 0.5
                             strokeWidth="1.5" 
                             strokeDasharray="15 30"
                         />
                     </React.Fragment>
                 ))}
 
-                {/* 2. Render Vehicles (Low Density, Green Tint) */}
+                {/* 2. Render Vehicles (Subtle Primary Green) */}
                 {paths.map((d, i) => (
                     <React.Fragment key={`traffic-${i}`}>
-                        {/* Reduced traffic: Just 1-2 vehicles per path */}
                         <Vehicle path={d} type="car" delay={i * 3} duration={25 + i * 4} />
                         {i % 2 === 0 && (
-                             <Vehicle path={d} type="bike" delay={i * 3 + 12} duration={20 + i * 2} />
+                             <Vehicle path={d} type="bike" delay={i * 3 + 12} duration={20 + i * 3} />
                         )}
                     </React.Fragment>
                 ))}
@@ -80,16 +84,15 @@ interface VehicleProps {
 }
 
 const Vehicle = ({ path, type, delay, duration }: VehicleProps) => {
-    // Config based on type
     const isCar = type === 'car';
     const width = isCar ? 16 : 10;
-    const height = isCar ? 8 : 4;
+    const height = isCar ? 8 : 5;
     
-    // Subtle Primary Green (#247C3F)
-    const color = "#247C3F"; 
+    // Primary Green (#247c3f)
+    const color = "#247c3f"; 
     
-    // Low opacity for subtlety
-    const opacity = isCar ? 0.25 : 0.35; 
+    // Very subtle opacity
+    const opacity = isCar ? 0.2 : 0.25; 
 
     return (
         <g style={{
@@ -97,17 +100,13 @@ const Vehicle = ({ path, type, delay, duration }: VehicleProps) => {
             offsetRotate: "auto",
             animation: `moveAlongPath ${duration}s linear infinite`,
             animationDelay: `${delay}s`,
-            opacity: 0 // Hidden initially until animation starts (optional, but handled by keyframes usually)
+            opacity: 0
         }}>
-           {/* Note: In Safari/Some browsers, offset-path needs the element to be visible/block-ish. 
-             SVG G elements support it. */}
-             {/* To avoid flash of unstyled content or initial position issue: */}
              <style jsx>{`
                 g {
                     animation-fill-mode: both;
                 }
              `}</style>
-
             <rect 
                 x={-width / 2} 
                 y={-height / 2} 
