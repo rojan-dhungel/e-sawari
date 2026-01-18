@@ -56,7 +56,7 @@ const CTASection = () => {
 
             {/* Description */}
             <p
-              className="text-base md:text-lg max-w-2xl text-light/80 font-body font-light leading-relaxed transition-opacity duration-300"
+              className="text-base md:text-lg max-w-2xl text-light font-body font-light leading-relaxed transition-opacity duration-300"
               style={{
                 opacity: isHovered ? 1 : 0.9,
               }}
