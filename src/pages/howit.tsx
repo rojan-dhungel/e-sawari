@@ -5,7 +5,7 @@ import Howitworks from "@/howitworks-component/Howitworks"
 
 const Howit = () => {
   return (
-    <main className="pt-28">
+    <main>
       <Howitworks />
     </main>
   )

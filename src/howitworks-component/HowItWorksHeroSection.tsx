@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 
 export default function HowItWorksHeroSection() {
   return (
-    <section className="relative px-4 py-24 overflow-hidden bg-roads min-h-[60vh] flex items-center">
+    <section className="relative px-4 pt-32 pb-24 lg:pt-40 lg:pb-32 overflow-hidden bg-roads min-h-[60vh] flex items-center">
       <div className="max-w-7xl mx-auto px-4 relative z-10 w-full text-center">
         {/* Badge */}
         <motion.div
