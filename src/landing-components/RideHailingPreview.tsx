@@ -9,21 +9,21 @@ const appFeatures = [
     id: 'bookings',
     title: 'Instant Bookings',
     description: 'Book a ride in seconds with our intuitive interface. Real-time driver matching ensures you are never kept waiting.',
-    video: '/videos/video-1.mp4',
+    video: 'video-1',
     icon: Calendar,
   },
   {
     id: 'tracking',
     title: 'Live Tracking',
     description: 'Track your ride in real-time. Share your trip status with friends and family for added safety and peace of mind.',
-    video: '/videos/video-2.mp4',
+    video: 'video-2',
     icon: MapPin,
   },
   {
     id: 'discovery',
     title: 'Easy Discovery',
     description: 'Find the best routes and vehicle options tailored to your needs. Transparent pricing before you even book.',
-    video: '/videos/video-3.mp4',
+    video: 'video-3',
     icon: Search,
   }
 ];

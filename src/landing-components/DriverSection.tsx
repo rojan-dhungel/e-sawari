@@ -72,13 +72,15 @@ const DriverSection = () => {
 
           {/* Video Card */}
           <div className="relative h-[400px] w-full rounded-[2.5rem] overflow-hidden shadow-2xl group border border-gray-100">
-             <video
+              <video
                 autoPlay
                 muted
                 loop
                 playsInline
+                preload="auto"
                 className="absolute inset-0 w-full h-full object-cover transform transition-transform duration-700 group-hover:scale-110"
               >
+                <source src="/videos/video-1.webm" type="video/webm" />
                 <source src="/videos/video-1.mp4" type="video/mp4" />
               </video>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />

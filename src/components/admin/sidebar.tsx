@@ -155,7 +155,7 @@ export default function AdminSidebar({ isOpen, onClose }: { isOpen: boolean; onC
             {/* Avatar */}
             <div className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
               <Image
-                src="/Images/sawari.png"
+                src="/Images/sawari.webp"
                 alt="User"
                 width={40}
                 height={40}

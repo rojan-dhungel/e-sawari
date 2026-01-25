@@ -20,31 +20,31 @@ export default function TeamSection() {
     {
       name: "Rajan Kumar Shrestha",
       role: "Chairman",
-      image: "/Images/Directors/RajanKumar Shrestha.jpeg",
+      image: "/Images/Directors/RajanKumar Shrestha.webp",
       email: "chairman@esawari.com",
     },
         {
       name: "Ashok Kumar Rai",
       role: "Director",
-      image: "/Images/Directors/AshokKumarRai.jpeg",
+      image: "/Images/Directors/AshokKumarRai.webp",
       email: "director2@esawari.com",
     },
         {
       name: "Bachchhu Narayan Shrestha",
       role: "Director",
-      image: "/Images/Directors/BachchhuNarayan Shrestha.jpeg",
+      image: "/Images/Directors/BachchhuNarayan Shrestha.webp",
       email: "director5@esawari.com",
     },
     {
       name: "Ghanashyam Paudyal",
       role: "Director",
-      image: "/Images/Directors/GhanashyamPaudyal.jpeg",
+      image: "/Images/Directors/GhanashyamPaudyal.webp",
       email: "director1@esawari.com",
     },
     {
       name: "Ambika Pudasaini",
       role: "Director",
-      image: "/Images/Directors/AmbikaPudasaini.jpeg",
+      image: "/Images/Directors/AmbikaPudasaini.webp",
       email: "director4@esawari.com",
     },
 

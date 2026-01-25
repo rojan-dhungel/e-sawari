@@ -10,7 +10,7 @@ const StayTunedPage: React.FC = () => {
       {/* Logo */}
       <div className="mb-12">
         <Image
-          src="/Images/sawari.png" // directly reference from public folder
+          src="/Images/sawari.webp" // directly reference from public folder
           alt="Sawari Logo"
           width={150}
           height={50}

@@ -90,7 +90,7 @@ const Header: React.FC = () => {
           <div className="flex items-center">
             <Link href="/">
               <Image
-                src="/Images/SawariLogo.png"
+                src="/Images/SawariLogo.webp"
                 alt="Sawari logo"
                 width={160}
                 height={60}
@@ -167,7 +167,7 @@ const Header: React.FC = () => {
             <div className="flex items-center">
               <Link href="/">
                 <Image
-                  src="/Images/SawariLogo.png"
+                  src="/Images/SawariLogo.webp"
                   alt="Sawari logo"
                   width={160}
                   height={60}
@@ -314,7 +314,7 @@ const Header: React.FC = () => {
             <div className="flex justify-center mb-5">
               <div className="rounded-xl shadow-md">
                 <Image
-                  src="/Images/sawari.png"
+                  src="/Images/sawari.webp"
                   alt="Sawari app logo"
                   width={110}
                   height={110}
@@ -339,7 +339,7 @@ const Header: React.FC = () => {
             <div className="flex justify-center my-5">
               <div className="bg-gradient-to-br from-gray-50 to-white p-5 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
                 <Image
-                  src="/Images/qr-sawari.png"
+                  src="/Images/qr-sawari.webp"
                   alt="QR Code"
                   width={170}
                   height={170}

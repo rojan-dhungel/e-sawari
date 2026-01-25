@@ -18,8 +18,8 @@ const MissionVisionValues = () => {
     }))
   }
 
-  const missionImage = "/Images/mission.png" 
-  const visionImage = "/Images/vision.png"
+  const missionImage = "/Images/mission.webp" 
+  const visionImage = "/Images/vision.webp"
 
   const tabs = [
     { id: "mission" as const, label: "Mission" },
@@ -33,7 +33,7 @@ const MissionVisionValues = () => {
         "Empowering riders and drivers through fairness, opportunity, and connection.",
       detailedContent:
         "We believe in putting people first. Our platform creates meaningful opportunities for drivers to earn a sustainable income while providing riders with reliable, safe transportation. We foster a community built on mutual respect, fair compensation, and shared success. Every feature we build, every policy we create, is designed with the wellbeing of our community at its core.",
-      image: "/Images/Values/people.png",
+      image: "/Images/Values/people.webp",
     },
     {
       title: "Planet",
@@ -41,7 +41,7 @@ const MissionVisionValues = () => {
         "Driving towards a sustainable future with eco-friendly and shared mobility.",
       detailedContent:
         "Environmental responsibility drives our innovation. We're committed to reducing carbon emissions through shared rides, supporting electric vehicle adoption, and optimizing routes for efficiency. Our vision is a Nepal where mobility and sustainability go hand in hand, creating cleaner cities and a healthier planet for future generations.",
-      image: "/Images/Values/planets.png",
+      image: "/Images/Values/planets.webp",
 
     },
     {
@@ -50,7 +50,7 @@ const MissionVisionValues = () => {
         "Innovating to move Nepal faster, safer, and smarter — every single day.",
       detailedContent:
         "Progress is in our DNA. We continuously innovate to solve transportation challenges, improve safety standards, and enhance user experience. Through technology and collaboration, we're building the infrastructure that will power Nepal's mobility future, making every journey more efficient, secure, and seamless.",
-      image: "/Images/Values/progress.png",
+      image: "/Images/Values/progress.webp",
     },
   ]
 

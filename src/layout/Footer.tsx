@@ -14,7 +14,7 @@ const Footer = () => {
           <div className="space-y-6">
             <Link href="/">
               <Image
-                src="/Images/sawari.png"
+                src="/Images/sawari.webp"
                 alt="esawari logo"
                 width={600}
                 height={180}
