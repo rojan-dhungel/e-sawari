@@ -9,10 +9,10 @@ interface ExtendedWindow extends Window {
 const StoreRedirect = () => {
   useEffect(() => {
     const win = window as unknown as ExtendedWindow;
-    const userAgent = navigator.userAgent || navigator.vendor || win.opera;
+    const userAgent = (navigator.userAgent || navigator.vendor || win.opera || "").toLowerCase();
 
-    // iOS detection from: http://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !win.MSStream) {
+    // iOS detection
+    if (/ipad|iphone|ipod/.test(userAgent) && !win.MSStream) {
       window.location.href = "https://apps.apple.com/np/app/sawari-user/id6749206812";
       return;
     }
