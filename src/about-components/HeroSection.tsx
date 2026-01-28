@@ -80,18 +80,28 @@ const HeroSection = () => {
                 transition={{ delay: 0.3 }}
                 className="flex flex-wrap gap-4 pt-4"
               >
-                <button className="flex items-center gap-3 bg-primary-green text-white px-8 py-3 rounded-2xl hover:scale-105 transition-all group shadow-xl">
+                <a 
+                  href="https://apps.apple.com/np/app/sawari-user/id6749206812"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-primary-green text-white px-8 py-3 rounded-2xl hover:scale-105 transition-all group shadow-xl"
+                >
                    <div className="text-left font-body">
                     <p className="text-[10px] uppercase opacity-70 leading-none font-bold">Download on</p>
                     <p className="text-lg font-bold leading-none mt-1">App Store</p>
                   </div>
-                </button>
-                <button className="flex items-center gap-3 bg-white border-2 border-primary-green text-primary-green px-8 py-3 rounded-2xl hover:scale-105 transition-all group shadow-sm">
+                </a>
+                <a 
+                  href="https://play.google.com/store/apps/details?id=com.sawari.app&hl=en_US"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-white border-2 border-primary-green text-primary-green px-8 py-3 rounded-2xl hover:scale-105 transition-all group shadow-sm"
+                >
                   <div className="text-left font-body">
                     <p className="text-[10px] uppercase opacity-70 leading-none font-bold">Get it on</p>
                     <p className="text-lg font-bold leading-none mt-1">Google Play</p>
                   </div>
-                </button>
+                </a>
               </motion.div>
             </div>
 

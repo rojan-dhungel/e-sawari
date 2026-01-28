@@ -6,28 +6,34 @@ import Image from 'next/image';
 
 const testimonials = [
   {
-    name: 'Rajesh Hamal',
-    role: 'Brand Ambassador',
-    avatar: '/Images/Avatars/man.webp',
-    text: 'Sawari is not just an app; it is a movement to modernize Nepal. Their commitment to safety and reliability makes it my primary choice for every journey.'
+    name: 'Rajan Kumar Shrestha',
+    role: 'Chairman',
+    avatar: '/Images/Directors/RajanKumar Shrestha.webp',
+    text: 'Sawari is not just an app; it is a movement to modernize Nepal. Our commitment to safety and reliability makes it the primary choice for every journey.'
   },
   {
     name: 'Ashok Kumar Rai',
-    role: 'Chairman',
+    role: 'Director',
     avatar: '/Images/Directors/AshokKumarRai.webp',
     text: 'Our vision at eSawari is to create a seamless digital ecosystem that empowers every citizen. We are building the future of mobility in Nepal.'
   },
   {
-    name: 'Sawari Tech Team',
-    role: 'IT Department',
-    avatar: '/Images/Avatars/man.webp',
+    name: 'Bachchhu Narayan Shrestha',
+    role: 'Director',
+    avatar: '/Images/Directors/BachchhuNarayan Shrestha.webp',
     text: 'We leverage state-of-the-art technology to ensure your rides and deliveries are tracked in real-time with 99.9% uptime. Safety is coded into our DNA.'
   },
   {
-    name: 'Sawari Growth Team',
-    role: 'Marketing Department',
-    avatar: '/Images/Avatars/woman.webp',
+    name: 'Ghanashyam Paudyal',
+    role: 'Director',
+    avatar: '/Images/Directors/GhanashyamPaudyal.webp',
     text: "Connecting communities is what we do best. From local favorites to daily commutes, we're making Sawari a household name across Nepal."
+  },
+  {
+    name: 'Ambika Pudasaini',
+    role: 'Director',
+    avatar: '/Images/Directors/AmbikaPudasaini.webp',
+    text: "Our team's dedication to innovation and excellence is what sets us apart. We are constantly striving to improve our services for the people of Nepal."
   }
 ];
 

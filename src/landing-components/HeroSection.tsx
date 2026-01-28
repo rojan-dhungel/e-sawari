@@ -26,7 +26,10 @@ const HeroSection = () => {
       <div className="relative z-20 w-full min-h-[100dvh] flex items-end justify-end p-8 md:p-16">
         <div className="flex flex-col items-center gap-6">
           <div className="flex flex-row gap-4">
-            <motion.button
+            <motion.a
+              href="https://apps.apple.com/np/app/sawari-user/id6749206812"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5, duration: 0.6 }}
@@ -38,9 +41,12 @@ const HeroSection = () => {
                 <p className="text-[10px] uppercase opacity-60">Download on</p>
                 <p className="text-lg font-semibold mt-1">App Store</p>
               </div>
-            </motion.button>
+            </motion.a>
 
-            <motion.button
+            <motion.a
+              href="https://play.google.com/store/apps/details?id=com.sawari.app&hl=en_US"
+              target="_blank"
+              rel="noopener noreferrer"
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.6, duration: 0.6 }}
@@ -52,10 +58,13 @@ const HeroSection = () => {
                 <p className="text-[10px] uppercase opacity-60">Get it on</p>
                 <p className="text-lg font-semibold mt-1">Google Play</p>
               </div>
-            </motion.button>
+            </motion.a>
           </div>
 
-          <motion.button
+          <motion.a
+            href="https://play.google.com/store/apps/details?id=com.sawari.driver&hl=en_US"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.6 }}
@@ -64,7 +73,7 @@ const HeroSection = () => {
             className="text-white/80 hover:text-white font-medium flex items-center gap-2 group transition-all font-body"
           >
             Become a Partner <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform text-primary-green" />
-          </motion.button>
+          </motion.a>
         </div>
       </div>
     </div>

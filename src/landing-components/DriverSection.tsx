@@ -104,9 +104,14 @@ const DriverSection = () => {
           {/* CTA Buttons */}
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-            <button className="bg-primary-green hover:bg-primary-green/90 text-light px-6 sm:px-10 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-105 shadow-xl font-body">
+            <a 
+              href="https://play.google.com/store/apps/details?id=com.sawari.driver&hl=en_US"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary-green hover:bg-primary-green/90 text-light px-6 sm:px-10 py-3 sm:py-4 rounded-2xl font-bold text-base sm:text-lg flex items-center justify-center gap-2 sm:gap-3 transition-all duration-300 hover:scale-105 shadow-xl font-body"
+            >
               <span>Become a Driver</span>
-            </button>
+            </a>
             <button className="group inline-flex items-center gap-2 px-10 py-4 bg-primary-green text-white font-bold rounded-2xl transition-all duration-300 hover:bg-primary-green/90 hover:scale-105 shadow-xl font-body">
             <span>View All Offers</span>
             <svg
