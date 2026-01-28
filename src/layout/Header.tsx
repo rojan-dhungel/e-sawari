@@ -10,7 +10,7 @@ const Header: React.FC = () => {
   const router = useRouter();
   const isHomePage = router.pathname === '/';
   const [showHeader, setShowHeader] = useState(true);
-  const [showQR, setShowQR] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -104,8 +104,8 @@ const Header: React.FC = () => {
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-6">
 
-            <button
-              onClick={() => setShowQR(true)}
+            <Link
+              href="/download"
               className="px-7 py-3 rounded-lg text-base font-semibold shadow-md transform transition-transform duration-300 hover:scale-105 hover:bg-[var(--dark-heading)] hover:text-[var(--light-background)]"
               style={{
                 backgroundColor: 'var(--primary-green)',
@@ -113,7 +113,7 @@ const Header: React.FC = () => {
               }}
             >
               <span className="text-base">Download The App</span>
-            </button>
+            </Link>
 
             <button
               onClick={() => setMenuOpen(!menuOpen)}
@@ -261,11 +261,9 @@ const Header: React.FC = () => {
                       Download the app and experience seamless services
                     </p>
                   </div>
-                  <button
-                    onClick={() => {
-                      setShowQR(true);
-                      setMenuOpen(false);
-                    }}
+                  <Link
+                    href="/download"
+                    onClick={() => setMenuOpen(false)}
                     className="px-10 py-5 rounded-xl text-lg font-semibold shadow-lg transition-all duration-300 hover:shadow-xl whitespace-nowrap"
                     style={{
                       backgroundColor: 'var(--primary-green)',
@@ -273,7 +271,7 @@ const Header: React.FC = () => {
                     }}
                   >
                     <span className="text-base">Download The App</span>
-                  </button>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -281,107 +279,22 @@ const Header: React.FC = () => {
 
           {/* Bottom CTA - Mobile */}
           <div className="lg:hidden p-7 border-t border-gray-200">
-            <button
-              onClick={() => {
-                setShowQR(true);
-                setMenuOpen(false);
-              }}
-              className="w-full px-4 py-4 rounded-xl text-base font-semibold shadow-lg transition-all duration-300 hover:shadow-xl"
+            <Link
+              href="/download"
+              onClick={() => setMenuOpen(false)}
+              className="w-full px-4 py-4 rounded-xl text-base font-semibold shadow-lg transition-all duration-300 hover:shadow-xl block text-center"
               style={{
                 backgroundColor: 'var(--primary-green)',
                 color: 'var(--light-background)',
               }}
             >
               Download The App
-            </button>
+            </Link>
           </div>
         </div>
       </div>
 
-      {/* QR POPUP */}
-      {showQR && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 flex justify-center items-center z-[999] backdrop-blur-sm p-4">
-          <div className="bg-white rounded-2xl p-8 max-w-sm w-full text-center shadow-2xl relative overflow-hidden animate-in fade-in duration-300">
-            {/* Close */}
-            <button
-              onClick={() => setShowQR(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 hover:bg-gray-100 w-9 h-9 flex items-center justify-center rounded-full transition-all duration-200 text-xl font-light"
-            >
-              &times;
-            </button>
-
-            {/* Logo */}
-            <div className="flex justify-center mb-5">
-              <div className="rounded-xl shadow-md">
-                <Image
-                  src="/Images/sawari.webp"
-                  alt="Sawari app logo"
-                  width={110}
-                  height={110}
-                />
-              </div>
-            </div>
-
-            <h2
-              className="text-2xl font-semibold mb-2 leading-tight"
-              style={{ color: 'var(--dark-heading)' }}
-            >
-              Download Sawari
-            </h2>
-            <p
-              className="text-sm mb-5"
-              style={{ color: 'var(--dark-heading)', opacity: 0.7 }}
-            >
-              Point your smartphone camera at the QR code
-            </p>
-
-            {/* QR Code */}
-            <div className="flex justify-center my-5">
-              <div className="bg-gradient-to-br from-gray-50 to-white p-5 rounded-xl border border-gray-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                <Image
-                  src="/Images/qr-sawari.webp"
-                  alt="QR Code"
-                  width={170}
-                  height={170}
-                  className="rounded-lg"
-                />
-              </div>
-            </div>
-
-            <p
-              className="text-xs mt-4 tracking-wide uppercase font-medium"
-              style={{ color: 'var(--dark-heading)', opacity: 0.6 }}
-            >
-              Scan with your phone camera
-            </p>
-
-            {/* Direct Store Buttons for Mobile Users */}
-            <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col gap-3">
-              <p className="text-xs text-gray-400 mb-1">Or download directly:</p>
-              <div className="flex gap-3 justify-center">
-                <a 
-                  href="https://apps.apple.com/np/app/sawari-user/id6749206812"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-black text-white px-3 py-2 rounded-lg flex flex-col items-center justify-center transition-transform hover:scale-105"
-                >
-                  <span className="text-[10px] opacity-70 leading-none">Download on</span>
-                  <span className="text-xs font-bold font-body leading-none mt-1">App Store</span>
-                </a>
-                <a 
-                  href="https://play.google.com/store/apps/details?id=com.sawari.app&hl=en_US"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 bg-primary-green text-white px-3 py-2 rounded-lg flex flex-col items-center justify-center transition-transform hover:scale-105"
-                >
-                  <span className="text-[10px] opacity-70 leading-none">Get it on</span>
-                  <span className="text-xs font-bold font-body leading-none mt-1">Google Play</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* QR POPUP REMOVED */}
     </>
   );
 };
