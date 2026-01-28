@@ -1,12 +1,18 @@
 import { useEffect } from 'react';
 import Head from 'next/head';
 
+interface ExtendedWindow extends Window {
+  opera?: string;
+  MSStream?: unknown;
+}
+
 const StoreRedirect = () => {
   useEffect(() => {
-    const userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
+    const win = window as unknown as ExtendedWindow;
+    const userAgent = navigator.userAgent || navigator.vendor || win.opera;
 
     // iOS detection from: http://stackoverflow.com/a/9039885/177710
-    if (/iPad|iPhone|iPod/.test(userAgent) && !(window as any).MSStream) {
+    if (/iPad|iPhone|iPod/.test(userAgent) && !win.MSStream) {
       window.location.href = "https://apps.apple.com/np/app/sawari-user/id6749206812";
       return;
     }
