@@ -354,6 +354,31 @@ const Header: React.FC = () => {
             >
               Scan with your phone camera
             </p>
+
+            {/* Direct Store Buttons for Mobile Users */}
+            <div className="mt-8 pt-6 border-t border-gray-100 flex flex-col gap-3">
+              <p className="text-xs text-gray-400 mb-1">Or download directly:</p>
+              <div className="flex gap-3 justify-center">
+                <a 
+                  href="https://apps.apple.com/np/app/sawari-user/id6749206812"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-black text-white px-3 py-2 rounded-lg flex flex-col items-center justify-center transition-transform hover:scale-105"
+                >
+                  <span className="text-[10px] opacity-70 leading-none">Download on</span>
+                  <span className="text-xs font-bold font-body leading-none mt-1">App Store</span>
+                </a>
+                <a 
+                  href="https://play.google.com/store/apps/details?id=com.sawari.app&hl=en_US"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 bg-primary-green text-white px-3 py-2 rounded-lg flex flex-col items-center justify-center transition-transform hover:scale-105"
+                >
+                  <span className="text-[10px] opacity-70 leading-none">Get it on</span>
+                  <span className="text-xs font-bold font-body leading-none mt-1">Google Play</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       )}

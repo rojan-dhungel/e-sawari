@@ -165,16 +165,16 @@ const Footer = () => {
           {/* App Download Buttons */}
           <div className="flex gap-4 flex-wrap">
             <a
-              href="https://play.google.com/store"
+              href="https://play.google.com/store/apps/details?id=com.sawari.app&hl=en_US"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center px-5 py-2.5 bg-transparent border border-gray-600 rounded-lg hover:border-gray-500 transition-colors min-w-[140px]"
             >
-              <span className="text-xs text-gray-400 font-body">Download on</span>
+              <span className="text-xs text-gray-400 font-body">Get it on</span>
               <span className="text-sm font-semibold text-white mt-0.5 font-body">Google Play</span>
             </a>
             <a
-              href="https://apps.apple.com"
+              href="https://apps.apple.com/np/app/sawari-user/id6749206812"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center justify-center px-5 py-2.5 bg-transparent border border-gray-600 rounded-lg hover:border-gray-500 transition-colors min-w-[140px]"
